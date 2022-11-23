@@ -17,7 +17,7 @@ CliniDeID automatically de-identifies clinical notes and structured data accordi
 * Structured data de-identification, integrated with unstructured text de-identification for consistent de-identification throughout the patient record (in CliniDeiD-Complete). Currently compatible with standard data models: OMOP CDM v5.3 and v6; HL7 FHIR coming soon)
 * Replacement of identified PII with realistic surrogates and consistently across the whole patient record (PII resynthesis), or with tags (generic or PII categories).
 * Highly accurate identification of PII (as demonstrated in several peer-reviewed evaluations and comparisons available at the bottom of this page)
-* Multiple input and output data formats: plain text, HL7 CDA , relational databases (PostgreSQL, Oracle , MySQL, MS SQL Server, DB2)
+* Multiple input and output data formats: plain text, HL7 CDA , relational databases (PostgreSQL , MySQL, DB2, etc.)
 
 This version of CliniDeID was built to be used on-premises and includes a user-friendly graphical user interface and can also be run from the command line (details below).
 
