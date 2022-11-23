@@ -101,5 +101,4 @@ CliniDeID's development was funded in part by the U.S. NIGMS (R41GM116479 and R4
 
 GPL version 3.0
 ![GPL](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)
-**Free Software,  Yeah!**
 
