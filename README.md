@@ -9,7 +9,7 @@ You should have received a copy of the GNU General Public License along with Cli
 ## _Automatic clinical data de-identification_
 
 
-[![GitHub license](https://img.shields.io/badge/license-GPL--3.0-blue)](https://www.gnu.org/licenses/gpl-3.0.txt)
+[![GitHub license](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](https://www.gnu.org/licenses/gpl-3.0.txt)
 
 CliniDeID automatically de-identifies clinical text notes according to the [HIPAA Safe Harbor method](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#standard). It accurately finds identifiers and tags or replaces them with realistic surrogates for better anonymity. It improves access to richer, more detailed, and more accurate clinical data for clinical researchers. It eases research data sharing, and helps healthcare organizations protect patient data confidentiality.
 ### Features
