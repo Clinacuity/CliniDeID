@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.Double?>
+<?import java.lang.String?>
+<HBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
+      fx:controller="com.clinacuity.deid.gui.DeidRunnerController">
+    <fx:define>
+        <ToggleGroup fx:id="inputType"/>
+        <ToggleGroup fx:id="level"/>
+        <ToggleGroup fx:id="inputFormat"/>
+        <ToggleGroup fx:id="outputFormat"/>
+        <ToggleGroup fx:id="piiDates" userData="Date"/>
+        <ToggleGroup fx:id="piiAges" userData="Age"/>
+        <ToggleGroup fx:id="piiZips" userData="Zip"/>
+        <Double fx:id="MAIN_COLUMN_SPACING" fx:value="90"/>
+        <Double fx:id="MAIN_COLUMN_WIDTH" fx:value="350"/>
+        <Double fx:id="MIDDLE_COLUMN_WIDTH" fx:value="350"/>
+        <Double fx:id="SIDEBAR_VERTICAL_SPACING" fx:value="15"/>
+        <Double fx:id="BOX_SPACING" fx:value="15"/>
+        <Double fx:id="BOX_PADDING" fx:value="20"/>
+        <Double fx:id="HALF_WIDTH" fx:value="170"/>
+        <Double fx:id="DB_LABEL_WIDTH" fx:value="115"/>
+        <Double fx:id="DB_TEXTBOX_WIDTH" fx:value="115"/>
+        <Double fx:id="ICON_HEIGHT" fx:value="50"/>
+        <Double fx:id="PII_SPECIAL_HBOX_SPACING" fx:value="15"/>
+        <Double fx:id="PII_SPECIAL_HBOX_PADDING" fx:value="0"/>
+        <Double fx:id="PII_SPECIAL_INNER_SPACING" fx:value="30"/>
+        <Double fx:id="PII_SPECIAL_INNER_PADDING" fx:value="2"/>
+
+        <String fx:id="TOOLTIP_INPUT_CDA" fx:value="HL7 CDA Version 1 file with .xml extension, structured PII used from CDA tags"/>
+        <String fx:id="TOOLTIP_INPUT_TEXT" fx:value="Plain text file with .txt extension"/>
+        <String fx:id="TOOLTIP_SCHEMA" fx:value="Any 'USE' or schema SQL commands to run before 'SELECT' executes"/>
+        <String fx:id="TOOLTIP_FILTER" fx:value="Valid 'WHERE' clause to filter 'SELECT' query"/>
+        <String fx:id="TOOLTIP_SUPER" fx:value="All PII known to system will be annotated"/>
+        <String fx:id="TOOLTIP_STRICT" fx:value="PII covered by HIPAA Safe Harbor will be annotated"/>
+        <String fx:id="TOOLTIP_LIMITED" fx:value="Only PII covered by HIPAA Limited Data set will be annotated"/>
+        <String fx:id="TOOLTIP_CUSTOM_RADIO" fx:value="Select which PII categories to detect"/>
+        <String fx:id="TOOLTIP_RESYNTH" fx:value="Replaces PII with realistic surrogates, output file extension .deid.resynthesis.txt"/>
+        <String fx:id="TOOLTIP_TAG_GENERAL" fx:value="Replaces PII with [ *** PII *** ], output file extension .deid.piiTag.txt"/>
+        <String fx:id="TOOLTIP_TAG_CAT" fx:value="Replaces PII with [ *** category *** ], output file extension .deid.piiCategoryTag.txt"/>
+        <String fx:id="TOOLTIP_OUT_PII" fx:value="List of detected PII with categories, output file extension .detectedPII.txt"/>
+        <String fx:id="TOOLTIP_OUT_RAW" fx:value="XML output in UIMA format with all system annotations, output file extension .raw-system-output.xml"/>
+        <String fx:id="TOOLTIP_OUT_CLEAN" fx:value="XML output in UIMA format with just PII annotations, output file extension .clean-system-output.xml"/>
+        <String fx:id="TOOLTIP_TOTAL_PROCESSED"
+                fx:value="Total amount of 5000 character note equivalents for this history (may not reflect total processed by customer, see https://deid.clinacuity.com)"/>
+        <String fx:id="TOOLTIP_OUT_MAP"
+                fx:value="Text output showing original PII values and what they were resynthesized to requires resynthesis to be selected, output file extension .map.txt"/>
+        <String fx:id="TOOLTIP_CUSTOM_ZIP" fx:value="HIPAA Safe Harbor allows the first 3 digits to remain if the region's population exceeds 20,000"/>
+        <String fx:id="TOOLTIP_CUSTOM_AGE" fx:value="HIPAA Safe Harbor only includes ages greater than 89"/>
+        <String fx:id="TOOLTIP_CUSTOM_DATE"
+                fx:value="HIPAA Safe Harbor only includes month and day, not year. Holidays are included in Safe Harbor and are converted to a month and day for resynthesis."/>
+
+    </fx:define>
+    <VBox styleClass="sidebar" prefWidth="150" spacing="$SIDEBAR_VERTICAL_SPACING"
+          alignment="TOP_CENTER" fx:id="sidebar"> <!--sidebar-->
+        <ImageView preserveRatio="true" pickOnBounds="true" onMouseClicked="#clickedDeidLogo" styleClass="hand-cursor">
+            <Image url="/gui/CliniDeIDlogoTransp 2019 LtBlue2.png" requestedHeight="100" preserveRatio="true"
+                   smooth="true"/>
+        </ImageView>
+        <padding>
+            <Insets top="30" right="30" left="30"/>
+        </padding>
+        <Region minHeight="100"/>
+        <VBox fx:id="sidebarDashboard" onMouseClicked="#goDashboard" alignment="CENTER" styleClass="hand-cursor" spacing="20">
+            <StackPane alignment="TOP_CENTER">
+                <ImageView fx:id="iconDashboardBlue" preserveRatio="true" pickOnBounds="true">
+                    <Image url="/gui/CliniDeIDDashboardBlue.png" requestedHeight="$ICON_HEIGHT" preserveRatio="true"
+                           smooth="true"/>
+                </ImageView>
+                <ImageView fx:id="iconDashboardGrey" preserveRatio="true" pickOnBounds="true" visible="false">
+                    <Image url="/gui/CliniDeIDDashboardGrey.png" requestedHeight="$ICON_HEIGHT" preserveRatio="true"
+                           smooth="true"/>
+                </ImageView>
+            </StackPane>
+            <Label text="Dashboard" fx:id="dashboardLabel" styleClass="text-large-normal, text-blue"
+                   alignment="CENTER"/>
+        </VBox>
+        <VBox fx:id="sidebarHistory" onMouseClicked="#goHistory" alignment="CENTER" styleClass="hand-cursor" spacing="20">
+            <StackPane alignment="TOP_CENTER">
+                <ImageView fx:id="iconHistoryBlue" preserveRatio="true" pickOnBounds="true" visible="false">
+                    <Image url="/gui/CliniDeIDHistoryBlue.png" requestedHeight="$ICON_HEIGHT" preserveRatio="true"
+                           smooth="true"/>
+                </ImageView>
+                <ImageView fx:id="iconHistoryGrey" preserveRatio="true" pickOnBounds="true">
+                    <Image url="/gui/CliniDeIDHistoryGrey.png" requestedHeight="$ICON_HEIGHT" preserveRatio="true"
+                           smooth="true"/>
+                </ImageView>
+            </StackPane>
+            <Label text="History" fx:id="historyLabel" styleClass="text-large-normal" alignment="CENTER"/>
+        </VBox>
+
+        <VBox fx:id="sidebarHelp" onMouseClicked="#goHelp" alignment="CENTER" styleClass="hand-cursor" spacing="20">
+            <StackPane alignment="TOP_CENTER">
+                <ImageView fx:id="iconHelpBlue" preserveRatio="true" pickOnBounds="true" visible="false">
+                    <Image url="/gui/CliniDeIDHelpBlue.png" requestedHeight="$ICON_HEIGHT" preserveRatio="true"
+                           smooth="true"/>
+                </ImageView>
+                <ImageView fx:id="iconHelpGrey" preserveRatio="true" pickOnBounds="true">
+                    <Image url="/gui/CliniDeIDHelpGrey.png" requestedHeight="$ICON_HEIGHT" preserveRatio="true"
+                           smooth="true"/>
+                </ImageView>
+            </StackPane>
+            <Label text="Help" fx:id="helpLabel" styleClass="text-large-normal" alignment="CENTER"/>
+        </VBox>
+    </VBox>
+
+    <VBox styleClass="background-light-blue" minWidth="1350">
+        <padding>
+            <Insets top="$BOX_PADDING" left="$BOX_PADDING" right="$BOX_PADDING"/>
+        </padding>
+        <Label text="CliniDeID®" styleClass="logo-header"/>
+        <StackPane>
+            <VBox fx:id="customize" spacing="$BOX_SPACING" visible="false">
+                <padding>
+                    <Insets topRightBottomLeft="$BOX_PADDING"/>
+                </padding>
+                <HBox>
+                    <Label text="Custom PII selection " styleClass="text-medium-normal"/>
+                    <Separator valignment="BOTTOM" prefWidth="400" translateY="9" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <HBox spacing="$BOX_SPACING" styleClass="box-round-white">
+                    <padding>
+                        <Insets topRightBottomLeft="10"/>
+                    </padding>
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets topRightBottomLeft="10"/>
+                        </padding>
+                        <Label text="PII categories to de-identify" styleClass="text-medium-bold"/>
+                        <HBox alignment="BASELINE_LEFT">
+                            <Label text="Custom set name: "/>
+                            <TextField fx:id="optionFilename" text="" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                        <HBox spacing="$BOX_SPACING">
+                            <padding>
+                                <Insets topRightBottomLeft="0"/>
+                            </padding>
+                            <Button text="Select all" onAction="#piiSelectAll" styleClass="button-piiSelect, box-round-white">
+                                <tooltip>
+                                    <Tooltip text="$TOOLTIP_SUPER"/>
+                                </tooltip>
+                            </Button>
+                            <Button text="Select Safe Harbor" onAction="#piiSelectSafeHarbor" styleClass="button-piiSelect, box-round-white">
+                                <tooltip>
+                                    <Tooltip text="$TOOLTIP_STRICT"/>
+                                </tooltip>
+                            </Button>
+                            <Button text="Select limited dataset" onAction="#piiSelectLimited" styleClass="button-piiSelect, box-round-white">
+                                <tooltip>
+                                    <Tooltip text="$TOOLTIP_LIMITED"/>
+                                </tooltip>
+                            </Button>
+                            <Button text="Deselect all" onAction="#piiSelectNone" styleClass="button-piiSelect, box-round-white"/>
+
+                        </HBox>
+                        <CheckBox fx:id="piiPatient" userData="Patient" text="Patient name" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiProvider" userData="Provider" text="Provider name" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiRelative" userData="Relative" text="Relative name" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiStreet" userData="Street" text="Street address" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiCity" userData="City" text="City" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiState" userData="State" text="State" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiCountry" userData="Country" text="Country" styleClass="text-medium-normal"/>
+
+                        <HBox spacing="$PII_SPECIAL_HBOX_SPACING" alignment="BASELINE_LEFT" fx:id="customZipBox">
+                            <padding>
+                                <Insets topRightBottomLeft="$PII_SPECIAL_HBOX_PADDING"/>
+                            </padding>
+                            <CheckBox fx:id="piiZip" userData="Zip" text="ZIP code" styleClass="text-medium-normal">
+                            </CheckBox>
+                            <HBox spacing="$PII_SPECIAL_INNER_SPACING" styleClass="box-round-white" alignment="BASELINE_LEFT">
+                                <padding>
+                                    <Insets topRightBottomLeft="$PII_SPECIAL_INNER_PADDING"/>
+                                </padding>
+                                <RadioButton fx:id="piiZipAll" text="All" styleClass="text-medium-normal" toggleGroup="$piiZips" userData="1"
+                                             onAction="#setPiiOptionsChanged">
+                                </RadioButton>
+
+                                <RadioButton fx:id="piiZipSafe" text="Safe Harbor  " styleClass="text-medium-normal" toggleGroup="$piiZips" userData="2"
+                                             onAction="#setPiiOptionsChanged">
+                                </RadioButton>
+                            </HBox>
+                        </HBox>
+
+                        <CheckBox fx:id="piiOtherGeo" userData="OtherGeo" text="Other geo-location" styleClass="text-medium-normal">
+                            <tooltip>
+                                <Tooltip text="Names of geographic subdivisions smaller than states including names of rivers, mountains, etc."/>
+                            </tooltip>
+                        </CheckBox>
+                    </VBox>
+
+                    <Pane minWidth="200"/>
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets topRightBottomLeft="10"/>
+                        </padding>
+                        <CheckBox fx:id="piiPhoneFax" userData="PhoneFax" text="Telephone/Fax" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiElectronicAddress" userData="ElectronicAddress" text="Electronic address (Email, IP, URL)"
+                                  styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiSSN" userData="SSN" text="SSN" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiOtherIDNumber" userData="OtherIDNumber" text="Other ID number" styleClass="text-medium-normal"/>
+
+                        <HBox spacing="$PII_SPECIAL_HBOX_SPACING" alignment="BASELINE_LEFT" fx:id="customDateBox">
+                            <padding>
+                                <Insets topRightBottomLeft="$PII_SPECIAL_HBOX_PADDING"/>
+                            </padding>
+                            <CheckBox fx:id="piiDate" userData="Date" text="Date" styleClass="text-medium-normal"/>
+                            <HBox spacing="$PII_SPECIAL_INNER_SPACING" styleClass="box-round-white" alignment="BASELINE_LEFT">
+                                <padding>
+                                    <Insets topRightBottomLeft="$PII_SPECIAL_INNER_PADDING"/>
+                                </padding>
+                                <RadioButton fx:id="piiDateAll" text="All" styleClass="text-medium-normal" toggleGroup="$piiDates" userData="1"
+                                             onAction="#setPiiOptionsChanged"/>
+                                <RadioButton fx:id="piiDateMonthDay" text="Month &amp; day  " styleClass="text-medium-normal" toggleGroup="$piiDates"
+                                             userData="2" onAction="#setPiiOptionsChanged"/>
+                            </HBox>
+                        </HBox>
+                        <CheckBox fx:id="piiDayOfWeek" userData="DayOfWeek" text="Day of week" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiClockTime" userData="ClockTime" text="Time of day" styleClass="text-medium-normal"/>
+                        <CheckBox fx:id="piiSeason" userData="Season" text="Season" styleClass="text-medium-normal">
+                            <tooltip>
+                                <Tooltip text="For resynthesis, a season is treated as a month and day approximately in the middle of that season"/>
+                            </tooltip>
+                        </CheckBox>
+                        <HBox spacing="$PII_SPECIAL_HBOX_SPACING" alignment="BASELINE_LEFT" fx:id="customAgeBox">
+                            <padding>
+                                <Insets topRightBottomLeft="$PII_SPECIAL_HBOX_PADDING"/>
+                            </padding>
+                            <CheckBox fx:id="piiAge" userData="Age" text="Age" styleClass="text-medium-normal"/>
+                            <HBox styleClass="box-round-white" spacing="$PII_SPECIAL_INNER_SPACING" alignment="BASELINE_LEFT">
+                                <padding>
+                                    <Insets topRightBottomLeft="$PII_SPECIAL_INNER_PADDING"/>
+                                </padding>
+                                <RadioButton fx:id="piiAgeAll" text="All" styleClass="text-medium-normal" toggleGroup="$piiAges" userData="1"
+                                             onAction="#setPiiOptionsChanged"/>
+                                <RadioButton fx:id="piiAgeGt89" text="Above 89  " styleClass="text-medium-normal" toggleGroup="$piiAges" userData="2"
+                                             onAction="#setPiiOptionsChanged"/>
+                            </HBox>
+                        </HBox>
+                        <CheckBox fx:id="piiHealthCareUnitName" userData="HealthCareUnitName" text="Healthcare organization" styleClass="text-medium-normal">
+                            <tooltip>
+                                <Tooltip text="Names of facilities that perform health care services including smaller units with the facility"/>
+                            </tooltip>
+                        </CheckBox>
+                        <CheckBox fx:id="piiOtherOrgName" userData="OtherOrgName" text="Other organization" styleClass="text-medium-normal">
+                            <tooltip>
+                                <Tooltip text="Names of companies, schools, churches, and other organizations not related to health care"/>
+                            </tooltip>
+                        </CheckBox>
+                        <CheckBox fx:id="piiProfession" userData="Profession" text="Profession" styleClass="text-medium-normal"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="60">
+                    <padding>
+                        <Insets left="0" top="10" right="10" bottom="0"/>
+                    </padding>
+                    <VBox spacing="17" styleClass="box-round-white" minWidth="860">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <Label text="Saved custom PII category sets" styleClass="text-medium-bold"/>
+                        <HBox spacing="$BOX_SPACING" alignment="BASELINE_LEFT">
+                            <Label text="Load custom set file:" styleClass="text-medium-normal"/>
+                            <TextField fx:id="piiLoadCustomSet" minWidth="350" styleClass="text-medium-normal"/>
+                            <Button onAction="#piiLoadDialog" prefWidth="15" styleClass="button-magGlass, text-small-normal" translateY="-2"
+                                    alignment="TOP_CENTER">
+                                <tooltip>
+                                    <Tooltip text="Open file system"/>
+                                </tooltip>
+                            </Button>
+                        </HBox>
+                        <TableView fx:id="tablePiiXml">
+                            <columns>
+                                <TableColumn fx:id="columnFilename" text="Custom set name" styleClass="text-medium-normal" prefWidth="270">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="filename"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Last used" prefWidth="210" styleClass="text-medium-normal">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="lastUsed"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Created" prefWidth="210" styleClass="text-medium-normal">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="created"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="columnDelete" text="Delete" prefWidth="70" styleClass="text-medium-normal"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                    <VBox spacing="30" alignment="CENTER">
+                        <padding>
+                            <Insets left="50" top="10"/>
+                        </padding>
+                        <Button onAction="#customSaveAndUse" text="Use" prefWidth="150" maxHeight="20"
+                                styleClass="hand-cursor, text-medium-normal, button-blue" alignment="BASELINE_CENTER"/>
+                        <Button onAction="#customSave" text="Save" prefWidth="150" prefHeight="20"
+                                styleClass="hand-cursor, text-medium-normal, button-inverse-blue" alignment="BASELINE_CENTER"/>
+                        <Button onAction="#customCancel" text="Cancel" prefWidth="150" prefHeight="20"
+                                styleClass="hand-cursor, text-medium-normal, button-red" alignment="BASELINE_CENTER"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <HBox fx:id="help" spacing="$BOX_SPACING" visible="false">
+                <padding>
+                    <Insets left="30" top="30" bottom="20"/>
+                </padding>
+                <!-- may need <Accordion>, <panes>-->
+                <VBox styleClass="box-round-white" spacing="$BOX_SPACING" prefWidth="800" prefHeight="560">
+                    <padding>
+                        <Insets topRightBottomLeft="$BOX_PADDING"/>
+                    </padding>
+                    <Label text="Frequently Asked Questions" styleClass="text-large-bold"/>
+                    <ScrollPane styleClass="sidebar" prefHeight="540">
+                        <VBox prefWidth="700">
+                            <!--  text="${'Multi\nLine\tTab'}"  &#xD -->
+                            <TitledPane text="Why is Internet Connectivity Required?" animated="false" expanded="false"
+                                        styleClass="text-large-normal">
+                                <Label styleClass="text-large-normal" wrapText="true">
+                                    CliniDeID connects to verify the license usage. Only information regarding the
+                                    number and size of notes is transmitted.
+                                </Label>
+                            </TitledPane>
+                            <TitledPane text="Is CliniDeID secure?" animated="false" expanded="false"
+                                        styleClass="text-large-normal">
+                                <Label styleClass="text-large-normal" wrapText="true">
+                                    The on-premises version of CliniDeid only transmits license information to our
+                                    server and it is done using a secure, SSL connection. No PII or
+                                    PHI is ever transmitted.
+                                </Label>
+                            </TitledPane>
+                            <TitledPane text="What does CliniDeID do with my database?" animated="false"
+                                        expanded="false" styleClass="text-large-normal">
+                                <Label styleClass="text-large-normal" wrapText="true">
+                                    The only queries done on a client's database are SELECT (to get the notes to
+                                    process) and the optional Pre-Query supplied by the client. No
+                                    updates are sent to the client's database. If 'database' is chosen for output, then
+                                    a PostgreSQL database created during installation is used as
+                                    the destination of processed notes.
+                                </Label>
+                            </TitledPane>
+                            <TitledPane text="Why won't my database connect?" animated="false" expanded="false"
+                                        styleClass="text-large-normal">
+                                <Label styleClass="text-large-normal" wrapText="true">
+                                    Verify that your username has access to the database and table you specified. The
+                                    SQL statement performed is of the form 'SELECT
+                                    (ID_Column_Name, Text_Column_Name) FROM Table_Name [WHERE Filter]". Verify that that
+                                    SQL statement can be performed. You may need to
+                                    specify a 'Pre-Query' to change schemas. heck with your database administrator to
+                                    make sure that the values in the fields are correct.
+                                </Label>
+                            </TitledPane>
+                            <TitledPane text="Is CliniDeID available as a service?" animated="false" expanded="false"
+                                        styleClass="text-large-normal">
+                                <Label styleClass="text-large-normal, hand-cursor" wrapText="true"
+                                       onMouseClicked="#clickedDeidLogo">
+                                    Checkout our webpage at https://www.clinacuity.com/home2/clinideid/ for current
+                                    information.
+                                </Label>
+                            </TitledPane>
+                            <TitledPane text="Is CliniDeID HIPAA compliant?" animated="false" expanded="false"
+                                        styleClass="text-large-normal">
+                                <Label styleClass="text-large-normal" wrapText="true">
+                                    This desktop version has not been reviewed for HIPAA compliance. Note that the only
+                                    information sent to our servers is license information (number and size of files).
+                                    No PII is ever transmitted.
+                                    PII is written to output files and/or to the Postgresql database depending on user
+                                    selections.
+                                </Label>
+                            </TitledPane>
+                            <TitledPane text="How accurate is CliniDeID?" animated="false" expanded="false"
+                                        styleClass="text-large-normal">
+                                <Label styleClass="text-large-normal" wrapText="true">
+                                    As described in the scientific publication mentioned below, CliniDeID’s average
+                                    recall (i.e., sensitivity) was 98.06% and average precision (i.e., positive
+                                    predictive value) was 99.16%.
+                                    Accuracy metrics for each category of identifier vary, with direct identifiers such
+                                    as patient names measured higher than the aforementioned averages. 'Kim Y, Heider P,
+                                    Meystre SM. (2018). Ensemble-based Methods to Improve De-identification of
+                                    Electronic Health Record Narratives. AMIA Annu Symp Proc.
+                                    663-72.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6371277/
+                                </Label>
+                            </TitledPane>
+                        </VBox>
+                    </ScrollPane>
+                </VBox>
+                <VBox spacing="$BOX_SPACING" alignment="TOP_CENTER">
+                    <ImageView preserveRatio="true" pickOnBounds="true" accessibleText="Complete Documentation"
+                               onMouseClicked="#openDocumentationFile" styleClass="hand-cursor">
+                        <Image url="/gui/DocImage.png" requestedHeight="400" preserveRatio="true" smooth="true"/>
+                    </ImageView>
+                    <Label text="Complete Documentation (pdf)" onMouseClicked="#openDocumentationFile"
+                           styleClass="text-large-normal, text-blue, hand-cursor"/>
+                    <VBox styleClass="box-round-white" spacing="$BOX_SPACING">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <Label styleClass="text-large-bold" text="Contact"/>
+                        <Label styleClass="text-large-normal" wrapText="true"
+                               text="Need more help? Didn’t find the answer to your question or your problem?"/>
+                        <Label styleClass="text-large-normal, hand-cursor" wrapText="true" onMouseClicked="#openEmail"
+                               text="Email us at support@clinacuity.com"/>
+                        <Label styleClass="text-large-normal, hand-cursor" wrapText="true" onMouseClicked="#clickedLogo"
+                               text="Visit us at https://www.clinacuity.com/"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+            <HBox fx:id="history" visible="false" spacing="$MAIN_COLUMN_SPACING">
+                <padding>
+                    <Insets left="30" top="30"/>
+                </padding>
+                <VBox prefWidth="$MAIN_COLUMN_WIDTH" spacing="$BOX_SPACING">
+                    <HBox>
+                        <Label text="Previous runs " minWidth="80" styleClass="text-medium-normal"/>
+                        <Separator valignment="BOTTOM" prefWidth="400" translateY="9"/>
+                    </HBox>
+                    <VBox styleClass="box-round-white" prefHeight="600" spacing="$BOX_SPACING">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <Label text="Select run for more details" styleClass="text-large-bold"/>
+                        <ListView fx:id="historyBox" prefHeight="530" styleClass="box-round-white, listView"/>
+                    </VBox>
+                    <Label text="" styleClass="text-large-normal" fx:id="totalProcessed">
+                        <tooltip>
+                            <Tooltip text="$TOOLTIP_TOTAL_PROCESSED"/>
+                        </tooltip>
+                    </Label>
+                </VBox>
+                <VBox prefWidth="700" spacing="$BOX_SPACING" alignment="TOP_CENTER">
+                    <HBox>
+                        <Label text="Details " minWidth="40" styleClass="text-medium-normal"/>
+                        <Separator valignment="BOTTOM" prefWidth="700" translateY="9"/>
+                    </HBox>
+                    <VBox styleClass="box-round-white" prefHeight="600">
+                        <TextArea fx:id="historyData" styleClass="text-medium-normal" prefHeight="800"
+                                  editable="false"/>
+                    </VBox>
+                    <Label text="Click here for complete log" onMouseClicked="#openLogFile"
+                           styleClass="text-large-normal, text-blue, hand-cursor"/>
+                </VBox>
+
+            </HBox>
+            <HBox fx:id="dashboard" spacing="$MAIN_COLUMN_SPACING">
+                <padding>
+                    <Insets left="30" top="30"/>
+                </padding>
+                <VBox prefWidth="$MAIN_COLUMN_WIDTH" spacing="$BOX_SPACING">
+                    <HBox>
+                        <Label text="Input information " minWidth="100" styleClass="text-medium-normal"/>
+                        <Separator valignment="BOTTOM" prefWidth="400" translateY="9"/>
+                    </HBox>
+                    <HBox spacing="20">
+                        <VBox styleClass="box-round-white" minWidth="$HALF_WIDTH" spacing="$BOX_SPACING">
+                            <padding>
+                                <Insets topRightBottomLeft="$BOX_PADDING"/>
+                            </padding>
+                            <RadioButton text="File system" fx:id="fileInputToggle" styleClass="text-medium-normal" toggleGroup="$inputType" selected="true"/>
+                            <RadioButton text="Database" fx:id="dbInputToggle" styleClass="text-medium-normal" toggleGroup="$inputType"/>
+                        </VBox>
+
+
+                        <VBox styleClass="box-round-white" minWidth="$HALF_WIDTH" spacing="$BOX_SPACING">
+                            <padding>
+                                <Insets topRightBottomLeft="$BOX_PADDING"/>
+                            </padding>
+                            <RadioButton text="Plain text" fx:id="inputText" styleClass="text-medium-normal" toggleGroup="$inputFormat" selected="true">
+                                <tooltip>
+                                    <Tooltip text="$TOOLTIP_INPUT_TEXT"/>
+                                </tooltip>
+                            </RadioButton>
+                            <RadioButton text="HL7 CDA V1" fx:id="inputCda" styleClass="text-medium-normal" toggleGroup="$inputFormat">
+                                <tooltip>
+                                    <Tooltip text="$TOOLTIP_INPUT_CDA"/>
+                                </tooltip>
+                            </RadioButton>
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="$BOX_SPACING" fx:id="fileInputs" alignment="CENTER_LEFT" styleClass="box-round-white">
+                        <padding>
+                            <Insets top="15" bottom="15" left="15" right="5"/>
+                        </padding>
+                        <Label text="Input folder" styleClass="text-medium-normal"/>
+                        <TextField fx:id="inputDirText" styleClass="text-medium-normal" minWidth="200"/>
+                        <Button fx:id="inBrowseBtn" onAction="#pickInputDir" prefWidth="15"
+                                styleClass="button-magGlass, no-focus, text-small-normal"/> <!-- no-focus doesn't exist, what should it be?-->
+                    </HBox>
+
+                    <GridPane fx:id="dbInputs" styleClass="box-round-white" vgap="10">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <ComboBox fx:id="dbms" styleClass="text-medium-normal" prefWidth="155.0" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                                  promptText="Database system*" GridPane.columnSpan="2">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="PostgreSQL"/>
+                                    <!--<String fx:value="Oracle"/>-->
+                                    <!--<String fx:value="Microsoft Access"/>-->
+                                    <String fx:value="MS SQL Server"/>
+                                    <String fx:value="IBM DB2"/>
+                                    <!-- <String fx:value="Sybase"/> -->
+                                    <String fx:value="MySQL"/>
+                                    <!--<String fx:value="Teradata"/>-->
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
+                        <Label text="Database Name*" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal" GridPane.columnIndex="0"
+                               GridPane.rowIndex="1"/>
+                        <TextField fx:id="dbName" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                        <Label text="Table Name*" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal" GridPane.columnIndex="0"
+                               GridPane.rowIndex="2"/>
+                        <TextField fx:id="dbTableName" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="2"/>
+
+                        <Label text="ID Column Name*" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal"
+                               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <TextField fx:id="dbColumnId" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="3"/>
+
+                        <Label text="Text Column Name*" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal"
+                               GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <TextField fx:id="dbColumnText" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="4"/>
+
+                        <Label text="Server" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal" GridPane.columnIndex="0"
+                               GridPane.rowIndex="5"/>
+                        <TextField fx:id="dbServer" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="5"/>
+
+                        <Label text="Port Number" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal" GridPane.columnIndex="0"
+                               GridPane.rowIndex="6"/>
+                        <TextField fx:id="dbPort" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+                        <Label text="Username" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal" GridPane.columnIndex="0"
+                               GridPane.rowIndex="7"/>
+                        <TextField fx:id="dbUsername" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="7"/>
+
+                        <Label text="Password" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal" GridPane.columnIndex="0"
+                               GridPane.rowIndex="8"/>
+                        <PasswordField fx:id="dbPassword" styleClass="text-medium-normal" minWidth="20" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+                        <Label text="Pre-Query" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH"
+                               styleClass="text-medium-normal" GridPane.columnIndex="0" GridPane.rowIndex="9">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_SCHEMA"/>
+                            </tooltip>
+                        </Label>
+                        <TextField fx:id="dbSchema" styleClass="text-medium-normal" minWidth="$DB_TEXTBOX_WIDTH" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_SCHEMA"/>
+                            </tooltip>
+                        </TextField>
+
+                        <Label text="Filter" alignment="BOTTOM_LEFT" minWidth="$DB_LABEL_WIDTH" styleClass="text-medium-normal" GridPane.columnIndex="0"
+                               GridPane.rowIndex="10">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_FILTER"/>
+                            </tooltip>
+                        </Label>
+                        <TextField fx:id="dbQuery" styleClass="text-medium-normal" minWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_FILTER"/>
+                            </tooltip>
+                        </TextField>
+                        <Label text="* Required items" styleClass="text-small-normal" GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+                    </GridPane>
+                </VBox>
+                <VBox prefWidth="$MIDDLE_COLUMN_WIDTH" spacing="$BOX_SPACING" alignment="TOP_CENTER"> <!-- process column-->
+                    <HBox>
+                        <Label text="Processing control " minWidth="110" styleClass="text-medium-normal"/>
+                        <Separator valignment="BOTTOM" prefWidth="400" translateY="9"/>
+                    </HBox>
+                    <VBox styleClass="box-round-white" spacing="$BOX_SPACING">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <Label text="Level of de-identification" styleClass="column-header"/>
+                        <!-- the below RadioButton's fx:ids are used as the value of deidLevel -->
+                        <RadioButton fx:id="beyond" text="Beyond HIPAA Safe Harbor" styleClass="text-medium-normal" toggleGroup="$level"
+                                     onAction="#customLevelOff">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_SUPER"/>
+                            </tooltip>
+                        </RadioButton>
+                        <RadioButton fx:id="strict" text="HIPAA De-identified (Safe Harbor)" onAction="#customLevelOff" styleClass="text-medium-normal"
+                                     toggleGroup="$level" selected="true">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_STRICT"/>
+                            </tooltip>
+                        </RadioButton>
+                        <RadioButton fx:id="limited" text="HIPAA Limited data set" styleClass="text-medium-normal" toggleGroup="$level"
+                                     onAction="#customLevelOff">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_LIMITED"/>
+                            </tooltip>
+                        </RadioButton>
+                        <HBox alignment="CENTER_LEFT" spacing="0">
+                            <padding>
+                                <Insets topRightBottomLeft="0"/>
+                            </padding>
+                            <RadioButton fx:id="custom" text="Custom " styleClass="text-medium-normal" toggleGroup="$level"
+                                         onAction="#customLevel">
+                                <tooltip>
+                                    <Tooltip text="$TOOLTIP_CUSTOM_RADIO"/>
+                                </tooltip>
+                            </RadioButton>
+                            <Pane HBox.hgrow="ALWAYS" minWidth="10" minHeight="1"/>
+
+                            <Button fx:id="customLevel" onAction="#customLevel" text="   Edit   " styleClass="button-blue-small">
+                                <tooltip>
+                                    <Tooltip text="$TOOLTIP_CUSTOM_RADIO"/>
+                                </tooltip>
+                            </Button>
+                        </HBox>
+                    </VBox>
+                    <VBox styleClass="box-round-white" spacing="$BOX_SPACING">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <Label text="PII transformation" styleClass="column-header"/>
+                        <CheckBox fx:id="resynthesisCheckBox" text="PII resynthesis" styleClass="text-medium-normal" selected="true">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_RESYNTH"/>
+                            </tooltip>
+                        </CheckBox>
+                        <CheckBox fx:id="piiTaggingCheckBox" text="PII general tags" styleClass="text-medium-normal">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_TAG_GENERAL"/>
+                            </tooltip>
+                        </CheckBox>
+                        <CheckBox fx:id="piiTaggingCategoryCheckBox" text="PII category tags" styleClass="text-medium-normal">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_TAG_CAT"/>
+                            </tooltip>
+                        </CheckBox>
+                    </VBox>
+                    <Region minHeight="50"/>
+                    <StackPane alignment="TOP_CENTER" maxHeight="30">
+                        <padding>
+                            <Insets topRightBottomLeft="0"/>
+                        </padding>
+                        <Button fx:id="runButton" onAction="#runDeid" text="De-identify" styleClass="button-blue" minWidth="220" maxHeight="30"/>
+                        <Button fx:id="stopButton" onAction="#stopDeid" text="Stop process" visible="false" minWidth="220" maxHeight="30"
+                                styleClass="button-red"/>
+                    </StackPane>
+
+                    <StackPane>
+                        <VBox alignment="TOP_CENTER">
+                            <ProgressBar fx:id="progressBar" progress="0.0" minWidth="300" maxWidth="400.0" visible="false"/>
+                            <Label fx:id="progressLabel" text="Files processed 0 / 100" visible="false" styleClass="text-medium-normal"/>
+                            <ProgressIndicator fx:id="progressIndicator" visible="false"/>
+                        </VBox>
+                        <ImageView preserveRatio="true" pickOnBounds="true" visible="false" fx:id="successCheck">
+                            <Image url="/gui/ok-80-00B800-white.png" preserveRatio="true" smooth="true"/>
+                        </ImageView>
+                    </StackPane>
+
+                </VBox>
+                <VBox prefWidth="$MAIN_COLUMN_WIDTH" spacing="$BOX_SPACING"> <!-- output column-->
+                    <HBox>
+                        <Label text="Output information " minWidth="110" styleClass="text-medium-normal"/>
+                        <Separator valignment="BOTTOM" prefWidth="400" translateY="9"/>
+                    </HBox>
+                    <VBox styleClass="box-round-white" spacing="$BOX_SPACING">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <CheckBox text="File system" fx:id="fileOutputSelected" styleClass="text-medium-normal" selected="true"/>
+                        <CheckBox text="Database" fx:id="dbOutputSelected" styleClass="text-medium-normal"/>
+                    </VBox>
+
+                    <HBox spacing="$BOX_SPACING" alignment="CENTER_LEFT" styleClass="box-round-white">
+                        <padding>
+                            <Insets top="15" bottom="15" left="15" right="5"/>
+                        </padding>
+                        <Label text="Output folder" alignment="BOTTOM_LEFT" styleClass="text-medium-normal"/>
+                        <TextField fx:id="outputDirText" styleClass="text-medium-normal" minWidth="200"/>
+                        <Button fx:id="outBrowseBtn" onAction="#pickOutputDir" prefWidth="16"
+                                styleClass="button-magGlass, no-focus, text-small-normal"/>
+                    </HBox>
+                    <VBox styleClass="box-round-white" spacing="$BOX_SPACING">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <Label text="Optional output files (contain PII)" styleClass="column-header"/>
+                        <CheckBox styleClass="text-medium-normal" fx:id="piiWriterCheckBox" text="List of detected PII">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_OUT_PII"/>
+                            </tooltip>
+                        </CheckBox>
+                        <CheckBox styleClass="text-medium-normal" fx:id="rawXmiCheckBox" text="Complete system output (audit trail)">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_OUT_RAW"/>
+                            </tooltip>
+                        </CheckBox>
+                        <CheckBox styleClass="text-medium-normal" fx:id="cleanXmiCheckBox" text="Filtered system output">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_OUT_CLEAN"/>
+                            </tooltip>
+                        </CheckBox>
+                        <CheckBox styleClass="text-medium-normal" fx:id="resynthesisMapCheckBox" text="Resynthesis map">
+                            <tooltip>
+                                <Tooltip text="$TOOLTIP_OUT_MAP"/>
+                            </tooltip>
+                        </CheckBox>
+                    </VBox>
+                    <VBox styleClass="box-round-white" spacing="$BOX_SPACING">
+                        <padding>
+                            <Insets topRightBottomLeft="$BOX_PADDING"/>
+                        </padding>
+                        <Label text="Progress" styleClass="column-header"/>
+                        <TextArea fx:id="progressBox" styleClass="text-medium-normal, progressBox" prefHeight="180" editable="false"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+        </StackPane>
+
+        <HBox alignment="BOTTOM_LEFT" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="10" bottom="5" right="40"/>
+            </padding>
+            <ImageView preserveRatio="true" pickOnBounds="true" onMouseClicked="#clickedLogo" styleClass="hand-cursor">
+                <Image url="/gui/ClinacuityLogoUltraSmall40HeightTransp.png" requestedHeight="20" preserveRatio="true" smooth="true"/>
+            </ImageView>
+            <Label text=" © 2021, " onMouseClicked="#clickedLogo" styleClass="text-blue, hand-cursor"/>
+            <Label text="Clinacuity, Inc." onMouseClicked="#clickedLogo" styleClass="text-blue, hand-cursor"/>
+            <Label text=" All rights reserved" styleClass="text-blue"/>
+            <Region prefWidth="750" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Label text="Version: 1.6.1" styleClass="text-blue" fx:id="VersionLabel" alignment="CENTER_RIGHT"/>
+        </HBox>
+    </VBox>
+</HBox>

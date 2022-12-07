@@ -1,0 +1,571 @@
+WMRF_VY884001
+Marlette regional hospital Plan
+20130822
+0950
+-
+0630
+329251340
+809 Crestline Juncton
+Medaryville
+AR
+16350
+IVORY COAST
+tel:+
+4(651)437-5057
+
+Eclimmiee
+Rhoton
+Eclimmiee
+Eclimmieerywoman
+19750503
+809 Crestline Juncton
+Medaryville
+AR
+16350
+IVORY COAST
+tel:+
+7(469)539-5196
+
+Samuel
+Stanford
+Rhoton
+140 Beach Key
+Medaryville
+AR
+16350
+IVORY COAST
+219WL
+Brouer medical center
+tel: +
+8(397)625-2155
+
+344 Wheat Ldge
+Bellingham oaks
+AR
+87766
+IVORY COAST
+20130732
+349 Friedell Tunnel 
+Bellingham oaks
+AR
+87766
+IVORY COAST
+tel:+
+3(220)005-1815
+
+Arin
+Drane
+Gilt edge hospital
+748363761
+129 Bepler Xing
+Bellingham oaks
+AR
+87766
+IVORY COAST
+tel:+
+2(805)-1370
+
+Ruthie
+Abarca
+502010001
+129 Bepler Xing
+Bellingham oaks
+AR
+87766
+IVORY COAST
+tel:+
+9(956)-9412
+
+Bernie
+Wootton
+094ND
+Nora springs health care center
+tel:+
+2(245)828-6542
+
+259 Forsyth Dr 
+Bellingham oaks
+AR
+87766
+IVORY COAST
+867 Harry Lodge
+Wynford chase
+AZ
+42403
+IVORY COAST
+Arin
+Delker
+Line-care center
+867 Harry Lodge
+Wynford chase
+AZ
+42403
+IVORY COAST
+20130732
+349 Friedell Tunnel 
+Bellingham oaks
+AR
+87766
+IVORY COAST
+tel:+
+3(220)005-1815
+
+Arin
+Drane
+Gilt edge hospital
+20130804
+329251340
+809 Crestline Juncton
+Medaryville
+AR
+16350
+IVORY COAST
+tel:+
+4(651)437-5057
+
+Eclimmiee
+Eclimmieerywoman
+84573204
+20131003
+975 Telegraph Terr
+Wynford chase
+AZ
+42403
+IVORY COAST
+tel:(
+393)172-0820
+
+Judy
+Flanagan
+975 Telegraph Terr
+Wynford chase
+AZ
+42403
+IVORY COAST
+tel:(
+393)172-0820
+
+Judy
+Flanagan
+20130722
+20130817
+20130717
+223615-
+0630
+1941342528
+349 Friedell Tunnel 
+Bellingham oaks
+AR
+87766
+IVORY COAST
+tel:+
+1(332)-2336
+
+Cole
+Jessenia
+Hedlund
+3795611
+20130617
+Health Concerns Section
+
+ 
+
+ 
+
+ 
+
+ 
+Concern
+
+ 
+Status
+
+ 
+Date
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Current every day smoker
+
+ 
+Active
+
+ 
+Concern from Oct 12, 2015
+
+ 
+
+ 
+
+ 
+Respiratory insufficiency
+
+ 
+Completed
+
+ 
+Concern from October 9, 2015
+
+ 
+
+ 
+
+ 
+Pneumonia
+
+ 
+Completed
+
+ 
+Oct 12, 2015
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Related observation
+
+ 
+Date
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Productive cough
+
+ 
+Oct 11, 2015
+
+ 
+
+ 
+
+ 
+
+ 
+Patient priority:
+ high priority 
+Provider
+              priority:
+ high priority
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Risk
+
+ 
+Status
+
+ 
+Effective Date
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Malignant neoplastic disease
+
+ 
+Active
+
+ 
+Oct 12, 2015
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Patient priority:
+ high priority 
+Provider
+              priority:
+ high priority
+
+ 
+20130618
+2016-10-5
+20090216
+2016-10-5
+20130615
+2016-10-5
+20130618
+2016-10-5
+20130617
+84573204
+84573204
+20130618
+2016-10-5
+20130615
+84573204
+84573204
+Goals Section
+
+ 
+
+ 
+
+ 
+
+ 
+Goal
+
+ 
+Value
+
+ 
+Date
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Pulse oximetry
+
+ 
+92%
+
+ 
+December 29, 2015
+
+ 
+
+ 
+
+ 
+
+ 
+Patient priority:
+ high priority 
+Provider
+              priority:
+ high priority
+
+ 
+20130904
+20130732
+Arin
+Florence
+84573204
+84573204
+2016-10-5
+Interventions Section
+
+ 
+
+ 
+
+ 
+
+ 
+Planned Intervention
+
+ 
+Status
+
+ 
+Date
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Elevate head of bed
+
+ 
+active
+
+ 
+December 29, 2015
+
+ 
+
+ 
+
+ 
+Oxygen administration by nasal cannula
+
+ 
+active
+
+ 
+December 28, 2015
+
+ 
+
+ 
+
+ 
+pulse oximetry monitoring
+
+ 
+active
+
+ 
+December 30, 2015
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Completed Intervention
+
+ 
+Status
+
+ 
+Date
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Elevate head of bed
+
+ 
+completed
+
+ 
+Nov 27, 2015
+
+ 
+
+ 
+
+ 
+
+ 
+2016-10-5
+20130904
+67932940
+2016-10-5
+67932940
+84573204
+2016-10-5
+20130905
+84573204
+20130714
+20130733
+Arin
+Florence
+tel:+
+2(159)461-0447
+
+Janina
+Drane
+2016-10-5
+84573204
+20130714
+20130733
+Arin
+Florence
+tel:+
+2(159)461-0447
+
+Janina
+Drane
+Health Status Evaluations/Outcomes Section
+
+ 
+
+ 
+
+ 
+
+ 
+Item
+
+ 
+Outcome
+
+ 
+Date
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Pulse oximetry
+
+ 
+95%
+
+ 
+December 2, 2015
+
+ 
+
+ 
+
+ 
+
+ 
+20130808
+20130808

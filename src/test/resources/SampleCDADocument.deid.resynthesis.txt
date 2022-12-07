@@ -1,0 +1,430 @@
+j099
+Good Health Clinic Consultation Note
+20010104
+SR19
+20010105
+GM23292
+Bobby
+Drake
+T577
+20010104
+GM23292
+Bobby
+Drake
+T577
+T577
+Kaiser Permanente Santa Clara Medical Center - Homestead Campus
+96655
+Terry
+Sam
+Carey Cortes
+19330623
+T577
+w050
+SR19
+DMKPW7059
+20010104
+20010104
+GM23292
+Bobby
+Drake
+T577
+History of Present Illness
+
+ 
+Henry Levin, the 7
+th
+
+ 
+ is a 67 year old male referred for further asthma management. Onset of asthma in his 
+twenties
+
+ 
+teens
+. He was hospitalized twice last year, and already twice this year. He has not been able to be weaned off steroids for the past several months. 
+ 
+Past Medical History
+
+ 
+
+ 
+
+ 
+Asthma
+
+ 
+
+ 
+
+ 
+Hypertension (see HTN.cda for details)
+
+ 
+
+ 
+
+ 
+Osteoarthritis, 
+ 
+right knee
+
+ 
+
+ 
+
+ 
+
+ 
+1951
+Medications
+
+ 
+
+ 
+Theodur 200mg BID
+
+ 
+Proventil inhaler 2puffs QID PRN
+
+ 
+Prednisone 20mg qd
+
+ 
+HCTZ 25mg qd
+
+ 
+
+ 
+Theodur 200mg BID
+Proventil inhaler 2puffs QID PRN
+Prednisone 20mg qd
+HCTZ 25mg qd
+Allergies and Adverse Reactions
+
+ 
+
+ 
+Penicillin - Hives
+
+ 
+Aspirin - Wheezing
+
+ 
+Codeine - Itching and nausea
+
+ 
+
+ 
+Family history
+
+ 
+
+ 
+Father had fatal MI in his early 50's.
+
+ 
+No cancer or diabetes.
+
+ 
+
+ 
+1971
+1971
+20010104
+20010104
+Social History
+
+ 
+
+ 
+Smoking :: 1 PPD between the ages of 20 and 55, and then he quit.
+
+ 
+Alcohol :: rare
+
+ 
+
+ 
+1956
+1991
+Physical Examination
+Vital Signs
+
+ 
+
+ 
+
+ 
+
+ 
+Date / Time
+
+ 
+April 7, 2000 14:30
+
+ 
+April 7, 2000 15:30
+
+ 
+
+ 
+
+ 
+Height
+
+ 
+177 cm (69.7 in)
+
+ 
+
+ 
+
+ 
+Weight
+
+ 
+194.0 lbs (88.0 kg)
+
+ 
+
+ 
+
+ 
+BMI
+
+ 
+28.1 kg/m2
+
+ 
+
+ 
+
+ 
+BSA
+
+ 
+2.05 m2
+
+ 
+
+ 
+
+ 
+Temperature
+
+ 
+36.9 C (98.5 F)
+
+ 
+36.9 C (98.5 F)
+
+ 
+
+ 
+
+ 
+Pulse
+
+ 
+86 / minute
+
+ 
+84 / minute
+
+ 
+
+ 
+
+ 
+Rhythm
+
+ 
+Regular
+
+ 
+Regular
+
+ 
+
+ 
+
+ 
+Respirations
+
+ 
+16 / minute, unlabored
+
+ 
+14 / minute
+
+ 
+
+ 
+
+ 
+Systolic
+
+ 
+132 mmHg
+
+ 
+135 mmHg
+
+ 
+
+ 
+
+ 
+Diastolic
+
+ 
+86 mmHg
+
+ 
+88 mmHg
+
+ 
+
+ 
+
+ 
+Position / Cuff
+
+ 
+Left Arm
+
+ 
+Left Arm
+
+ 
+
+ 
+
+ 
+
+ 
+20010104
+1330
+20010104
+1330
+20010104
+1330
+20010104
+1330
+20010104
+1330
+20010104
+1330
+20010104
+1430
+20010104
+1330
+20010104
+1430
+20010104
+1330
+20010104
+1330
+20010104
+1430
+20010104
+1330
+20010104
+1430
+20010104
+1430
+20010104
+1430
+20010104
+1430
+20010104
+1430
+Skin Exam
+Erythematous rash, palmar surface, left index finger.
+  
+
+ 
+Lungs
+Clear with no wheeze. Good air flow.
+Cardiac
+RRR with no murmur, no S3, no S4.
+Labs
+
+ 
+
+ 
+CXR 02/03/1999: Hyperinflated. Normal cardiac silhouette, clear lungs.
+
+ 
+Peak Flow today: 260 l/m
+
+ 
+
+ 
+20010104
+In-office Procedures
+
+ 
+
+ 
+Suture removal, left forearm.
+
+ 
+
+ 
+20010104
+1330
+Assessment
+
+ 
+
+ 
+Asthma, with prior smoking history. Difficulty weaning off steroids. Will try gradual taper.
+
+ 
+Hypertension, well-controlled.
+
+ 
+Contact dermatitis on finger.
+
+ 
+
+ 
+20010104
+1430
+20010104
+1430
+20010104
+1430
+Plan
+
+ 
+
+ 
+Complete PFTs with lung volumes.
+
+ 
+Chem-7 tomorrow.
+
+ 
+Teach peak flow rate measurement.
+
+ 
+Decrease prednisone to 20qOD alternating with 18qOD.
+
+ 
+Hydrocortisone cream to finger BID.
+
+ 
+RTC 1 week.
+
+ 
+
+ 
+Complete PFTs with lung volumes.
+Chem-7 tomorrow
+20010105
+prednisone 20qOD alternating with 18qOD.
+Hydrocortisone cream to finger BID.
+20010109
+20010114

@@ -1,0 +1,91 @@
+server:
+  port: 8080
+  use-forward-headers: true
+  servlet:
+    context-path: /deid
+
+
+clinacuity:
+  deid:
+    ec2-instance-name: dev-4
+    ec2-time-out: 3600000
+    demo: false
+    api:
+      base-url: "http://localhost:9080/clinacuity/v1/clinideid/"
+      validate-license: "license/validate"
+      request-license: "license/requestFiles"
+      update-license: "license/updateRequest"
+      complete-request: "license/completeRequest"
+
+
+---
+spring:
+  profiles: devtest1
+logging:
+  level:
+    root: WARN
+  pattern:
+    console: "%d{YYYY-MM-dd HH:mm:ss} [%-p] %c{1}.%L: %msg%n"
+    file: "%d{YYYY-MM-dd HH:mm:ss} [%-p] %c{1}.%L: %msg%n"
+    level: "%5p"
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+
+
+clinacuity:
+  deid:
+    autoScaled: true
+    ec2-time-out: 1800000
+    api:
+      base-url: "https://devtest1.clinacuity.com/clinacuity/v1/clinideid"
+    aws-properties:
+      s3-properties:
+        deid-results-bucket-name: clinacuity-clinideid-processed-results-test
+      ec2-properties:
+        auto-scaling-group-name: ClinideidClinacuityASGTest
+
+
+---
+spring:
+  profiles: development
+logging:
+  level:
+    root: DEBUG
+  pattern:
+    console: "%d{YYYY-MM-dd HH:mm:ss} [%-p] %c{1}.%L: %msg%n"
+    file: "%d{YYYY-MM-dd HH:mm:ss} [%-p] %c{1}.%L: %msg%n"
+    level: "%5p"
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+
+
+clinacuity:
+  deid:
+    aws-properties:
+      s3-properties:
+        deid-results-bucket-name: clinacuity-clinideid-processed-results-test
+#    auto-scaled: true
+    autoScaled: true
+    api:
+      base-url: "http://localhost:9080/clinacuity/v1/clinideid"
+
+
+---
+spring:
+  profiles: production
+debug: false
+logging:
+  level:
+    root: WARN
+    org:
+      apache: WARN
+  file:
+    max-history: 10
+    max-size: 10MB
+clinacuity:
+  deid:
+    api:
+      base-url: "https://deid.clinacuity.com/clinacuity/v1/clinideid/"
+    aws-properties:
+      s3-properties:
+        deid-results-bucket-name: clinacuity-clinideid-processed-results
+      ec2-properties:
+        auto-scaling-group-name: ClinideidClinacuityASG

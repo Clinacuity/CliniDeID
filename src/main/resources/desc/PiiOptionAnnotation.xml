@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>PiiOptionAnnotation</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <types>
+        <typeDescription>
+            <name>com.clinacuity.deid.type.PiiOptionAnnotation</name>
+            <description>normals are just boolean with no subtypes while special can be subdivided (like m/d/y vs m/d
+                for Date)
+                DeidLevelCleaner has PII_TO_INDEX map for indices of normals and map SPECIAL_TO_INDEX for speical array
+            </description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+            <features>
+                <featureDescription>
+                    <name>include</name>
+                    <description>True means include them, position from ( DeidLevelCleaner.PII_TO_INDEX: PiiSubtype->index)</description>
+                    <rangeTypeName>uima.cas.BooleanArray</rangeTypeName>
+                </featureDescription>
+                <featureDescription>
+                    <name>special</name>
+                    <rangeTypeName>uima.cas.IntegerArray</rangeTypeName>
+                </featureDescription>
+            </features>
+        </typeDescription>
+
+    </types>
+</typeSystemDescription>

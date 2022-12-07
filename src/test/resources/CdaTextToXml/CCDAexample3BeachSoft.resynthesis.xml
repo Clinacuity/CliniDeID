@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<!--
+ Title:        Care Plan
+ Filename:     C-CDA_R2_Care_Plan.xml
+ Created by:   Lantana Consulting Group, LLC
+ 
+ $LastChangedDate: 2014-11-12 23:25:09 -0500 (Wed, 12 Nov 2014) $
+  
+ ********************************************************
+ Disclaimer: This sample file contains representative data elements to represent a Care Plan. 
+ The file depicts a fictional character's health data. Any resemblance to a real person is coincidental. 
+ To illustrate as many data elements as possible, the clinical scenario may not be plausible. 
+ The data in this sample file is not intended to represent real patients, people or clinical events. 
+ This sample is designed to be used in conjunction with the C-CDA Clinical Notes Implementation Guide.
+ ********************************************************
+  -->
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:voc="urn:hl7-org:v3/voc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../../../../../Mdocuments/HL7/Standards%20Documentation/cda_r2_normativewebedition/CDA_R2_NormativeWebEdition2005/infrastructure/cda/CDA.xsd">
+  <!-- ** CDA Header ** -->
+  <realmCode code="US" />
+  <typeId extension="WMRF_VY884001" root="2.16.840.1.113883.1.3" />
+  <templateId root="2.16.840.1.113883.10.20.22.1.15" />
+  <id root="db734647-fc99-424c-a864-7e3cda82e703" />
+  <code code="52521-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Overall Plan of Care/Advance Care Directives" />
+  <title>Marlette regional hospital Plan</title>
+  <effectiveTime value="201308220950-0630" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en-US" />
+  <!-- This document is the second document in the set (see setId for id for the set -->
+  <setId root="004bb033-b948-4f4c-b5bf-a8dbd7d8dd40" />
+  <!-- See relatedDocument for the previous version in the set -->
+  <versionNumber value="2" />
+  <!-- Patient (recordTarget) -->
+  <recordTarget>
+    <patientRole>
+      <id extension="329251340" root="2.16.840.1.113883.4.1" />
+      <!-- Example Social Security Number using the actual SSN OID. -->
+      <addr use="HP">
+        <!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+        <streetAddressLine>809 Crestline Juncton</streetAddressLine>
+        <city>Medaryville</city>
+        <state>AR</state>
+        <postalCode>16350</postalCode>
+        <country>IVORY COAST</country>
+        <!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+      </addr>
+      <telecom use="HP" value="tel:+4(651)437-5057" />
+      <!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+      <patient>
+        <!-- The first name element represents what the patient is known as -->
+        <name use="L">
+          <given>Eclimmiee</given>
+          <!-- The "SP" is "Spouse" from HL7 Code System EntityNamePartQualifier 2.16.840.1.113883.5.43 -->
+          <family qualifier="SP">Rhoton</family>
+        </name>
+        <!-- The second name element represents another name associated with the patient -->
+        <name use="SRCH">
+          <given>Eclimmiee</given>
+          <!-- The "BR" is "Birth" from HL7 Code System EntityNamePartQualifier 2.16.840.1.113883.5.43 -->
+          <family qualifier="BR">Eclimmieerywoman</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Female" />
+        <!-- Date of birth need only be precise to the day -->
+        <birthTime value="19750503" />
+        <maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatusCode" displayName="Married" />
+        <religiousAffiliationCode code="1013" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="HL7 Religious Affiliation" displayName="Christian (non-Catholic, non-specific)" />
+        <!-- CDC Race and Ethnicity code set contains the five minimum race and ethnicity categories defined by OMB Standards -->
+        <raceCode code="2106-3" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="White" />
+        <!-- The raceCode extension is only used if raceCode is valued -->
+        <!-- <sdtc:raceCode code="2076-8" displayName="Hawaiian or Other Pacific Islander" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/> -->
+        <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="Not Hispanic or Latino" />
+        <guardian>
+          <code code="POWATT" codeSystem="2.16.840.1.113883.1.11.19830" codeSystemName="ResponsibleParty" displayName="Power of Attorney" />
+          <addr use="HP">
+            <streetAddressLine>809 Crestline Juncton</streetAddressLine>
+            <city>Medaryville</city>
+            <state>AR</state>
+            <postalCode>16350</postalCode>
+            <country>IVORY COAST</country>
+          </addr>
+          <telecom use="MC" value="tel:+7(469)539-5196" />
+          <guardianPerson>
+            <name>
+              <given>Samuel</given>
+              <given qualifier="CL">Stanford</given>
+              <family>Rhoton</family>
+            </name>
+          </guardianPerson>
+        </guardian>
+        <birthplace>
+          <place>
+            <addr>
+              <streetAddressLine>140 Beach Key</streetAddressLine>
+              <city>Medaryville</city>
+              <state>AR</state>
+              <postalCode>16350</postalCode>
+              <country>IVORY COAST</country>
+            </addr>
+          </place>
+        </birthplace>
+        <languageCommunication>
+          <languageCode code="eng" />
+          <!-- "eng" is ISO 639-2 alpha-3 code for "English" -->
+          <modeCode code="ESP" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode" displayName="Expressed spoken" />
+          <proficiencyLevelCode code="G" codeSystem="2.16.840.1.113883.5.61" codeSystemName="LanguageAbilityProficiency" displayName="Good" />
+          <!-- Patient's preferred language -->
+          <preferenceInd value="true" />
+        </languageCommunication>
+      </patient>
+      <providerOrganization>
+        <id extension="219WL" root="2.16.840.1.113883.4.6" />
+        <name>Brouer medical center</name>
+        <telecom use="WP" value="tel: +8(397)625-2155" />
+        <addr>
+          <streetAddressLine>344 Wheat Ldge</streetAddressLine>
+          <city>Bellingham oaks</city>
+          <state>AR</state>
+          <postalCode>87766</postalCode>
+          <country>IVORY COAST</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <!-- Author -->
+  <author>
+    <time value="20130732" />
+    <assignedAuthor>
+      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+      <code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Registered nurse" />
+      <addr>
+        <streetAddressLine>349 Friedell Tunnel</streetAddressLine>
+        <city>Bellingham oaks</city>
+        <state>AR</state>
+        <postalCode>87766</postalCode>
+        <country>IVORY COAST</country>
+      </addr>
+      <telecom use="WP" value="tel:+3(220)005-1815" />
+      <assignedPerson>
+        <name>
+          <given>Arin</given>
+          <family>Drane</family>
+          <suffix>RN</suffix>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <id root="2.16.840.1.113883.19.5" />
+        <name>Gilt edge hospital</name>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <!-- Data Enterer -->
+  <dataEnterer>
+    <assignedEntity>
+      <id extension="748363761" root="2.16.840.1.113883.4.6" />
+      <addr>
+        <streetAddressLine>129 Bepler Xing</streetAddressLine>
+        <city>Bellingham oaks</city>
+        <state>AR</state>
+        <postalCode>87766</postalCode>
+        <country>IVORY COAST</country>
+      </addr>
+      <telecom use="WP" value="tel:+2(805)-1370" />
+      <assignedPerson>
+        <name>
+          <given>Ruthie</given>
+          <family>Abarca</family>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </dataEnterer>
+  <!-- Informant -->
+  <informant>
+    <assignedEntity>
+      <id extension="502010001" root="2.16.840.1.113883.19.5" />
+      <addr>
+        <streetAddressLine>129 Bepler Xing</streetAddressLine>
+        <city>Bellingham oaks</city>
+        <state>AR</state>
+        <postalCode>87766</postalCode>
+        <country>IVORY COAST</country>
+      </addr>
+      <telecom use="WP" value="tel:+9(956)-9412" />
+      <assignedPerson>
+        <name>
+          <given>Bernie</given>
+          <family>Wootton</family>
+          <suffix qualifier="AC">D.O.</suffix>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </informant>
+  <!-- Custodian -->
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="094ND" root="2.16.840.1.113883.4.6" />
+        <name>Nora springs health care center</name>
+        <telecom use="WP" value="tel:+2(245)828-6542" />
+        <addr use="WP">
+          <streetAddressLine>259 Forsyth Dr</streetAddressLine>
+          <city>Bellingham oaks</city>
+          <state>AR</state>
+          <postalCode>87766</postalCode>
+          <country>IVORY COAST</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient>
+    <intendedRecipient>
+      <!-- Receiving Person Provider Id -->
+      <id root="a1cd2b74-c6de-44ee-b552-3adacb7983cc" />
+      <!-- Receiving Medicare/Medicaid Provider Id-->
+      <id root="c72f64c2-b1db-444b-bbff-4d2e1d6bd659" />
+      <!-- Receiving Person ID-->
+      <id root="fa883fee-b255-4465-8fb5-1d8135e39896" />
+      <!-- Receiving Person Address-->
+      <addr>
+        <streetAddressLine>867 Harry Lodge</streetAddressLine>
+        <city>Wynford chase</city>
+        <state>AZ</state>
+        <postalCode>42403</postalCode>
+        <country>IVORY COAST</country>
+      </addr>
+      <informationRecipient>
+        <!-- Receiving Person Name-->
+        <name>
+          <given>Arin</given>
+          <family>Delker</family>
+          <suffix>RN</suffix>
+        </name>
+      </informationRecipient>
+      <receivedOrganization>
+        <!-- Receiving Organization Id-->
+        <id root="c4c416a7-aeeb-4dcc-9662-ab836ff4d265" />
+        <!-- Receiving Organization Provider ID (NPI) -->
+        <id root="ab47f3c4-1267-4b9e-9a29-e966b5a861c8" />
+        <!-- Receiving Organization Name -->
+        <name>Line-care center</name>
+        <!-- Receiving Organization Address -->
+        <addr>
+          <streetAddressLine>867 Harry Lodge</streetAddressLine>
+          <city>Wynford chase</city>
+          <state>AZ</state>
+          <postalCode>42403</postalCode>
+          <country>IVORY COAST</country>
+        </addr>
+        <!-- Receiving Care Setting Type Description: displayName.  Receiving Care Setting Type Code: code -->
+        <standardIndustryClassCode code="282E00000X" codeSystem="2.16.840.1.114222.4.11.1066" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Long Term Care Hospital" />
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <!-- Legal Authenticator -->
+  <legalAuthenticator>
+    <time value="20130732" />
+    <signatureCode code="S" />
+    <!-- <sdtc:signatureText mediaType="text/xml" representation="B64">omSJUEdmde9j44zmMiromSJUEdmde9j44zmMirdMDSsWdIJdksIJR3373jeu83
+      6edjzMMIjdMDSsWdIJdksIJR3373jeu83MNYD83jmMdomSJUEdmde9j44zmMir ...
+      MNYD83jmMdomSJUEdmde9j44zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83
+      4zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83==</sdtc:signatureText> -->
+    <assignedEntity>
+      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+      <code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" displayName="Registered nurse" />
+      <addr>
+        <streetAddressLine>349 Friedell Tunnel</streetAddressLine>
+        <city>Bellingham oaks</city>
+        <state>AR</state>
+        <postalCode>87766</postalCode>
+        <country>IVORY COAST</country>
+      </addr>
+      <telecom use="WP" value="tel:+3(220)005-1815" />
+      <assignedPerson>
+        <name>
+          <given>Arin</given>
+          <family>Drane</family>
+          <suffix>RN</suffix>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <id root="2.16.840.1.113883.19.5" />
+        <name>Gilt edge hospital</name>
+        <!-- the orgnaization id and name -->
+      </representedOrganization>
+    </assignedEntity>
+  </legalAuthenticator>
+  <!-- This authenticator represents patient agreement or sign-off of the Care Plan-->
+  <authenticator>
+    <time value="20130804" />
+    <signatureCode code="S" />
+    <!-- <sdtc:signatureText mediaType="text/xml" representation="B64">omSJUEdmde9j44zmMiromSJUEdmde9j44zmMirdMDSsWdIJdksIJR3373jeu83
+      6edjzMMIjdMDSsWdIJdksIJR3373jeu83MNYD83jmMdomSJUEdmde9j44zmMir ...
+      MNYD83jmMdomSJUEdmde9j44zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83
+      4zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83==</sdtc:signatureText> -->
+    <assignedEntity>
+      <id extension="329251340" root="2.16.840.1.113883.4.1" />
+      <code code="ONESELF" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode" displayName="Self" />
+      <addr use="HP">
+        <!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+        <streetAddressLine>809 Crestline Juncton</streetAddressLine>
+        <city>Medaryville</city>
+        <state>AR</state>
+        <postalCode>16350</postalCode>
+        <country>IVORY COAST</country>
+        <!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+      </addr>
+      <telecom use="HP" value="tel:+4(651)437-5057" />
+      <assignedPerson>
+        <name use="L">
+          <given>Eclimmiee</given>
+          <family qualifier="SP">Eclimmieerywoman</family>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </authenticator>
+  <!-- This participant represents the person who reviewed the Care Plan. If the date in the time element is in the past, then this review has already taken place. 
+         If the date in the time element is in the future, then this is the date of the next scheduled review. -->
+  <!-- This example shows a Care Plan Review that has already taken place -->
+  <participant typeCode="VRF">
+    <functionCode code="425268008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Review of Care Plan" />
+    <time value="84573204" />
+    <associatedEntity classCode="ASSIGNED">
+      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+    </associatedEntity>
+  </participant>
+  <!-- This participant represents the person who reviewed the Care Plan.   If the date in the time element is in the past, then this review has already taken place. 
+  If the date in the time element is in the future,  then this is the date of the next scheduled review. -->
+  <!-- This example shows a Scheduled Care Plan Review that is in the future -->
+  <participant typeCode="VRF">
+    <functionCode code="425268008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Review of Care Plan" />
+    <time value="20131003" />
+    <associatedEntity classCode="ASSIGNED">
+      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+      <code code="SELF" codeSystem="2.16.840.1.113883.5.111" displayName="self" />
+    </associatedEntity>
+  </participant>
+  <!-- This participant identifies individuals who support the patient such as a relative or caregiver -->
+  <participant typeCode="IND">
+    <!-- Emergency Contact  -->
+    <associatedEntity classCode="ECON">
+      <addr>
+        <streetAddressLine>975 Telegraph Terr</streetAddressLine>
+        <city>Wynford chase</city>
+        <state>AZ</state>
+        <postalCode>42403</postalCode>
+        <country>IVORY COAST</country>
+      </addr>
+      <telecom use="WP" value="tel:(393)172-0820" />
+      <associatedPerson>
+        <name>
+          <prefix>Mrs.</prefix>
+          <given>Judy</given>
+          <family>Flanagan</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <!-- This participant identifies individuals who support the patient such as a relative or caregiver -->
+  <participant typeCode="IND">
+    <!-- Caregiver -->
+    <associatedEntity classCode="CAREGIVER">
+      <addr>
+        <streetAddressLine>975 Telegraph Terr</streetAddressLine>
+        <city>Wynford chase</city>
+        <state>AZ</state>
+        <postalCode>42403</postalCode>
+        <country>IVORY COAST</country>
+      </addr>
+      <telecom use="WP" value="tel:(393)172-0820" />
+      <associatedPerson>
+        <name>
+          <prefix>Mrs.</prefix>
+          <given>Judy</given>
+          <family>Flanagan</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <documentationOf>
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="20130722" />
+        <high value="20130817" />
+      </effectiveTime>
+      <!-- The performer(s) represents the healthcare providers involved in the current or historical care of the patient.
+                The patient’s key healthcare providers would be listed here which would include the primary physician and any 
+                active consulting physicians, therapists, counselors, and care team members.  -->
+      <performer typeCode="PRF">
+        <time value="20130717223615-0630" />
+        <assignedEntity>
+          <id extension="1941342528" root="2.16.840.1.113883.4.6" />
+          <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Adult Medicine" />
+          <addr>
+            <streetAddressLine>349 Friedell Tunnel</streetAddressLine>
+            <city>Bellingham oaks</city>
+            <state>AR</state>
+            <postalCode>87766</postalCode>
+            <country>IVORY COAST</country>
+          </addr>
+          <telecom use="WP" value="tel:+1(332)-2336" />
+          <assignedPerson>
+            <name>
+              <given>Cole</given>
+              <given qualifier="CL">Jessenia</given>
+              <family>Hedlund</family>
+              <suffix qualifier="AC">M.D.</suffix>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <!-- The Care Plan is continually evolving and dynamic. The Care Plan CDA instance 
+     is NOT dynamic. Each time a Care Plan CDA is generated it represents a snapshot 
+     in time of the Care Plan at that moment. Whenever a care provider or patient 
+     generates a Care Plan, it should be noted through relatedDocument 
+     whether the current Care Plan replaces or appends another Care Plan. 
+     The relatedDocumentTypeCode indicates whether the current document is 
+     an addendum to the ParentDocument (APND (append)) or the current document 
+     is a replacement of the ParentDocument (RPLC (replace)). -->
+  <!-- This document is the second in a set - relatedDocument
+      describes the parent document-->
+  <relatedDocument typeCode="RPLC">
+    <parentDocument>
+      <id root="223769be-f6ee-4b04-a0ce-b56ae998c880" />
+      <code code="CarePlan-x" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Care Plan" />
+      <setId root="004bb033-b948-4f4c-b5bf-a8dbd7d8dd40" />
+      <versionNumber value="1" />
+    </parentDocument>
+  </relatedDocument>
+  <componentOf>
+    <encompassingEncounter>
+      <id extension="3795611" root="2.16.840.1.113883.19" />
+      <code code="IMP" codeSystem="2.16.840.1.113883.5.4" displayName="Inpatient" />
+      <!-- captures that this is an inpatient encounter -->
+      <effectiveTime>
+        <low value="20130617" />
+        <!-- No high value - this patient is still in hospital -->
+      </effectiveTime>
+    </encompassingEncounter>
+  </componentOf>
+  <!-- 
+********************************************************
+CDA Body
+********************************************************
+-->
+  <component>
+    <structuredBody>
+      <!-- 
+********************************************************
+Health Concerns section
+********************************************************
+-->
+      <component>
+        <section>
+          <!-- Health Concerns Section -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.58" />
+          <code code="75310-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Health Concerns Document" />
+          <title>Health Concerns Section</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Concern</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Current every day smoker</td>
+                  <td>Active</td>
+                  <td>Concern from Oct 12, 2015</td>
+                </tr>
+                <tr>
+                  <td>Respiratory insufficiency</td>
+                  <td>Completed</td>
+                  <td>Concern from October 9, 2015</td>
+                </tr>
+                <tr>
+                  <td>Pneumonia</td>
+                  <td>Completed</td>
+                  <td>Oct 12, 2015</td>
+                </tr>
+              </tbody>
+            </table>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Related observation</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Productive cough</td>
+                  <td>Oct 11, 2015</td>
+                </tr>
+              </tbody>
+            </table>
+            <paragraph styleCode="Bold">Patient priority:</paragraph>
+            high priority
+            <paragraph styleCode="Bold">Provider
+              priority:</paragraph>
+            high priority
+            <br />
+            <br />
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Risk</th>
+                  <th>Status</th>
+                  <th>Effective Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Malignant neoplastic disease</td>
+                  <td>Active</td>
+                  <td>Oct 12, 2015</td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <paragraph styleCode="Bold">Patient priority:</paragraph>
+            high priority
+            <paragraph styleCode="Bold">Provider
+              priority:</paragraph>
+            high priority
+            <br />
+          </text>
+          <entry>
+            <!-- Health Concern Act -->
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.132" />
+              <id root="4eab0e52-dd7d-4285-99eb-72d32ddb195c" />
+              <code code="75310-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Health Concern" />
+              <!-- This Health Concern has a statusCode of active because it is an active concern -->
+              <statusCode code="active" />
+              <!-- The effective time is the date that the Health Concern started being followed - 
+                                 this does not necessarily correlate to the onset date of the contained health issues-->
+              <effectiveTime value="20130618" />
+              <!-- Health Concern: Current every day smoker-->
+              <entryRelationship typeCode="REFR">
+                <!-- Tobacco Use (V2) -->
+                <observation classCode="OBS" moodCode="EVN" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.85" />
+                  <id root="031b375e-e1aa-4602-9855-f65ec3bbee50" />
+                  <code code="11367-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of tobacco use" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <!-- The low value reflects the start date of the current or past tobacco use observation -->
+                    <low value="20090216" />
+                  </effectiveTime>
+                  <value code="449868002" codeSystem="2.16.840.1.113883.6.96" displayName="Current every day smoker" xsi:type="CD" />
+                </observation>
+              </entryRelationship>
+              <!-- Health Concern Problem: Respiratory insufficiency -->
+              <entryRelationship typeCode="REFR">
+                <!-- Problem Observation (V2) -->
+                <observation classCode="OBS" moodCode="EVN" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.4" />
+                  <id root="8dfacd73-1682-4cc4-9351-e54ccea83612" />
+                  <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <!-- Onset date of the problem -->
+                    <low value="20130615" />
+                  </effectiveTime>
+                  <value code="409623005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Respiratory insufficiency" xsi:type="CD" />
+                </observation>
+              </entryRelationship>
+              <!-- Health Concern Diagnosis: Pneumonia -->
+              <entryRelationship typeCode="REFR">
+                <!-- Problem Observation (V2) -->
+                <observation classCode="OBS" moodCode="EVN" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.4" />
+                  <id root="8dfacd73-1682-4cc4-9351-e54ccea83612" />
+                  <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <!-- Date of diagnosis -->
+                    <low value="20130618" />
+                  </effectiveTime>
+                  <value code="233604007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Pneumonia" xsi:type="CD" />
+                  <!--<!-\- This Entry Reference refers to a goal, intervention, actual outcome, 
+                                    or some other entry present in the Care Plan that the Health Concern is related to-\->
+                                     <entryRelationship typeCode="REFR">
+                                        <act classCode="ACT" moodCode="EVN">
+                                         <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                                         <!-\- This ID equals the ID of the goal of a pulse ox greater than 92% -\->
+                                          <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+                                          <!-\- The code is nulled to "NP" Not Present" -\->
+                                          <code nullFlavor="NP" />
+                                        <statusCode code="completed" />
+                                        </act>
+                                    </entryRelationship>-->
+                </observation>
+              </entryRelationship>
+              <!-- 
+        This is an entry relationship of the SPRT (support) type which shows 
+        that the productive cough supports the Health Concern (Problem: Respiratory 
+        Insufficiency and Diagnosis: Pneumonia
+        This entryRelationship represents the relationship: 
+         Health Concern HAS SUPPORT Observation
+       -->
+              <entryRelationship typeCode="SPRT">
+                <!-- Problem Observation (V2) -->
+                <observation classCode="OBS" moodCode="EVN" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.4" />
+                  <id root="01cb0d7a-46e2-4367-b38b-9465ffbf64e3" />
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <!-- Onset date -->
+                    <low value="20130617" />
+                  </effectiveTime>
+                  <value code="28743005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Productive cough" xsi:type="CD" />
+                </observation>
+              </entryRelationship>
+              <!-- Priority Preference -->
+              <entryRelationship typeCode="RSON">
+                <!-- Priority Preference - this is the preference that the patient (specified by the Author Participation template)
+                  places on the Health Concern -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.143" />
+                  <id root="a5b64706-9438-4d13-8dcf-651da3ef83bf" />
+                  <code code="225773000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Preference" />
+                  <value code="394849002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="High priority" xsi:type="CD" />
+                  <!--
+                    Author Participation Template
+                    In this case, the author is the same as the record target (the patient) already described in the header. 
+                  -->
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to the record target in the header -->
+                      <id extension="444222222" root="2.16.840.1.113883.4.1" />
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+              <!--  Priority Preference - this is the preference that the provider (specified by the Author Participation template)
+                places on the Health Concern -->
+              <entryRelationship typeCode="RSON">
+                <!--  Priority Preference -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.143" />
+                  <id root="7d66f448-ba82-4291-a9da-9e5db5e58803" />
+                  <code code="225773000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="preference" />
+                  <value code="394849002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="High priority" xsi:type="CD" />
+                  <!--
+                    Author Participation Template
+                    In this case, the author is the same as a participant already described in the header. 
+                    However, the author could be a different provider - someone else in the header, or a new provider not elsewhere specified.
+                                    -->
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to a participant in the header -->
+                      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <!-- Risk Concern Act -->
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.136" />
+              <id root="cbcbf20a-d011-449f-87d1-a23cc3e5f7cf" />
+              <code code="281694009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="At risk for" />
+              <!-- This Health Risk has a statusCode of active because it is an active risk -->
+              <statusCode code="active" />
+              <!-- The effective time is the date that the Health Risk started being followed - 
+                                  this does not necessarily correlate to the onset date of the contained health issues-->
+              <effectiveTime value="20130618" />
+              <!-- Health Risk: Malignant neoplastic disease -->
+              <entryRelationship typeCode="REFR">
+                <!-- Problem Observation (V2) -->
+                <observation classCode="OBS" moodCode="EVN" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.4" />
+                  <id root="8dfacd73-1682-4cc4-9351-e54ccea83612" />
+                  <code code="281694009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="At risk" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20130615" />
+                  </effectiveTime>
+                  <value code="409623005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Malignant neoplastic disease" xsi:type="CD" />
+                </observation>
+              </entryRelationship>
+              <!-- Priority Preference -->
+              <entryRelationship typeCode="RSON">
+                <!-- Priority Preference - this is the preference that the patient (specified by the Author Participation template)
+                  places on the Health Risk -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.143" />
+                  <id root="a5b64706-9438-4d13-8dcf-651da3ef83bf" />
+                  <code code="225773000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Preference" />
+                  <value code="394849002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="High priority" xsi:type="CD" />
+                  <!--
+                    Author Participation Template
+                    In this case, the author is the same as the record target (the patient) already described in the header. 
+                  -->
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to the record target in the header -->
+                      <id extension="444222222" root="2.16.840.1.113883.4.1" />
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+              <!--  Priority Preference - this is the preference that the provider (specified by the Author Participation template)
+                places on the Health Risk -->
+              <entryRelationship typeCode="RSON">
+                <!--  Priority Preference -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.143" />
+                  <id root="7d66f448-ba82-4291-a9da-9e5db5e58803" />
+                  <code code="225773000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="preference" />
+                  <value code="394849002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="High priority" xsi:type="CD" />
+                  <!--
+                    Author Participation Template
+                    In this case, the author is the same as a participant already described in the header. 
+                    However, the author could be a different provider - someone else in the header, or a new provider not elsewhere specified.
+                                    -->
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to a participant in the header -->
+                      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+              <!-- 
+                 This entryRelationship represents the relationship "Health Risk REFERS TO Health Concern"
+                            -->
+              <entryRelationship typeCode="REFR">
+                <!-- Entry Reference Concern Act -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points to an already defined Health Concern -->
+                  <id root="4eab0e52-dd7d-4285-99eb-72d32ddb195c" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!-- 
+                ********************************************************
+                Goals Section
+                ********************************************************
+            -->
+      <component>
+        <section>
+          <!-- Goals Section -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.60" />
+          <code code="61146-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Goals" />
+          <title>Goals Section</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Goal</th>
+                  <th>Value</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pulse oximetry</td>
+                  <td>92%</td>
+                  <td>December 29, 2015</td>
+                </tr>
+              </tbody>
+            </table>
+            <paragraph styleCode="Bold">Patient priority:</paragraph>
+            high priority
+            <paragraph styleCode="Bold">Provider
+              priority:</paragraph>
+            high priority
+            <br />
+          </text>
+          <entry>
+            <!-- Goal Observation -->
+            <!-- This is an observation about the expected outcome of a pulse ox reading of 92 or greater. -->
+            <observation classCode="OBS" moodCode="GOL">
+              <!-- Goal Observation -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.121" />
+              <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+              <code code="44616-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pulse oximetry panel" />
+              <statusCode code="active" />
+              <effectiveTime value="20130904" />
+              <value xsi:type="IVL_PQ">
+                <low unit="%" value="92" />
+              </value>
+              <!--
+                  If the author is set to the recordTarget (patient), this is a patient goal.  
+                  If the author is set to a provider, this is a provider goal. 
+                  If both patient and provider are set as authors, this is a negotiated goal.
+              -->
+              <!-- Provider Author -->
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <time value="20130732" />
+                <assignedAuthor>
+                  <id root="d839038b-7171-4165-a760-467925b43857" />
+                  <code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Registered nurse" />
+                  <assignedPerson>
+                    <name>
+                      <given>Arin</given>
+                      <family>Florence</family>
+                      <suffix>RN</suffix>
+                    </name>
+                  </assignedPerson>
+                </assignedAuthor>
+              </author>
+              <!-- Patient Author -->
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <time />
+                <assignedAuthor>
+                  <!-- This id can point back to the record target already described in the CDA header (or someone else can be described here) -->
+                  <!-- This particlar example points back to the record target -->
+                  <id extension="996-756-495" root="2.16.840.1.113883.19.5" />
+                </assignedAuthor>
+              </author>
+              <!-- This entryRelationship represents the relationship "Goal REFERS TO Health Concern" -->
+              <entryRelationship typeCode="REFR">
+                <!-- Entry Reference Concern Act -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points to an already defined Health Concern in the Health Concerns Section -->
+                  <id root="4eab0e52-dd7d-4285-99eb-72d32ddb195c" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <!-- Priority Preference -->
+              <entryRelationship typeCode="RSON">
+                <!-- Priority Preference - this is the preference that the patient (specified by the Author Participation template)
+                  places on the Goal -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.143" />
+                  <id root="a5b64706-9438-4d13-8dcf-651da3ef83bf" />
+                  <code code="225773000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Preference" />
+                  <value code="394849002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="High priority" xsi:type="CD" />
+                  <!--
+                    Author Participation Template
+                    In this case, the author is the same as the record target (the patient) already described in the header. 
+                  -->
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to the record target in the header -->
+                      <id extension="444222222" root="2.16.840.1.113883.4.1" />
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+              <!--  Priority Preference - this is the preference that the provider (specified by the Author Participation template)
+                places on the Goal -->
+              <entryRelationship typeCode="RSON">
+                <!--  Priority Preference -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.143" />
+                  <id root="7d66f448-ba82-4291-a9da-9e5db5e58803" />
+                  <code code="225773000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="preference" />
+                  <value code="394849002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="High priority" xsi:type="CD" />
+                  <!--
+                    Author Participation Template
+                    In this case, the author is the same as a participant already described in the header. 
+                    However, the author could be a different provider - someone else in the header, or a new provider not elsewhere specified.
+                                    -->
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to a participant in the header -->
+                      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <!-- 
+********************************************************
+Interventions Section
+********************************************************
+-->
+      <component>
+        <section extension="2016-10-5">
+          <!-- Interventions Section (V2) -->
+          <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.21.2.3" />
+          <code code="62387-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Interventions Provided" />
+          <title>Interventions Section</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Planned Intervention</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Elevate head of bed</td>
+                  <td>active</td>
+                  <td>December 29, 2015</td>
+                </tr>
+                <tr>
+                  <td>Oxygen administration by nasal cannula</td>
+                  <td>active</td>
+                  <td>December 28, 2015</td>
+                </tr>
+                <tr>
+                  <td>pulse oximetry monitoring</td>
+                  <td>active</td>
+                  <td>December 30, 2015</td>
+                </tr>
+              </tbody>
+            </table>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Completed Intervention</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Elevate head of bed</td>
+                  <td>completed</td>
+                  <td>Nov 27, 2015</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <!-- This entry shows an act in intent mood 
+                 (planned intervention -  meaning this is intended to be done), 
+                  with the reason "RSN" for the act 
+                  being the already defined Goal (pulse ox reading > 92) 
+                  The intervention contains relationships to different components of the intervention. -->
+            <!-- Planned Intervention Act -->
+            <act classCode="ACT" moodCode="INT">
+              <templateId root="2.16.840.1.113883.10.20.22.4.146" />
+              <id root="85fa4b62-e3a9-4385-b064-fe04cca35adb" />
+              <code code="362956003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Intervention" />
+              <statusCode code="active" />
+              <entryRelationship typeCode="REFR">
+                <!-- The following planned act is one part of the intervention - "Elevate head of bed" -->
+                <!-- Planned Act (V2) -->
+                <act classCode="ACT" moodCode="INT" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.39" />
+                  <id root="7658963e-54da-496f-bf18-dea1dddaa3b0" />
+                  <code code="423171007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Elevate head of bed" />
+                  <statusCode code="active" />
+                  <effectiveTime value="20130904" />
+                  <!-- Author Participation Template: 
+                    In this case, the author is the same as a participant already described in the header.
+                    However, the author could be a different provider - someone else in the header, or a new provider not elsewhere specified.
+                 -->
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="67932940" />
+                    <assignedAuthor>
+                      <!-- This id points back to a participant in the header -->
+                      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+                    </assignedAuthor>
+                  </author>
+                  <entryRelationship typeCode="COMP">
+                    <!-- Planned Coverage -->
+                    <act classCode="ACT" moodCode="INT">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.129" />
+                      <id root="03f5e10b-7e79-4610-9626-d2984ff10cc1" />
+                      <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment Sources" />
+                      <statusCode code="active" />
+                      <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="INT">
+                          <!-- These act/identifiers are unique identifiers for the policy or program providing the coverage. -->
+                          <id root="4c9a3be1-5f09-46dd-88e7-14c8ec612e4c" />
+                          <code code="111" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology Health Insurance Type Code List" displayName="Medicare HMO" />
+                          <statusCode code="active" />
+                        </act>
+                      </entryRelationship>
+                    </act>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="REFR">
+                <!-- The following procedure is one part of the intervention -  "Oxygen administration by nasal cannula" -->
+                <!-- Planned Procedure (V2) -->
+                <procedure classCode="PROC" moodCode="INT" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.41" />
+                  <id root="6a560f3d-88fd-4292-9415-f9371adaec46" />
+                  <code code="371907003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Oxygen administration by nasal cannula" />
+                  <statusCode code="active" />
+                  <!-- The effectiveTime in a planned procedure represents the time that the procedure should occur. -->
+                  <effectiveTime value="67932940" />
+                  <!--  Author Participation Template
+                        In this case, the author is the same as a participant already described in the header.
+                        However, the author could be a different provider - someone else in the header, or a new provider not elsewhere specified.
+                  -->
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to a participant in the header -->
+                      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+                    </assignedAuthor>
+                  </author>
+                  <entryRelationship typeCode="COMP">
+                    <!-- Planned Coverage -->
+                    <act classCode="ACT" moodCode="INT">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.129" />
+                      <id root="03f5e10b-7e79-4610-9626-d2984ff10cc1" />
+                      <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment Sources" />
+                      <statusCode code="active" />
+                      <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="INT">
+                          <!-- These act/identifiers are unique identifiers for the policy or program providing the coverage. -->
+                          <id root="4c9a3be1-5f09-46dd-88e7-14c8ec612e4c" />
+                          <code code="111" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology Health Insurance Type Code List" displayName="Medicare HMO" />
+                          <statusCode code="active" />
+                        </act>
+                      </entryRelationship>
+                    </act>
+                  </entryRelationship>
+                </procedure>
+              </entryRelationship>
+              <entryRelationship typeCode="REFR">
+                <!-- The following observation is one part of the intervention - "pulse oximetry monitoring" -->
+                <!-- Planned Observation (V2) -->
+                <observation classCode="OBS" moodCode="INT" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.44" />
+                  <id root="b52bee94-c34b-4e2c-8c15-5ad9d6def205" />
+                  <code code="71850-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Oxygen saturation [Pure mass fraction] in Capillary blood by Oximetry" />
+                  <statusCode code="active" />
+                  <!-- The effectiveTime in a planned observation represents the time that the observation should occur. -->
+                  <effectiveTime value="20130905" />
+                  <!-- Author Participation Template
+                      In this case, the author is the same as a participant already described in the header.
+                      However, the author could be a different provider - someone else in the header, or a new provider not elsewhere specified. -->
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="84573204" />
+                    <assignedAuthor>
+                      <!-- This id points back to a participant in the header -->
+                      <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+                    </assignedAuthor>
+                  </author>
+                  <entryRelationship typeCode="COMP">
+                    <!-- Planned Coverage -->
+                    <act classCode="ACT" moodCode="INT">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.129" />
+                      <id root="03f5e10b-7e79-4610-9626-d2984ff10cc1" />
+                      <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment Sources" />
+                      <statusCode code="active" />
+                      <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="INT">
+                          <!-- These act/identifiers are unique identifiers for the policy or program providing the coverage. -->
+                          <id root="4c9a3be1-5f09-46dd-88e7-14c8ec612e4c" />
+                          <code code="111" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology Health Insurance Type Code List" displayName="Medicare HMO" />
+                          <statusCode code="active" />
+                        </act>
+                      </entryRelationship>
+                    </act>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+              <!-- This entryRelationship represents the relationship between an Intervention Act and a Goal Observation (Intervention HAS REASON Goal). 
+                   The Entry Reference template is being used here as this Goal is defined elsewhere in the CDA document -->
+              <entryRelationship typeCode="RSON">
+                <!-- Entry Reference template -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points to an already defined Goal (pulse ox reading > 92) in the Goals Section -->
+                  <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <!-- An Intervention Act SHALL reference a Goal Observation. Because the Goal Observation is already described in the 
+                CDA document instance's Goals section, rather than repeating the full content of the Goal Observation, -->
+              <entryRelationship typeCode="GEVL">
+                <!-- Entry Reference template -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points back to an already defined Goal(pulse ox reading > 92) in the Goals Section -->
+                  <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="REFR">
+                <act classCode="ACT" moodCode="EVN">
+                  <!-- Handoff Communication template - This template represents provider hand-off communication.  -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.141" />
+                  <code code="432138007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="handoff communication (procedure)" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20130714" />
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="20130733" />
+                    <assignedAuthor>
+                      <id root="d839038b-7171-4165-a760-467925b43857" />
+                      <code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Registered nurse" />
+                      <assignedPerson>
+                        <name>
+                          <given>Arin</given>
+                          <family>Florence</family>
+                          <suffix>RN</suffix>
+                        </name>
+                      </assignedPerson>
+                    </assignedAuthor>
+                  </author>
+                  <participant typeCode="IRCP">
+                    <participantRole>
+                      <id extension="1138345" root="2.16.840.1.113883.19" />
+                      <code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC Health Care Provider Taxonomy" displayName="Registered Nurse" />
+                      <addr>
+                        <streetAddressLine>1006 Health Drive</streetAddressLine>
+                        <city>Ann Arbor</city>
+                        <state>MI</state>
+                        <postalCode>97867</postalCode>
+                        <country>US</country>
+                      </addr>
+                      <telecom use="WP" value="tel:+2(159)461-0447" />
+                      <playingEntity>
+                        <name>
+                          <family>Janina</family>
+                          <given>Drane</given>
+                          <suffix>RN</suffix>
+                        </name>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </act>
+              </entryRelationship>
+            </act>
+          </entry>
+          <!-- This entryRelationship represents an intervention that has already taken place -->
+          <entry>
+            <!-- Intervention Act -->
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.131" />
+              <id root="b3c091b3-f9a4-41e4-a8e4-2d1b11f2eb22" />
+              <code code="362956003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Intervention" />
+              <statusCode code="completed" />
+              <entryRelationship typeCode="REFR">
+                <!-- The following act is one part of the intervtion - "Elevate head of bed" -->
+                <!-- Procedure Activity Act (V2) -->
+                <act classCode="ACT" moodCode="EVN" extension="2016-10-5">
+                  <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.12" />
+                  <id root="7658963e-54da-496f-bf18-dea1dddaa3b0" />
+                  <code code="423171007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Elevate head of bed" />
+                  <statusCode code="completed" />
+                  <!-- When this act took place -->
+                  <effectiveTime value="84573204" />
+                </act>
+              </entryRelationship>
+              <!-- This entryRelationship represents the relationship between an Intervention Act and a Goal Observation (Intervention HAS REASON Goal). -->
+              <entryRelationship typeCode="RSON">
+                <!-- Entry Reference template -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points back to an already defined Goal (pulse ox reading > 92) in the Goals Section -->
+                  <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <!-- This entryRelationship represents the relationship between two Intervention Acts (Intervention RELATES TO Intervention).-->
+              <!-- This intervention it is pointing to an elsewhere defined planned intervention -->
+              <entryRelationship typeCode="REFR">
+                <!-- Entry Reference template -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points to an already defined Intervention -->
+                  <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="GEVL">
+                <!-- Entry Reference template -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points back to an already defined Goal 
+                                        (pulse ox reading > 92) in the Goals Section -->
+                  <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="REFR">
+                <act classCode="ACT" moodCode="EVN">
+                  <!-- Handoff Communication template - This template represents provider hand-off communication.  -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.141" />
+                  <code code="432138007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="handoff communication (procedure)" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20130714" />
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                    <time value="20130733" />
+                    <assignedAuthor>
+                      <id root="d839038b-7171-4165-a760-467925b43857" />
+                      <code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Registered nurse" />
+                      <assignedPerson>
+                        <name>
+                          <given>Arin</given>
+                          <family>Florence</family>
+                          <suffix>RN</suffix>
+                        </name>
+                      </assignedPerson>
+                    </assignedAuthor>
+                  </author>
+                  <participant typeCode="IRCP">
+                    <participantRole>
+                      <id extension="1138345" root="2.16.840.1.113883.19" />
+                      <code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC Health Care Provider Taxonomy" displayName="Registered Nurse" />
+                      <addr>
+                        <streetAddressLine>1006 Health Drive</streetAddressLine>
+                        <city>Ann Arbor</city>
+                        <state>MI</state>
+                        <postalCode>97867</postalCode>
+                        <country>US</country>
+                      </addr>
+                      <telecom use="WP" value="tel:+2(159)461-0447" />
+                      <playingEntity>
+                        <name>
+                          <family>Janina</family>
+                          <given>Drane</given>
+                          <suffix>RN</suffix>
+                        </name>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </act>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!-- 
+  ********************************************************
+  Health Status Evaluations/Outcomes Section
+  ********************************************************
+-->
+      <component>
+        <section>
+          <!-- Health Status Evaluations/Outcomes Section  -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.61" />
+          <code code="11383-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Patient Problem Outcome" />
+          <title>Health Status Evaluations/Outcomes Section</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Outcome</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pulse oximetry</td>
+                  <td>95%</td>
+                  <td>December 2, 2015</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <!-- Outcome Observation -->
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.144" />
+              <id root="0aaaa123-24e2-46b3-9d49-6b753c712dec" />
+              <code code="44616-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pulse oximetry panel" />
+              <statusCode code="completed" />
+              <effectiveTime value="20130808" />
+              <value unit="%" value="95" xsi:type="PQ" />
+              <author>
+                <time value="20130808" />
+                <!-- This author points to the author in the header of the document -->
+                <assignedAuthor>
+                  <id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c" />
+                </assignedAuthor>
+              </author>
+              <!-- This Outcome Observation HAS REASON Intervention -->
+              <entryRelationship typeCode="RSON">
+                <!-- Entry Reference template -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points back to an already defined Intervention in the Interventions Section -->
+                  <id root="b3c091b3-f9a4-41e4-a8e4-2d1b11f2eb22" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <!-- This Outcome Observation EVALUATES a Goal (Pulse ox reading of 95 evaluates the goal of Pulse ox reading > 92)-->
+              <entryRelationship typeCode="GEVL">
+                <!-- Entry Reference template -->
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                  <!-- This id points back to an already defined Goal 
+                                        (pulse ox reading > 92) in the Goals Section -->
+                  <id root="3700b3b0-fbed-11e2-b778-0800200c9a66" />
+                  <code nullFlavor="NP" />
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+              <!-- This Outcome Observation SUPPORTS the Progress Toward Goal Observation -->
+              <entryRelationship inversionInd="true" typeCode="SPRT">
+                <!-- Progress Toward Goal Observation template -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.110" />
+                  <id root="2afcf057-aae4-47cf-bfee-b7498e300424" />
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+                  <statusCode code="completed" />
+                  <value code="390802008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Goal achieved" xsi:type="CD" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <code code="DOCCLIN" codeSystem="2.16.840.1.113883.5.6" codeSystemName="ActClass" displayName="clinical document" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOCCLIN" moodCode="EVN">
+                  <id extension="20060828170821659" root="1.2.840.113619.2.62.994044785528.12" />
+                  <code code="18842-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Disharge Summarization Note" />
+                </externalDocument>
+              </reference>
+            </act>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

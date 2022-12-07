@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:type="http:///com/clinacuity/deid/type.ecore" xmlns:util="http:///org/apache/ctakes/typesystem/type/util.ecore" xmlns:relation="http:///org/apache/ctakes/typesystem/type/relation.ecore" xmlns:tcas="http:///uima/tcas.ecore" xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type6="http:///org/cleartk/timeml/type.ecore" xmlns:type4="http:///org/cleartk/syntax/constituent/type.ecore" xmlns:ne="http:///org/cleartk/type/ne.ecore" xmlns:textsem="http:///org/apache/ctakes/typesystem/type/textsem.ecore" xmlns:type9="http:///org/cleartk/ne/type.ecore" xmlns:type7="http:///org/cleartk/token/type.ecore" xmlns:refsem="http:///org/apache/ctakes/typesystem/type/refsem.ecore" xmlns:structured="http:///org/apache/ctakes/typesystem/type/structured.ecore" xmlns:textspan="http:///org/apache/ctakes/typesystem/type/textspan.ecore" xmlns:type5="http:///org/cleartk/syntax/dependency/type.ecore" xmlns:type8="http:///org/cleartk/util/type.ecore" xmlns:assertion="http:///org/apache/ctakes/typesystem/type/temporary/assertion.ecore" xmlns:type2="http:///org/cleartk/score/type.ecore" xmlns:syntax="http:///org/apache/ctakes/typesystem/type/syntax.ecore" xmlns:type3="http:///org/cleartk/srl/type.ecore" xmi:version="2.0">
+    <cas:NULL xmi:id="0"/>
+    <tcas:DocumentAnnotation xmi:id="2" sofa="1" begin="0" end="241" language="x-unspecified"/>
+    <type:Sentence xmi:id="3" sofa="1" begin="0" end="57" sentNo="0"/>
+    <type:Sentence xmi:id="27" sofa="1" begin="58" end="75" sentNo="1"/>
+    <type:Sentence xmi:id="36" sofa="1" begin="76" end="147" sentNo="2"/>
+    <type:Sentence xmi:id="77" sofa="1" begin="148" end="217" sentNo="3"/>
+    <type:Sentence xmi:id="113" sofa="1" begin="218" end="240" sentNo="4"/>
+    <type:BaseToken xmi:id="4" sofa="1" begin="0" end="1" partOfSpeech="DT" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="5" sofa="1" begin="2" end="7" partOfSpeech="JJ" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="6" sofa="1" begin="8" end="11" partOfSpeech="NN" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="7" sofa="1" begin="11" end="12" partOfSpeech="," ner="O" chunk="O"/>
+    <type:BaseToken xmi:id="8" sofa="1" begin="13" end="17" partOfSpeech="NNP" ner="B-person" chunk="B-NP"/>
+    <type:BaseToken xmi:id="9" sofa="1" begin="17" end="18" partOfSpeech="," ner="O" chunk="O"/>
+    <type:BaseToken xmi:id="10" sofa="1" begin="19" end="24" partOfSpeech="VBD" ner="O" chunk="B-VP"/>
+    <type:BaseToken xmi:id="11" sofa="1" begin="25" end="27" partOfSpeech="TO" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="12" sofa="1" begin="28" end="31" partOfSpeech="DT" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="13" sofa="1" begin="32" end="38" partOfSpeech="NN" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="14" sofa="1" begin="39" end="41" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="15" sofa="1" begin="42" end="45" partOfSpeech="DT" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="16" sofa="1" begin="46" end="51" partOfSpeech="NNP" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="17" sofa="1" begin="52" end="56" partOfSpeech="NNP" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="18" sofa="1" begin="56" end="57" partOfSpeech="." ner="O" chunk="O"/>
+    <type:BaseToken xmi:id="28" sofa="1" begin="58" end="60" partOfSpeech="PRP" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="29" sofa="1" begin="61" end="66" partOfSpeech="VBD" ner="O" chunk="B-VP"/>
+    <type:BaseToken xmi:id="30" sofa="1" begin="67" end="74" partOfSpeech="NNP" ner="B-location" chunk="B-NP"/>
+    <type:BaseToken xmi:id="31" sofa="1" begin="74" end="75" partOfSpeech="." ner="O" chunk="O"/>
+    <type:BaseToken xmi:id="37" sofa="1" begin="76" end="78" partOfSpeech="PRP" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="38" sofa="1" begin="79" end="83" partOfSpeech="VBD" ner="O" chunk="B-VP"/>
+    <type:BaseToken xmi:id="39" sofa="1" begin="84" end="85" partOfSpeech="$" ner="B-money" chunk="B-NP"/>
+    <type:BaseToken xmi:id="40" sofa="1" begin="85" end="87" partOfSpeech="CD" ner="I-money" chunk="I-NP"/>
+    <type:BaseToken xmi:id="41" sofa="1" begin="87" end="88" partOfSpeech="." ner="I-money" chunk="B-NP"/>
+    <type:BaseToken xmi:id="42" sofa="1" begin="88" end="90" partOfSpeech="CD" ner="I-money" chunk="I-NP"/>
+    <type:BaseToken xmi:id="43" sofa="1" begin="91" end="94" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="44" sofa="1" begin="95" end="99" partOfSpeech="NN" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="45" sofa="1" begin="100" end="102" partOfSpeech="CD" ner="B-percentage" chunk="I-NP"/>
+    <type:BaseToken xmi:id="46" sofa="1" begin="102" end="103" partOfSpeech="NN" ner="I-percentage" chunk="I-NP"/>
+    <type:BaseToken xmi:id="47" sofa="1" begin="104" end="106" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="48" sofa="1" begin="107" end="110" partOfSpeech="DT" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="49" sofa="1" begin="111" end="115" partOfSpeech="NN" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="50" sofa="1" begin="116" end="120" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="51" sofa="1" begin="121" end="124" partOfSpeech="NNP" ner="B-date" chunk="B-NP"/>
+    <type:BaseToken xmi:id="52" sofa="1" begin="125" end="127" partOfSpeech="CD" ner="I-date" chunk="I-NP"/>
+    <type:BaseToken xmi:id="53" sofa="1" begin="127" end="128" partOfSpeech="," ner="I-date" chunk="I-NP"/>
+    <type:BaseToken xmi:id="54" sofa="1" begin="129" end="133" partOfSpeech="CD" ner="I-date" chunk="I-NP"/>
+    <type:BaseToken xmi:id="55" sofa="1" begin="134" end="136" partOfSpeech="TO" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="56" sofa="1" begin="137" end="138" partOfSpeech="CD" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="57" sofa="1" begin="138" end="139" partOfSpeech="CD" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="58" sofa="1" begin="139" end="141" partOfSpeech="CD" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="59" sofa="1" begin="141" end="142" partOfSpeech="NN" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="60" sofa="1" begin="142" end="146" partOfSpeech="CD" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="61" sofa="1" begin="146" end="147" partOfSpeech="." ner="O" chunk="O"/>
+    <type:BaseToken xmi:id="78" sofa="1" begin="148" end="150" partOfSpeech="PRP" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="79" sofa="1" begin="151" end="158" partOfSpeech="RB" ner="O" chunk="B-ADVP"/>
+    <type:BaseToken xmi:id="80" sofa="1" begin="159" end="165" partOfSpeech="VBD" ner="O" chunk="B-VP"/>
+    <type:BaseToken xmi:id="81" sofa="1" begin="166" end="168" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="82" sofa="1" begin="169" end="170" partOfSpeech="CD" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="83" sofa="1" begin="171" end="173" partOfSpeech="VBP" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="84" sofa="1" begin="174" end="176" partOfSpeech="TO" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="85" sofa="1" begin="177" end="178" partOfSpeech="CD" ner="B-time" chunk="B-NP"/>
+    <type:BaseToken xmi:id="86" sofa="1" begin="178" end="179" partOfSpeech=":" ner="I-time" chunk="O"/>
+    <type:BaseToken xmi:id="87" sofa="1" begin="179" end="181" partOfSpeech="CD" ner="I-time" chunk="B-NP"/>
+    <type:BaseToken xmi:id="88" sofa="1" begin="182" end="183" partOfSpeech="NN" ner="I-time" chunk="I-NP"/>
+    <type:BaseToken xmi:id="89" sofa="1" begin="183" end="184" partOfSpeech="." ner="I-time" chunk="B-NP"/>
+    <type:BaseToken xmi:id="90" sofa="1" begin="184" end="185" partOfSpeech="NN" ner="I-time" chunk="I-NP"/>
+    <type:BaseToken xmi:id="91" sofa="1" begin="185" end="186" partOfSpeech="." ner="I-time" chunk="O"/>
+    <type:BaseToken xmi:id="92" sofa="1" begin="187" end="193" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="93" sofa="1" begin="194" end="196" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="94" sofa="1" begin="197" end="205" partOfSpeech="NNP" ner="B-date" chunk="B-NP"/>
+    <type:BaseToken xmi:id="95" sofa="1" begin="206" end="209" partOfSpeech="CC" ner="O" chunk="I-NP"/>
+    <type:BaseToken xmi:id="96" sofa="1" begin="210" end="216" partOfSpeech="NNP" ner="B-date" chunk="I-NP"/>
+    <type:BaseToken xmi:id="97" sofa="1" begin="216" end="217" partOfSpeech="." ner="O" chunk="O"/>
+    <type:BaseToken xmi:id="114" sofa="1" begin="218" end="220" partOfSpeech="PRP" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="115" sofa="1" begin="221" end="227" partOfSpeech="VBD" ner="O" chunk="B-VP"/>
+    <type:BaseToken xmi:id="116" sofa="1" begin="228" end="231" partOfSpeech="IN" ner="O" chunk="B-PP"/>
+    <type:BaseToken xmi:id="117" sofa="1" begin="232" end="239" partOfSpeech="NNP" ner="O" chunk="B-NP"/>
+    <type:BaseToken xmi:id="118" sofa="1" begin="239" end="240" partOfSpeech="." ner="O" chunk="O"/>
+    <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text" sofaString="A young boy, Paul, wrote to the wizard of the North Pole. He liked Chicago. He made $10.15 per hour 75% of the time from Oct 20, 2014 to 5/19/2015.&#10;He usually worked at 5 am to 7:30 p.m. except on Saturday and Sunday. He worked for Walmart.&#10;"/>
+    <cas:View sofa="1" members="2 3 27 36 77 113 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 28 29 30 31 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 114 115 116 117 118"/>
+</xmi:XMI>

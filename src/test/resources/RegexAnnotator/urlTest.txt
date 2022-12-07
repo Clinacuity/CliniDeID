@@ -1,0 +1,5 @@
+some http://myregexp.com/ http://www.scdmvonline.com/Locations
+microsoft.com
+https://jex.im/regulex/#!flags=&re=%5E(a%7Cb)*%3F%24
+http://surveyv5.twistoflime.com.au/Surveys/6b21734e-ebc9-4a34-8684-2124c08295a1/v433/Resources/Coupon/$5_off_$40_survey_incentive_coupon_BL_080618-090218.pdf
+https://www.google.com/search?q=install+intellij+plugin+jar&rlz=1C5CHFA_enUS737US737&oq=install+intellij+plugin+jar&aqs=chrome..69i57j0l5.7042j1j7&sourceid=chrome&ie=UTF-8

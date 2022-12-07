@@ -1,0 +1,21 @@
+    4 -    20 (  superLINEAR,          Date): 10/01/2011@21:34
+   27 -    43 (  superLINEAR,          Date): 10/01/2011   251
+   53 -    58 (  superLINEAR, OtherIDNumber): 20567
+   97 -   109 ( HS-component,          Name): LENG, BILL R
+  154 -   170 (  superLINEAR,          Date): 10/01/2011@21:34
+  606 -   616 ( HS-component,          Name): Dr. Shoddy
+  621 -   634 (  superLINEAR,          Date): July 07, 2010
+  737 -   745 ( HS-component,          Name): Mr. Leng
+  764 -   769 (  superLINEAR,          Date): 21:34
+  848 -   863 (  superLINEAR,          Date): Sept  13, 09/14
+  868 -   877 (  superLINEAR,          Date): 9/15/2011
+  960 -   970 (  superLINEAR,          Date): 09/30/2011
+ 1462 -  1472 (  superLINEAR,          Date): 01/01/2011
+ 1830 -  1841 (SVM_numerical, OtherIDNumber): 90/IPRATROP
+ 2094 -  2121 (  superLINEAR,  StateCountry): 50MCG 120D NASAL INHL PLACE
+ 2485 -  2498 (  superLINEAR,          Date): 10/8/11@20:35
+ 2612 -  2626 (SVM_numerical, OtherIDNumber): 25/TRIAMTERENE
+ 2714 -  2736 (    SVM_names,          Name): HYDROPHILIC OINT APPLY
+ 3453 -  3466 (  superLINEAR,          Date): 01/31/2012 16
+ 3939 -  3949 (  superLINEAR,          Date): 12/31/2011
+ 3979 -  3994 (  superLINEAR,          Date): 04/28/2012@0:00

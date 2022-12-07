@@ -1,0 +1,250 @@
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 file:/Users/smeystre/Research-NLP/CDA/CDA.ReleaseTwo.Dec.2003/Committee2/CDA_Schema/Files/CDA.ReleaseTwo.CommitteeBallot02.Dec.2003.xsd">
+  <id extension="251257774" root="2.16.840.1.113883.3.15" />
+  <code code="null" codeSystem="LOINC" displayName="Discharge Summary Report" />
+  <effectiveTime value="20050123" />
+  <confidentialityCode code="N" />
+  <author>
+    <time />
+    <assignedAuthor>
+      <id extension="6470121" root="2.16.840.1.113883.3.15" />
+      <assignedAuthorChoice>
+        <Person>
+          <name>HOUSE, PETER</name>
+        </Person>
+      </assignedAuthorChoice>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian />
+  </custodian>
+  <recordTarget>
+    <patientRole>
+      <id extension="402839826" root="2.16.840.1.113883.3.15" />
+      <patientPatient>
+        <name>DOE, JOHN</name>
+      </patientPatient>
+    </patientRole>
+  </recordTarget>
+  <component>
+    <bodyChoice>
+      <StructuredBody>
+        <component>
+          <section>
+            <code code=" " codeSystem="LOINC" displayName=" " />
+            <text>.</text>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="10154-3" codeSystem="LOINC" displayName="REASON FOR ADMISSION" />
+            <text>Anoxic encephalopathy. .</text>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="29548-5" codeSystem="LOINC" displayName="DISCHARGE DIAGNOSES" />
+            <text>
+              1. Anoxic encephalopathy .
+              <content ID="p4">2. Status post ventricular fibrillation arrest</content>
+              <content ID="p5">3. Coronary artery disease, status post non-Q-wave myocardial infarction, status
+         post LAD stent</content>
+              <content ID="p6">4. Chronic atrial fibrillation</content>
+              5. Urethra trauma secondary to self-removal of Foley catheter . 6. Severe agitation . 7. Respiratory failure . 8. Obstructive sleep apnea . 9. Elevated PSA.
+      10 .
+              <content ID="p12">Pulmonary emboli.</content>
+            </text>
+            <entry>
+              <entryChoice>
+                <Observation idref="p4">
+                  <code code="82645" codeSystem="NCID" displayName="Arrhythmia" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p5">
+                  <code code="82985" codeSystem="NCID" displayName="Coronary artery disease" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p5">
+                  <code code="160949" codeSystem="NCID" displayName="Myocardial infarction" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p6">
+                  <code code="83592" codeSystem="NCID" displayName="Atrial fibrillation" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p12">
+                  <code code="83281" codeSystem="NCID" displayName="Pulmonary embolus" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="8648-8" codeSystem="LOINC" displayName="COMPLICATIONS" />
+            <text>
+              <content ID="p13">1. Pulmonary emboli</content>
+              2. Foley trauma . 3. Respiratory failure. .
+            </text>
+            <entry>
+              <entryChoice>
+                <Observation idref="p13">
+                  <code code="83281" codeSystem="NCID" displayName="Pulmonary embolus" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="18841-7" codeSystem="LOINC" displayName="CONSULTATIONS" />
+            <text>1. James S. Zebrack, MD, cardiology . 2. Sleep service. .</text>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="29554-3" codeSystem="LOINC" displayName="PROCEDURE" />
+            <text>None on rehabilitation. .</text>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="8650-4" codeSystem="LOINC" displayName="DISPOSITION" />
+            <text>The patient is being transferred to the ICU . Followup plans to be
+      determined, depending on recovery in ICU. .</text>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="11329-0" codeSystem="LOINC" displayName="HISTORY" />
+            <text>
+              <content ID="p21">This is a 77-year-old right-handed previously active and independent
+      white male who underwent a ventricular fibrillation arrest on 01/05/2005</content>
+              This
+      was witnessed by his wife . She immediately called 911 and the patient was able
+      to be defibrillated within 5 minutes . He was taken to Lakeview Hospital . Emergency Room .
+              <content ID="p26">He was found to have a non-Q-wave myocardial infarction</content>
+              The . CK was never greater than 900 . He was found on catheterization to have a 95%
+      complex ulcerated mid LAD plaque, as well as less significant plaques of the RCA
+      and left circumflex . He underwent stent placement . The ejection fraction was
+      75% .
+              <content ID="p32">Post procedure, he did have hypotension, requiring dopamine and Neo-
+      Synephrine</content>
+              He was placed on a ventilator and had an elevated white count,
+      treated for presumed aspiration with Zosyn . A chest x-ray was clear 01/07/2005 .
+              <content ID="p35">He had a long history of atrial fibrillation and was in atrial fibrillation
+      throughout his acute hospital stay</content>
+              He was transferred to LDS Hospital . Rehabilitation Unit for more functionary care. .
+            </text>
+            <entry>
+              <entryChoice>
+                <Observation idref="p21">
+                  <code code="82645" codeSystem="NCID" displayName="Arrhythmia" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p26">
+                  <code code="160949" codeSystem="NCID" displayName="Myocardial infarction" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p32">
+                  <code code="161173" codeSystem="NCID" displayName="Hypotension" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p35">
+                  <code code="82645" codeSystem="NCID" displayName="Arrhythmia" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+          </section>
+        </component>
+        <component>
+          <section>
+            <code code="null" codeSystem="LOINC" displayName="REHABILITATION COURSE" />
+            <text>
+              <content ID="p38">The patient on his first day of rehab was noted to have
+      significant hypotension with short ambulation</content>
+              A spiral CT was done, which
+      showed bilateral lower lobe pulmonary emboli . He was placed on heparin until . Coumadin was brought into therapeutic range . His pulmonary status improved in
+      terms of not requiring oxygen when up and ambulating .
+              <content ID="p43">He was rather hypotensive
+      in the initial part of his hospital stay</content>
+              Coreg and an ACE inhibitor were
+      discontinued temporarily .
+              <content ID="p45">His blood pressure did over the next several days
+      improve and he was tolerating a low dose of Lopressor by the time of transfer to
+      the ICU</content>
+              He was also noted to have an elevated PSA of 29% . Given this, plus abnormal
+      oximetry, SPEP was done which showed elevated M spike . A Foley catheter was
+      placed in order to help with collection of urine (patient had significant
+      agitation and distractibility, as well as incontinence and could not be relied
+      upon for 24-hour urine collection without this).  He required one-to-one
+      supervision and had significant problems sleeping . He was able to be distracted
+      and participate in therapies, however, during the day . On the evening of his transfer, the patient removed the inflated Foley catheter . There was significant bleeding . The patient became extremely agitated . He
+      developed respiratory distress, with respiratory rate of 80, shallow breathing . Lactic acid level was greater than 7.1 . Because of his deteriorating condition,
+      he was transferred to the ICU for further monitoring and intervention, including
+      intubation . JOHN HOUSE, MD
+      Patient: DOE, JOHN           DIC: JOHN HOUSE, MD
+      EVD: 01/23/2005  D: 01/26/2005 13:59:49  T: 01/26/2005 14:28:38
+      C: 39287933 9125 4 - 94048259
+      TAD/MEDQ  Job:  589292 .
+            </text>
+            <entry>
+              <entryChoice>
+                <Observation idref="p38">
+                  <code code="161173" codeSystem="NCID" displayName="Hypotension" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p43">
+                  <code code="161173" codeSystem="NCID" displayName="Hypotension" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+            <entry>
+              <entryChoice>
+                <Observation idref="p45">
+                  <code code="161173" codeSystem="NCID" displayName="Hypotension" />
+                  <value name="state">present</value>
+                </Observation>
+              </entryChoice>
+            </entry>
+          </section>
+        </component>
+      </StructuredBody>
+    </bodyChoice>
+  </component>
+</ClinicalDocument>

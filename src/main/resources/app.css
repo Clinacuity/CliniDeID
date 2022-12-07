@@ -1,0 +1,347 @@
+@font-face {
+	src		: url('/fonts/open/OpenSans-Light.ttf');
+}
+
+@font-face {
+	src		: url('/fonts/open/OpenSans-SemiBold.ttf');
+}
+
+@font-face {
+	src		: url('/fonts/open/OpenSans-Bold.ttf');
+}
+
+@font-face {
+	src		: url('/fonts/open/OpenSans-BoldItalic.ttf');
+}
+
+@font-face {
+	src		: url('/fonts/open/OpenSans-Italic.ttf');
+}
+
+@font-face {
+	src		: url('fonts/raleway/Raleway-Regular.ttf');
+}
+@font-face {
+	src		: url('fonts/raleway/Raleway-Bold.ttf');
+}
+
+/*	MISC	*/
+.footer {
+	-fx-background-color		: rgb(151, 178, 215);
+}
+
+.spinner-pane {
+	-fx-background-color		: rgba(55, 55, 55, 0.15);
+}
+
+.text-small-normal {
+	-fx-font-size		: 9px;
+	-fx-font-family		: "Open Sans Light";
+}
+
+.text-small-bold {
+	-fx-font-size		: 9px;
+	-fx-font-family		: "Open Sans Bold";
+}
+
+.text-small-italic {
+	-fx-font-size		: 9px;
+	-fx-font-family		: "Open Sans Italic";
+}
+
+.text-medium-normal {
+	-fx-font-size		: 12px;
+	-fx-font-family		: "Open Sans Light";
+}
+
+.text-medium-bold {
+	-fx-font-size		: 12px;
+	-fx-font-family		: "Open Sans Bold";
+}
+
+.text-medium-italic {
+	-fx-font-size		: 12px;
+	-fx-font-family		: "Open Sans Italic";
+}
+
+.text-large-normal {
+	-fx-font-size		: 16px;
+	-fx-font-family		: "Open Sans Light";
+}
+
+.text-large-bold {
+	-fx-font-size		: 16px;
+	-fx-font-family		: "Open Sans Bold";
+}
+
+.text-area {
+	-fx-background-color		: Transparent;
+}
+
+.text-area .content {
+	-fx-background-color		: Transparent;
+}
+
+.card, .draggable {
+	-fx-background-radius		: 4px;
+	-fx-background-color		: white;
+	-fx-effect		: dropshadow(gaussian, rgba(100, 100, 100, 0.25), 0, 1, 0, 1);
+}
+
+.hand-cursor {
+   -fx-cursor: hand;
+}
+
+/*	BUTTONS	*/
+.button {
+	-fx-padding		: 0.7em 0.57em;
+	-fx-text-fill		: Black;
+	-fx-background-radius		: 2px;
+	-fx-font-family		: "Open Sans Light";
+}
+
+.button-magGlass {
+    -fx-graphic: url("/gui/magnifyingGlass.png");
+	-fx-smooth: true;
+    -fx-padding: 0 0 0 0;
+    -fx-cursor: hand;
+}
+
+.button-blue {
+	-fx-background-color	: -main-dark-blue;
+	-fx-text-fill		    : white;
+	-fx-background-radius	: 9;
+	-fx-font-family		    : "Raleway bold";
+	-fx-font-size		    : 20;
+	-fx-padding 			: 0;
+}
+
+.button-inverse-blue {
+	-fx-background-color	: white;
+	-fx-text-fill		    : -main-dark-blue;
+	-fx-background-radius	: 9;
+	-fx-font-family		    : "Raleway bold";
+	-fx-font-size		    : 20;
+	-fx-border-color 		: -main-dark-blue;
+	-fx-border-width 		: 3;
+	-fx-border-radius 		: 9;
+	-fx-padding 			: 0;
+}
+
+.button-blue:hover {
+	-fx-background-color	: rgb(77, 102, 204);
+	-fx-effect				: dropshadow(gaussian, DodgerBlue, 0, 1, 1, 1);
+}
+
+.button-blue-small {
+	-fx-background-color	: -main-dark-blue;
+	-fx-text-fill		    : white;
+	-fx-background-radius	: 20;
+	-fx-font-family		    : "Raleway bold";
+	-fx-font-size		    : 12;
+	-fx-padding: 8px;
+	-fx-border-insets: 7px;
+	-fx-background-insets: 7px;
+}
+
+.button-blue-small:hover {
+	-fx-background-color		: rgb(77, 102, 204);
+	-fx-effect		: dropshadow(gaussian, DodgerBlue, 0, 1, 1, 1);
+}
+
+.button-piiSelect {
+	-fx-font-family		    : "Raleway bold";
+	-fx-font-size		    : 12;
+	-fx-text-fill			: -pii-light-blue;
+	-fx-background-color 	: white;
+	-fx-cursor 				: hand;
+	-fx-padding 			: 0 5 0 5	; /*#top right bottom left --*/
+}
+
+.button-red {
+	-fx-background-color	: rgb(249, 31, 81);
+	-fx-text-fill		    : white;
+	-fx-background-radius	: 9;
+	-fx-font-family		    : "Raleway bold";
+	-fx-font-size		    : 20;
+	-fx-padding 			: 0;
+}
+
+.button-red:hover {
+	-fx-background-color		: rgb(200, 27, 70);;
+}
+
+
+.button-delete {
+	/*-fx-background-color	: -main-dark-blue;*/
+	/*-fx-text-fill		    : white;*/
+	-fx-background-radius	: 9;
+	-fx-font-family		    : "Raleway bold";
+	-fx-font-size		    : 1;
+	-fx-max-height: 9;
+	-fx-max-width: 9;
+	-fx-cursor: hand;
+
+}
+
+/*	END BUTTONS	*/
+
+
+/*	TEXT	*/
+.tooltip {
+	-fx-font-family		: "Open Sans Light";
+	-fx-font-size		: 10;
+    -fx-show-duration: 10s ;
+    -fx-show-delay: .1s;
+    -fx-hide-delay: .5s;
+}
+
+.sidebar {
+	-fx-background-color		: white;
+}
+
+* {
+	-main-bg-color		: rgb(238, 247, 255);       /*light blue background*/
+	-main-light-blue	: rgb(157, 176, 219);
+	-main-dark-blue		: rgb(29, 149, 231);        /*blue headers/text*/
+	-main-medium-blue	: rgb(22, 47, 152);
+	-pii-light-blue 	: rgb(0, 162, 255);
+}
+
+.titled-pane > .title {
+    -fx-background-color    :white;
+    -fx-alignment           : top-left;
+    -fx-text-alignment      : top-left;
+}
+
+.titled-pane > *.content {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-alignment           : top-left;
+    -fx-text-alignment      : top-left;
+}
+
+.listView {
+	-fx-background-radius	: 9;
+	-fx-border-radius		: 9;
+}
+
+.text-blue {
+    -fx-text-fill       : -main-dark-blue;
+}
+
+.logo-header {
+	-fx-font-fmaily		: "Raleway";
+	-fx-font-size		: 24;
+	-fx-text-fill		: -main-dark-blue;
+}
+
+.box-round-white {
+	-fx-background-color		: white;
+	-fx-background-radius		: 9;
+	-fx-effect		            : dropshadow(gaussian, rgba(0, 0, 0, 0.25), 5, 0.35, 0, 0);/*blurType, color, radius, spread, x, y*/
+}
+
+.background-light-blue {
+	-fx-background-color		: -main-bg-color;
+}
+
+.progressBox {
+	-fx-background-color		: white;
+	-fx-border-width            : 1;
+	-fx-border-color            : -main-dark-blue;
+	-fx-border-radius           : 9 ;
+}
+
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: darkslategrey;
+}
+
+.radio-button .dot {
+	-fx-mark-color		: -main-dark-blue;
+}
+
+.radio-button .radio {
+	-fx-border-width		: 1px;
+	-fx-border-color		: -main-dark-blue;
+	-fx-border-radius		: 15;
+	-fx-background-color	: white;
+}
+
+.check-box .mark {
+	-fx-mark-highlight-padding		: 10;
+	-fx-mark-highlight-color		: white;
+	-fx-mark-color		            : white;
+}
+
+.check-box .box {
+	-fx-background-radius		: 15;
+	-fx-background-color		: -main-dark-blue;
+}
+
+.combo-box {
+	-fx-background-color	: white;
+	-fx-border-color		: -main-dark-blue;
+	-fx-border-width		: 1px;
+	-fx-border-radius		: 9;
+}
+
+.combo-box-base .arrow {
+	-fx-background-color		: -main-dark-blue;
+}
+
+.combo-box-base .arrow-button {
+	-fx-background-color		: white;
+	-fx-border-radius		    : 9;
+	-fx-background-radius		: 9;
+}
+
+.combo-box .list-cell {
+	-fx-background-radius	: 9;
+	-fx-border-radius		: 9;
+}
+
+.combo-box .list-view {
+	-fx-background-radius	: 9;
+	-fx-border-radius		: 9;
+}
+
+.column-header {
+	-fx-font-family		: "Raleway Bold";
+	-fx-font-size		: 12;
+}
+
+.text-header-two {
+	-fx-font-family		: "Open Sans Bold";
+	-fx-font-size		: 16;
+	-fx-text-fill		: CornflowerBlue;
+}
+
+.text-color-red {
+	-fx-text-fill		: rgb(255, 0, 0);
+}
+
+.scroll-pane > .viewport {
+	-fx-background-color		: Transparent;
+}
+
+.progress-bar {
+    -fx-background-color: -main-bg-color;
+}
+
+.progress-bar .bar {
+    -fx-background-color: -main-dark-blue;
+    -fx-background-insets: 4 9 5 9;
+    -fx-padding: 0.75em;
+}
+
+.progress-bar > .track {
+    -fx-background-color: -main-bg-color, -main-dark-blue, -main-bg-color;
+    -fx-text-box-border: -main-dark-blue;
+    -fx-control-inner-background: -main-bg-color;
+    -fx-background-radius: 9;
+}
+
+/*	END TEXT	*/
