@@ -1,0 +1,692 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.clinacuity.clinideid</groupId>
+    <artifactId>clinideid-legacy-app</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>Clinacuity DeIdentification</name>
+    <description>DeIdentification of Personally Identifiable Information using the Apache UIMA project</description>
+    <url>https://github.com/Clinacuity/deid</url>
+    <inceptionYear>2017</inceptionYear>
+    <organization>
+        <name>Clinacuity, Inc.</name>
+        <url>www.clinacuity.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Jean-Karlo Accetta</name>
+        </developer>
+        <developer>
+            <name>Andrew Trice</name>
+        </developer>
+        <developer>
+            <name>Gary Underwood</name>
+        </developer>
+    </developers>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <javafx.version>17</javafx.version>
+        <uima.version>3.2.0</uima.version>
+        <uima.fit.version>3.2.0</uima.fit.version>
+        <log4j2.version>2.14.1</log4j2.version>
+        <opennlp.tools.version>1.9.4</opennlp.tools.version>
+        <ctakes.version>4.0.0</ctakes.version>
+        <cleartk.version>2.0.0</cleartk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>clinacuity</id>
+            <url>s3://clinacuity-maven-repo/release</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>clinacuity</id>
+            <name>AWS-Snapshot</name>
+            <url>s3://clinacuity-maven-repo/snapshot</url>
+        </snapshotRepository>
+        <repository>
+            <id>clinacuity</id>
+            <name>AWS-Release</name>
+            <url>s3://clinacuity-maven-repo/release</url>
+        </repository>
+    </distributionManagement>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.5.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-bom</artifactId>
+                <version>1.11.642</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.jdom/jdom2 -->
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+
+        <!-- JavaFX -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--classifier must be one of win mac linux, but having them all makes it cross platform -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>win</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>linux</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>linux</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>mac</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>mac</classifier>
+        </dependency>
+
+        <!-- Database drivers -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>9.5.0.jre17-preview</version>
+            <!-- <scope>test</scope> -->
+        </dependency>
+
+        <!-- can't connect w/o this -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.mongodb</groupId>-->
+        <!--            <artifactId>mongo-java-driver</artifactId>-->
+        <!--            <version>3.12.4</version>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash;        Not sure if this is needed &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.mongodb</groupId>-->
+        <!--            <artifactId>mongodb-driver-sync</artifactId>-->
+        <!--            <version>4.0.3</version>-->
+        <!--        </dependency>-->
+
+        <!--        This is not used, but left here for further investigation into versions-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.mongodb</groupId>-->
+        <!--            <artifactId>mongodb-driver</artifactId>-->
+        <!--            <version>3.12.4</version>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.db2</groupId>
+            <artifactId>jcc</artifactId>
+            <version>11.5.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.db2.jcc</groupId>
+            <artifactId>db2jcc</artifactId>
+            <version>db2jcc4</version>
+        </dependency>
+        <!--  Oracle's driver requires end user agreement
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>12.2.0.1</version>
+        </dependency>   -->
+
+        <!-- LIB LINEAR, our modified version -->
+        <dependency>
+            <groupId>de.bwaldvogel</groupId>
+            <artifactId>liblinear</artifactId>
+            <version>2.20C</version>
+        </dependency>
+
+        <!-- JAXB -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>3.0.2</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- UIMA & UIMA FIT -->
+        <dependency>
+            <groupId>org.apache.uima</groupId>
+            <artifactId>uimaj-core</artifactId>
+            <version>${uima.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.uima</groupId>
+            <artifactId>uimafit-core</artifactId>
+            <version>${uima.fit.version}</version>
+        </dependency>
+
+        <!-- CTAKES -->
+        <dependency>
+            <groupId>org.apache.ctakes</groupId>
+            <artifactId>ctakes-type-system</artifactId>
+            <version>4.0.0-SNAPSHOT</version>  <!--updated to use UIMA 3 -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ctakes</groupId>
+            <artifactId>ctakes-utils</artifactId>
+            <version>${ctakes.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- OPEN NLP -->
+        <dependency>
+            <groupId>org.apache.opennlp</groupId>
+            <artifactId>opennlp-tools</artifactId>
+            <version>${opennlp.tools.version}</version>
+        </dependency>
+
+        <!-- OpenNLP Max Entropy -->
+        <dependency>
+            <groupId>org.apache.opennlp</groupId>
+            <artifactId>opennlp-maxent</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
+        <!-- Log4J2 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jul</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <!-- APACHE COMMONS -->
+        <dependency>
+            <groupId>commons-cli</groupId>
+            <artifactId>commons-cli</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 old version may have been in uimaFit 2.4-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+        <!-- APACHE  BEANS -->
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+
+        <!-- Dependencies on Nexus -->
+        <dependency>
+            <groupId>com.clinacuity</groupId>
+            <artifactId>clinacuity-entities</artifactId>
+            <version>1.12.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.clinacuity.regex</groupId>
+            <artifactId>annot</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.lium.mira</groupId>
+            <artifactId>mira</artifactId>
+            <version>1.00C</version>
+        </dependency>
+
+        <!-- Clear-TK -->
+        <dependency>
+            <groupId>org.cleartk</groupId>
+            <artifactId>cleartk-ml</artifactId>
+            <version>${cleartk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cleartk</groupId>
+            <artifactId>cleartk-feature</artifactId>
+            <version>${cleartk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cleartk</groupId>
+            <artifactId>cleartk-opennlp-tools</artifactId>
+            <version>${cleartk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cleartk</groupId>
+            <artifactId>cleartk-type-system</artifactId>
+            <version>2.0.1-SNAPSHOT</version>  <!-- updated for UIMA 3 -->
+        </dependency>
+
+        <!--  this is our version that uses mallet 2.0.8, clearTK uses 2.0.7 by default -->
+        <dependency>
+            <groupId>org.cleartk</groupId>
+            <artifactId>cleartk-ml-mallet</artifactId>
+            <version>2.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- clearTK's mallet system uses this -->
+        <dependency>
+            <groupId>cc.mallet</groupId>
+            <artifactId>mallet</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+
+        <!-- SPRING BOOT -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- SnakeYAML -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.29</version>
+        </dependency>
+
+        <!-- AWS -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-ec2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-autoscaling</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.amazonaws</groupId>-->
+        <!--            <artifactId>amazon-sqs-java-extended-client-lib</artifactId>-->
+        <!--            <version>1.0.2</version>-->
+        <!--            <type>jar</type>-->
+        <!--        </dependency>-->
+
+
+        <!-- ZIP UTILITY -->
+        <dependency>
+            <groupId>org.zeroturnaround</groupId>
+            <artifactId>zt-zip</artifactId>
+            <version>1.14</version>
+            <type>jar</type>
+        </dependency>
+
+        <!-- MOCK SERVER -->
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-netty</artifactId>
+            <version>5.11.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>22.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <argLine>-Xmx24g --add-opens java.base/jdk.internal.misc=ALL-UNNAMED --add-exports
+                        java.base/jdk.internal.misc=ALL-UNNAMED
+                    </argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>cli</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.clinacuity.deid.mains.DeidPipeline</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>cliTest</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.clinacuity.deid.Other.TestDeidPipeline</mainClass>
+                            <classpathScope>test</classpathScope>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>javafx</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.clinacuity.deid.gui.AppWrapper</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                            <arguments>
+                                <argument>--add-exports java.base/jdk.internal.misc=ALL-UNNAMED</argument>
+                                <argLine>-Xmx24g</argLine>
+                            </arguments>
+                            <systemProperties/>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>target/classes/data/**</additionalClasspathElement>
+                            </additionalClasspathElements>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>clearTk</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.clinacuity.deid.training.RunTrainClearTkMallet</mainClass>
+                            <classpathScope>test</classpathScope>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-for-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/data</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>data</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-deployment</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/deployment</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/deployment</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <!-- Set the main class of the executable JAR -->
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.clinacuity.deid.gui.AppWrapper</mainClass>
+                                    <manifestEntries>
+                                        <Multi-Release>true</Multi-Release>
+                                    </manifestEntries>
+                                </transformer>
+                                <!-- Merge the uimaFIT configuration files -->
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/org.apache.uima.fit/fsindexes.txt
+                                    </resource>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/org.apache.uima.fit/types.txt
+                                    </resource>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/org.apache.uima.fit/typepriorities.txt
+                                    </resource>
+                                </transformer>
+                            </transformers>
+                            <outputFile>
+                                ${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar
+                            </outputFile>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.6.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>clinideid</finalName>
+                            <mainClass>com.clinacuity.deid.service.DeidService</mainClass>
+                            <requiresUnpack>
+                                <dependency>
+                                    <groupId>org.python</groupId>
+                                    <artifactId>jython-standalone</artifactId>
+                                </dependency>
+                            </requiresUnpack>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>default-war</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <extensions>
+            <extension>
+                <groupId>com.allogy.maven.wagon</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.0</version>
+            </extension>
+        </extensions>
+    </build>
+</project>

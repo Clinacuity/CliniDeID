@@ -1,0 +1,45 @@
+#!/bin/bash
+textDir='extraFiles/testSetForMasterTxt'
+outputDir='extraFiles/developOutput'
+xmlDir='extraFiles/testSetForMasterXml'
+ext='.filtered-system-output'
+developResults='resultsForDevelop.txt'
+masterResults='extraFiles/resultsForMaster.txt'
+
+export JAVA_TOOL_OPTIONS="-Xmx24G"
+mvn clean compile exec:java@cli -Dclinacuity.deid.baseUrl=https://devtest1.clinacuity.com/clinacuity/v1/clinideid/ -Dexec.args="-if -id $textDir -t all -level beyond -of -od $outputDir"
+
+status=$?
+if [ $status -ne 0 ] ; then
+	echo "Run failed, exit code $status"
+	exit $status
+fi
+
+python3 ~/ETUDE/etude.py --reference-input $xmlDir --reference-config etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $outputDir --test-config etude-configs/UnifiedDeid-EndToEnd-Split.conf  --fuzzy-match-flags exact fully-contained \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type $acv \
+	| scripts/etudePrettyPipe.pl 	>$developResults
+
+status=$?
+if [ $status -ne 0 ] ; then
+	echo "Eval failed, exit code $status"
+	exit $status
+fi
+
+scripts/comp2evals.pl $masterResults $developResults > 'comparisonResults.txt' 2>'differences.txt'
+
+status=$?
+echo "comp is $status"
+if [ $status -ne 0 ] ; then
+	if [ $status -eq 3 ] ; then
+		echo "Comparison resulted in big differences"
+	elif [ $status -eq 2 ] ; then
+		echo "Comparison resulted in errors and big differences"
+	elif [ $status -eq 1 ] ; then
+		echo "Comparison resulted in errors"
+	fi
+	cat 'differences.txt'
+	exit $status
+else
+	echo "All OK"
+fi

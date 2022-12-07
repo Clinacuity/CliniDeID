@@ -1,0 +1,5 @@
+#! /bin/bash
+size=Small
+name=$1
+unifiedDir='/Users/garyunderwood/corpora/unified3Split'
+mvn exec:java@clearTk -Dexec.args="-i $unifiedDir/testText$size -c test -m $unifiedDir/$name/model.jar -o $unifiedDir/outCRF-$name-$size"

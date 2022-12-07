@@ -1,0 +1,48 @@
+#!/usr/local/bin/perl
+
+if (@ARGV == 0) {
+	die "Syntax is $0 filename where filename contains the results of an ETUDE printout\n";
+}
+while (@ARGV) {
+	open (IN, $ARGV[0]) or die "Can't open $!\n";
+	@in = <IN>;
+	close IN;
+
+	shift @in while ($in[0] !~ m:\S:);#remove blank lines
+	foreach $line (@in) {
+		if ($line =~ m:Preci:) {#format a header line
+			$line =~ s:Precision:Preci:;
+			@parts = split (/\s+/, $line);
+			$line = sprintf ("%12s           %5s %5s %5s %7s %7s %7s\n", @parts);
+		}
+		$line =~ s:(m.cro)-average:$1:;
+		#if ($line =~ m:^\s*\w+\s+\d+: && $line !~ m/%/) {#format a data line not already formatted
+		if ($line =~ m:^\s*389|^\s*m: && $line !~ m:\sx\s:) {
+			$line =~ s:^\s+::;
+			@parts = split (/\s+/, $line);
+#			if ($parts[4] =~ m:\.\d:) {
+				foreach $val (@parts[4..6]) {
+					$val*=100;  #change to percents
+				}
+#			}
+			$line = sprintf  ("%12s           %5d %5d %5d %6.3f%% %6.3f%% %6.3f%% \n", @parts);
+		}
+		if ($line =~ m:^\s*389|^\s*m: && $line =~ m:\sx\s:) {
+			$line =~ s:^\s+::;
+			@parts = split (/\s+/, $line);
+			splice @parts, 1, 1;
+#			if ($parts[4] =~ m:\.\d:) {
+				foreach $val (@parts[5..7]) {
+					$val*=100;  #change to percents
+				}
+#			}
+			$line = sprintf  ("%12s  %8s %5d %5d %5d %6.2f%% %6.2f%% %6.2f%% \n", @parts);
+		}
+	}
+
+	open (OUT, ">$ARGV[0]") or die "Can't write: $!\n";
+	print OUT @in;
+	close OUT;
+
+	shift;
+}

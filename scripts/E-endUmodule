@@ -1,0 +1,146 @@
+#!/bin/bash
+input=${1%/}	#removes trailing slash if present
+size=$2		#Small Big
+
+unifiedDir='/Users/garyunderwood/corpora/unified3Split'
+ETUDE_DIR="/Users/garyunderwood/etudeStuff/ETUDE"
+DEID_DIR="$DEID_DIR/clinideid-legacy-app"
+if [[ ! -d "$DEID_DIR" ]]
+then
+	echo "Must set DEID_DIR first, should be absolute path to deid/java-app"
+	exit 1
+fi
+
+if [[ $size == "big" ]]; then size=Big; fi
+if [[ $size == "small" ]]; then size=Small; fi
+if [[ $size != "Big" && $size != "Small" ]]; then 
+	echo "Size should be Small or Big"
+	exit 3
+fi
+
+if [[ -z $3 || $3 == "clean" || $2 == "filtered" ]] 	#default to clean
+then
+	ext='.filtered-system-output'
+elif [[ $3 == "raw" || $2 == "complete" ]]
+then
+	ext='.complete-system-output'
+else
+	ext=$3
+fi
+
+echo "Output files $input, size $size, with extention $ext"
+file=results-$input-Modules-$ext.txt
+
+
+fuzzy = "exact" # fully-contained partial"
+#oldCRF,MIRA,SVM,RNN
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-oldCRF.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-1 
+exit
+#	&
+
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-Mira.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-2 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-SVM.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-3 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-MIRA-oldCRF.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-4 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-SVM-oldCRF.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-5 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-Mira-SVM.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-6 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-Regex.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-7 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-RNN.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-8 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-PostPii.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-9 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-RNN-oldCRF.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-10 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-MIRA-RNN.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-11 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split-RNN-SVM.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-12 &
+
+wait
+
+echo "$input folder with size $size using $ext by classifier" >$file
+echo "oldCRF only" >>$file
+cat $file-1 >> $file
+echo "" >>$file
+echo "MIRA only" >>$file
+cat $file-2 >>$file
+echo "" >>$file
+echo "SVM only" >>$file
+cat $file-3 >>$file
+echo "" >>$file
+echo "RNN only" >>$file
+cat $file-8 >>$file
+echo "" >>$file
+echo "Regex only" >>$file
+cat $file-7 >>$file
+echo "PostPii only" >>$file
+cat $file-9 >>$file
+
+echo "" >>$file
+echo "oldCRF and MIRA only" >>$file
+cat $file-4 >>$file
+
+echo "" >>$file
+echo "oldCRF and SVM only" >>$file
+cat $file-5 >>$file
+
+echo "" >>$file
+echo "oldCRF and RNN only" >>$file
+cat $file-10 >>$file
+
+echo "" >>$file
+echo "MIRA and SVM only" >>$file
+cat $file-6 >>$file
+
+echo "" >>$file
+echo "MIRA and RNN only" >>$file
+cat $file-11 >>$file
+
+echo "" >>$file
+echo "RNN and SVM only" >>$file
+cat $file-12 >>$file
+
+rm $file-? $file-??
+
+cat $file

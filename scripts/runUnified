@@ -1,0 +1,29 @@
+#!/bin/bash
+unifiedDir='/Users/garyunderwood/corpora/unified3Split'
+size=$1
+
+if [[ $size == "big" ]]; then size=Big; fi
+if [[ $size == "small" ]]; then size=Small; fi
+if [[ $size == "smaller" ]]; then size=Smaller; fi
+if [[ $size != "Big" && $size != "Small" && $size != "Smaller" ]]; then 
+	echo "Size should be Small or Big or Smaller"
+	exit 3
+fi
+
+name=$2
+if [[ -z $name ]]; then
+	echo "Usage is:"
+	echo "`basename "$0"` size name "
+	echo "    where size is Small or Big and name will be used as part of output folder"
+	exit;
+fi
+
+excludes=$3
+dir=$4
+
+echo "Ran on size: $size, to $name$size"
+#
+export JAVA_TOOL_OPTIONS="-Xmx28G"
+mvn exec:java@cli -Dclinacuity.deid.baseUrl=https://devtest1.clinacuity.com/clinacuity/v1/clinideid/ -Dexec.args="-if -id $unifiedDir/testText$size -t filtered,detectedPii,complete -level beyond -of -od $unifiedDir/out-$name$size-$dir -x $excludes"
+#mvn compile test -DskipTests #must be run before TestDeidPipeline can be found
+#mvn exec:java@cliTest -Dclinacuity.deid.baseUrl=https://devtest1.clinacuity.com/clinacuity/v1/clinideid/ -Dexec.args="-if -id $unifiedDir/testText$size -t filtered,complete -level beyond -of -od $unifiedDir/out-$name$size"

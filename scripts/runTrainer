@@ -1,0 +1,11 @@
+#! /bin/bash
+size=$1
+name=$2
+unifiedDir='/Users/garyunderwood/corpora/unified3Split'
+
+#if [[ -z $name ]]; then
+#	echo "Usage is `basename "$0"` size name  where size is Small or Big and name will be used as part of model name output folder"
+#	exit;
+#fi
+
+mvn exec:java@clearTk -Dexec.args="-c traincombinedxml -i $unifiedDir/split/trainXmlSmall -m $unifiedDir/split/crfModel"

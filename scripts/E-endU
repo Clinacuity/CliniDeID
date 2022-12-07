@@ -1,0 +1,82 @@
+#!/bin/bash
+input=${1%/}	#removes trailing slash if present
+size=$2			#Small Big
+
+unifiedDir='/Users/garyunderwood/corpora/unified3Split' #unifiedVersion2-FixMusc'
+ETUDE_DIR="/Users/garyunderwood/etudeStuff/ETUDE"
+DEID_DIR="$DEID_DIR/clinideid-legacy-app"
+if [[ ! -d "$DEID_DIR" ]]
+then
+	echo "Must set DEID_DIR first, should be absolute path to deid/java-app"
+	exit 1
+fi
+
+if [[ $size == "big" ]]; then size=Big; fi
+if [[ $size == "small" ]]; then size=Small; fi
+if [[ $size != "Big" && $size != "Small" ]]; then 
+	echo "Size should be Small or Big"
+	exit 3
+fi
+
+if [[ -z $3 || $3 == "clean" || $3 == "filtered" ]] 	#default to clean
+then
+	ext='.filtered-system-output'
+elif [[ $3 == "raw" || $3 == "complete" ]]; then
+	ext='.complete-system-output'
+elif [[ $3 == "acv" ]] ; then
+	acvDir="acv-$input"
+	acv="--reference-out $acvDir/reference/ --test-out $acvDir/system/ --corpus-out $acvDir/corpus.json"
+	mkdir -p $acvDir
+	mkdir -p $acvDir/reference
+	mkdir -p $acvDir/system
+else 
+	ext=$3
+fi
+
+if [[ -z $4 ]] ; then 	#default to clean
+	acv=""
+elif [[ $4 == "acv" ]]; then
+	acvDir="acv-$input"
+	acv="--reference-out $acvDir/reference/ --test-out $acvDir/system/ --corpus-out $acvDir/corpus.json"
+	mkdir -p $acvDir
+	mkdir -p $acvDir/reference
+	mkdir -p $acvDir/system
+else 
+	echo "$4 not supported"
+	exit
+fi
+
+echo "Output files $input, size $size, with extention $ext"
+echo "acv=$acv"
+file=results-$input.txt
+
+fuzzy="exact fully-contained"
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Parent -m TP FP FN Precision Recall F1 --by-type $acv \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl 	>$file-1 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+ 	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split.conf  --fuzzy-match-flags $fuzzy \
+ 	--file-suffix ".xml" "$ext.xml" --score-key Top -m TP FP FN Precision Recall F1  --by-type \
+ 	| $DEID_DIR/scripts/etudePrettyPipe.pl >$file-2 &
+
+python3 $ETUDE_DIR/etude.py --reference-input $unifiedDir/testXml$size --reference-config $DEID_DIR/etude-configs/UnifiedGold-EndToEnd-Split.conf \
+	--test-input $input --test-config $DEID_DIR/etude-configs/UnifiedDeid-EndToEnd-Split.conf  --fuzzy-match-flags $fuzzy \
+	--file-suffix ".xml" "$ext.xml" --score-key Root -m TP FP FN Precision Recall F1  --by-type \
+	| $DEID_DIR/scripts/etudePrettyPipe.pl  >$file-3 &
+
+wait
+
+echo "$input folder with size $size using $ext" >$file
+echo "Sub PII category"
+cat $file-1 >> $file
+echo "" >>$file
+echo "Parent PII category" >>$file
+cat $file-2 >>$file
+echo "" >>$file
+echo "Root PII" >>$file
+cat $file-3 >>$file
+rm $file-3 $file-2 $file-1
+
+cat $file

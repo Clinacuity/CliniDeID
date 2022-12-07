@@ -1,0 +1,35 @@
+#!/bin/bash
+#ALL OF THIS needs updating to be used again *****************
+input=${1%/}	#removes trailing slash if present
+year=$2		#2014 or 2016
+size=$3		#Small Big
+
+#set these appropriately
+crfDir='/Users/garyunderwood/CRF-files'		#folder should have subfolders 2014 and 2016 and then DropboxSmall and DropboxBig within those
+deidDir='/Users/garyunderwood/deid'			#folder where deid is, subfolder of etdue-configs in it
+
+ext='filtered'
+
+suf=''
+size=Big
+year=2014
+
+i2b2=$crfDir/2014/DropboxBig
+musc=/Users/garyunderwood/WebAnnoPHI_Corpus/goldBig
+
+echo "Output files $1 on year $year, size $size, module $module, with extention $ext"
+
+python3 ~/ETUDE/etude.py --reference-input $crfDir/$year/Dropbox$size --reference-config $deidDir/etude-configs/Gold-EndToEnd.conf \
+--test-input $input --test-config $deidDir/etude-configs/Deid-EndToEnd.conf  --fuzzy-match-flags exact fully-contained partial \
+--file-suffix "$suf.xml" "$suf.$ext.xml" --score-key Parent -m TP FP FN Precision Recall --print-confusion-matrix --by-type \
+#| $deidDir/scripts/etudePrettyPipe.pl
+
+python3 ~/ETUDE/etude.py --reference-input $crfDir/$year/Dropbox$size --reference-config $deidDir/etude-configs/Gold-EndToEnd.conf \
+--test-input $input --test-config $deidDir/etude-configs/Deid-EndToEnd.conf  --fuzzy-match-flags exact fully-contained partial \
+--file-suffix "$suf.xml" "$suf.$ext.xml" --score-key Top -m TP FP FN Precision Recall F1 --print-confusion-matrix --by-type \
+#| $deidDir/scripts/etudePrettyPipe.pl
+
+python3 ~/ETUDE/etude.py --reference-input $crfDir/$year/Dropbox$size --reference-config $deidDir/etude-configs/Gold-EndToEnd.conf \
+--test-input $input --test-config $deidDir/etude-configs/Deid-EndToEnd.conf  --fuzzy-match-flags exact fully-contained partial \
+--file-suffix "$suf.xml" "$suf.$ext.xml" --score-key Root -m TP FP FN Precision Recall F1 --print-confusion-matrix --by-type \
+#| $deidDir/scripts/etudePrettyPipe.pl

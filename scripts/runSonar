@@ -1,0 +1,1 @@
+mvn sonar:sonar  -Dsonar.projectKey=com.clinacuity:deid  -Dsonar.host.url=https://dev.clinacuity.com/sonar  -Dsonar.login=58d503986bf86ba1cbb959117f9c291c9be9aeea

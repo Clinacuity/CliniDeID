@@ -1,0 +1,16 @@
+#creates spreadsheet with FP and FN and their context
+#begins are correct, ends are often 1 too big
+#When importing into Numbers: Adjust Settings, advanced settings, change Text Qualifier to None
+
+annotationDir=$1
+if [[ -z $annotationDir ]]; then
+	echo "Usage is:"
+	echo "`basename "$0"` annotation_out_folder "
+	echo "    which is the folder with the test outupts from running Etude with score cards"
+	exit;
+fi
+
+#column headers
+echo -e "Filename\tBegin\tEnd\tCategory\tError\tBefore\tCovered\tAfter" > $annotationDir.csv
+
+python3 ~/ETUDE/extract_samples.py --file-suffix .xml .filtered-system-output.xml --annotation-out $annotationDir/ --score-card $annotationDir/metrics_exact_score_card.csv >> $annotationDir.csv

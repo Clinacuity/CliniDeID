@@ -1,0 +1,7 @@
+E-... run etude, see inside them for details,   variables will need to be set for location of Gold files and deid config files
+
+etudePretty:			format and prettify file that is output of ETUDE
+etudePrettyPipe.pl:		as above, but designed to have output of ETUDE piped to it
+etudePrettyPipeByFileTYpe.pl:	as above, but designed for when --by-file-and-type ussed
+
+runAllModules: used to do tests, isolated or cumulative, of each module in pipeline
