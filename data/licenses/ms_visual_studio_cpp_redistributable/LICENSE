@@ -1,0 +1,2 @@
+The file msvcp140_1.dll, in python3 directory, is part of the Microsft Visual C++ (VC++ 2015) Redistributable package provided in a local deployment mode. Full information and licensing information can be found at https://docs.microsoft.com/en-us/cpp/windows/redistributing-visual-cpp-files?view=msvc-160. The file is used directly by TensorFlow which we use.
+

@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <!-- generate with "python2 convert_model.py < pos-enhanced.model.txt > model.js" -->
+        <script type="text/javascript" src="model.js"></script>
+        <script type="text/javascript" src="viterbi.js"></script>
+    </head>
+    <body>
+        <p>Write a single sentence of text. The part-of-speech tagging result will be displayed in real time.</p>
+        <textarea id="input" rows="4" cols="60" onkeyup="update();"></textarea><br>
+        <p><div id="output" ></div></p>
+        <a href="#" onclick="toggle_internals();" id="more">more...</a>
+        <div style="display:none;" id="internals"></div>
+    </body>
+</html>

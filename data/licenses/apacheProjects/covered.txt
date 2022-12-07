@@ -1,0 +1,17 @@
+ UIMA, uimaj (-core, -test-util, -component), uimafit)
+ ctakes
+ commons-csv commons-cli 
+ log4j opennlp 
+ xmlbeans 
+ xom uses apache xalan, xercesImpl and xml-apis 
+ spring, spring boot
+ SnakeYAML
+ Lucene
+ PostgreSQL jdbc driver and database
+ jdom and jdom2
+
+Python modules
+ absl-py
+ TensorFlow
+ NLTK
+ bleach

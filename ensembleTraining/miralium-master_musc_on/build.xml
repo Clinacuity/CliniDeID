@@ -1,0 +1,17 @@
+<project name="miralium" basedir="." default="jar">
+    <target name="compile">
+        <!--<javac srcdir="." target="1.5" classpath="trove-2.1.0.jar" includeantruntime="false"/>-->
+        <javac srcdir="." target="1.5" classpath="trove-2.1.0.jar:cplex.jar" includeantruntime="false" debug="true" debuglevel="lines,vars,source"/>
+    </target>
+    <target name="jar" depends="compile">
+        <jar destfile="mira.jar" manifest="manifest.txt" duplicate="fail" index="true">
+            <zipfileset src="trove-2.1.0.jar"/>
+            <zipfileset src="cplex.jar"/>
+            <filelist files="LICENSE LICENSE.trove README"/>
+            <fileset dir="." includes="edu/**"/>
+        </jar>
+    </target>
+    <target name="run" depends="jar">
+        <java jar="mira.jar" classpath="trove-2.1.0.jar:cplex.jar"/>
+    </target>
+</project>

@@ -1,0 +1,27 @@
+#!/usr/bin/python
+
+import sys
+
+if len(sys.argv) != 2:
+    sys.stderr.write('USAGE: %s <num>\ngrabs first n examples\n' % sys.argv[0])
+    sys.exit(1)
+
+examples = []
+words = []
+for line in sys.stdin:
+    line = line.strip()
+    if line == "":
+        examples.append(words)
+        words = []
+    else:
+        words.append(line)
+
+num = int(sys.argv[1])
+current = 0
+for example in examples:
+    if current >= num:
+        break
+    for line in example:
+        print line
+    print
+    current += 1

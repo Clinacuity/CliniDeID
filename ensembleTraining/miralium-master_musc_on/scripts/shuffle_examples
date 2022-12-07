@@ -1,0 +1,20 @@
+#!/usr/bin/python
+
+import sys, random
+
+examples = []
+words = []
+for line in sys.stdin:
+    line = line.strip()
+    if line == "":
+        examples.append(words)
+        words = []
+    else:
+        words.append(line)
+
+random.shuffle(examples)
+
+for example in examples:
+    for line in example:
+        print line
+    print

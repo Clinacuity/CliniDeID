@@ -1,0 +1,2 @@
+#!/bin/sh
+java -Xmx5G -jar `dirname $0`/mira.jar $*

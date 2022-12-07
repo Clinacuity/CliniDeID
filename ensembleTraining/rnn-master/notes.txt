@@ -1,0 +1,34 @@
+	To run
+source StartPython.sh (uses env3.5New)
+	python3 RunDeid.py $DEID_DIR/data/models/rnn/unified1-NoDict.h5
+
+	To train:
+komninos_english_embeddings.gz must be in rnn-master
+train/uni/train.txt should be output of TrainFVGenerator's rnn output
+train/uni/dev.txt created but empty
+train/uni/test.txt created but empty
+result will be in models/
+python3 Train_Deid.py
+
+possible that pkl'ed file uni_komninos_english_embeddings.pkl in pkl can be used w/o regenerating it
+  then no need to keep komninos_english_embeddings.gz in repo
+
+Download the Python3.6 tgz file from the official website (eg. Python-3.6.6.tgz)
+Unpack it with tar -xvzf Python-3.6.6.tgz
+cd Python-3.6.6
+run ./configure
+run make altinstall to install it (install vs altinstall explanation here https://stackoverflow.com/questions/16018463/difference-in-details-between-make-install-and-make-altinstall)
+You'll normally find your new python install under /usr/local/bin. Now you can create a new virtualenv specifying the python version with:
+
+virtualenv --python=python3.6 env3.6
+
+but 
+keras-applications 1.0.2 has requirement keras>=2.1.6, but you'll have keras 2.1.5 which is incompatible.
+keras-preprocessing 1.0.1 has requirement keras>=2.1.6, but you'll have keras 2.1.5 which is incompatible.
+tensorflow 1.9.0 has requirement setuptools<=39.1.0, but you'll have setuptools 40.4.3 which is incompatible.
+tensorflow-tensorboard 1.5.0 has requirement html5lib==0.9999999, but you'll have html5lib 1.0.1 which is incompatible.
+bleach 1.5.0 has requirement html5lib!=0.9999,!=0.99999,<0.99999999,>=0.999, but you'll have html5lib 1.0.1 which is incompatible.
+
+
+dmgbuild makes mac instll
+makensis for windows

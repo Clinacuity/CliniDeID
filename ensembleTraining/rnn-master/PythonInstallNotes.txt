@@ -1,0 +1,9 @@
+https://www.python.org/downloads/release/python-353/
+download "Windows x86-64 executable installer" 
+  https://www.python.org/ftp/python/3.5.3/python-3.5.3-amd64.exe 
+did customize to install for all users
+need to put in path for virtualenv to find vcruntime140.dll (and others?)
+
+
+
+

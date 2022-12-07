@@ -1,0 +1,4 @@
+#!/usr/bin/awk -f
+NF > 2 { n++ }
+NF > 2 && $NF == $(NF-1) { c++}
+END {print c/n}

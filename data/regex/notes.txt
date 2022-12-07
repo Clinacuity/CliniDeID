@@ -1,0 +1,3 @@
+PHIconcepts_v09f-ID-Phone.xml is currently best
+d g h are left as ideas and things that have been tried
+PHIconcepts_v09.confscore.i2b2.xml was what had been used before
