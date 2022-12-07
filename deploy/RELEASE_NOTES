@@ -1,0 +1,6 @@
+Version 1.8.3
+
+Release Notes
+
+This version of CliniDeID includes support for HL7 CDA XML input and output, significant speed improvements and bug fixes.
+Windows 10 Support. Updated for Java 17
