@@ -256,6 +256,8 @@
             <groupId>org.apache.ctakes</groupId>
             <artifactId>ctakes-type-system</artifactId>
             <version>4.0.0-SNAPSHOT</version>  <!--updated to use UIMA 3 -->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/ctakes-type-system-4.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.apache.ctakes</groupId>
@@ -376,6 +378,8 @@
             <groupId>org.cleartk</groupId>
             <artifactId>cleartk-type-system</artifactId>
             <version>2.0.1-SNAPSHOT</version>  <!-- updated for UIMA 3 -->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/cleartk-type-system-2.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
 
         <!--  this is our version that uses mallet 2.0.8, clearTK uses 2.0.7 by default -->
@@ -383,6 +387,8 @@
             <groupId>org.cleartk</groupId>
             <artifactId>cleartk-ml-mallet</artifactId>
             <version>2.0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/cleartk-ml-mallet-2.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <!-- clearTK's mallet system uses this -->
         <dependency>
