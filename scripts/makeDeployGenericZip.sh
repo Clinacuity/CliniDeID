@@ -12,13 +12,13 @@ if [[ -f CliniDeID.zip ]]; then
 	rm CliniDeID.zip
 fi
 
-if [[ ! -d "$DEID_DIR" ]]; then
-	echo "DEID_DIR must be set first"
-	exit 1
-fi
+#if [[ ! -d "$DEID_DIR" ]]; then
+#	echo "DEID_DIR must be set first"
+#	exit 1
+#fi
 
 #so that zip doesn't get target folder
-cd $DEID_DIR/clinideid-legacy-app/target
+cd target # $DEID_DIR/clinideid-legacy-app/target
 
 if [[ -f clinideid-legacy-app-0.0.1-SNAPSHOT-jar-with-dependencies.jar ]]; then
 	mv clinideid-legacy-app-0.0.1-SNAPSHOT-jar-with-dependencies.jar CliniDeIDComplete.jar

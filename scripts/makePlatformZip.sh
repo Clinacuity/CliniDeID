@@ -41,10 +41,10 @@ if [[ ! -f CliniDeID.zip ]]; then
 	exit 1
 fi
 
-if [[ ! -d "$DEID_DIR" ]]; then
-	echo "DEID_DIR must be set first"
-	exit 1
-fi
+#if [[ ! -d "$DEID_DIR" ]]; then
+#	echo "DEID_DIR must be set first"
+#	exit 1
+#fi
 
 #create temp directory to make it easier to keep the zip file's directory structure simple
 rm -r tempPlatform > /dev/null 2>&1
