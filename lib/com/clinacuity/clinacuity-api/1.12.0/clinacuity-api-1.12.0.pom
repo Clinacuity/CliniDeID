@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.clinacuity</groupId>
+    <artifactId>clinacuity-api</artifactId>
+    <version>1.12.0</version>
+    <modules>
+        <module>clinacuity-entities</module>
+        <module>cliniwhiz-rest-server</module>
+        <module>clinideid-rest-server</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <developers>
+        <developer>
+            <name>Jean-Karlo Accetta</name>
+        </developer>
+        <developer>
+            <name>Andrew Trice</name>
+        </developer>
+        <developer>
+            <name>Gary Underwood</name>
+        </developer>
+    </developers>
+
+    <properties>
+        <java.version>8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring.framework.version>5.0.8.RELEASE</spring.framework.version>
+        <spring.boot.version>2.1.2.RELEASE</spring.boot.version>
+        <hapi.fhir.version>3.6.0</hapi.fhir.version>
+        <aws.version>1.11.595</aws.version>
+        <jackson.version>2.9.4</jackson.version>
+        <hibernate.version>5.3.2.Final</hibernate.version>
+        <uima.version>3.0.0</uima.version>
+        <ctakes.version>4.0.0</ctakes.version>
+        <ctakes.types.version>4.0.0-CUSTOM</ctakes.types.version>
+        <okta.version>1.5.2</okta.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>clinacuity</id>
+            <url>https://dev.clinacuity.com/nexus/repository/clinacuity/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>clinacuity-mirror</id>
+            <url>http://localhost:8081/nexus/repository/clinacuity/</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

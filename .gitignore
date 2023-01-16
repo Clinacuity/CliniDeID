@@ -1,2 +1,5 @@
 target/
 .idea/
+data/models/mira/
+data/models/rnn/
+data/models/svm/
