@@ -1,5 +1,7 @@
 target/
-.idea/
+*.zip
+
+#these are too big for github
 data/models/mira/
 data/models/rnn/
 data/models/svm/
