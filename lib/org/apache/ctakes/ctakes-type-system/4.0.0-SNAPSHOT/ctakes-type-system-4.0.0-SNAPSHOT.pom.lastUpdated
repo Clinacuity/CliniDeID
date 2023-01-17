@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Feb 21 18:36:59 EST 2020
+@default-clinacuity-https\://dev.clinacuity.com/nexus/repository/clinacuity/.lastUpdated=1582328219667
+https\://dev.clinacuity.com/nexus/repository/clinacuity/.error=Could not transfer artifact org.apache.ctakes\:ctakes-type-system\:pom\:4.0.0-SNAPSHOT from/to clinacuity (https\://dev.clinacuity.com/nexus/repository/clinacuity/)\: Authentication failed for https\://dev.clinacuity.com/nexus/repository/clinacuity/org/apache/ctakes/ctakes-type-system/4.0.0-SNAPSHOT/ctakes-type-system-4.0.0-SNAPSHOT.pom 401 Unauthorized

@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Feb 21 18:37:00 EST 2020
+@default-clinacuity-https\://dev.clinacuity.com/nexus/repository/clinacuity/.lastUpdated=1582328220816
+https\://dev.clinacuity.com/nexus/repository/clinacuity/.error=Could not transfer artifact org.cleartk\:cleartk-type-system\:pom\:2.0.1-SNAPSHOT from/to clinacuity (https\://dev.clinacuity.com/nexus/repository/clinacuity/)\: Authentication failed for https\://dev.clinacuity.com/nexus/repository/clinacuity/org/cleartk/cleartk-type-system/2.0.1-SNAPSHOT/cleartk-type-system-2.0.1-SNAPSHOT.pom 401 Unauthorized

@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 30 17:02:58 EDT 2020
+https\://repo.maven.apache.org/maven2/.lastUpdated=1585602178423
+ca843c91287c123ee8d805c8054fc45a6ca7fa16@default-clinacuity-https\://dev.clinacuity.com/nexus/repository/clinacuity/.lastUpdated=1585602177976
+https\://repo.maven.apache.org/maven2/.error=
+https\://dev.clinacuity.com/nexus/repository/clinacuity/.error=Could not transfer artifact com.clinacuity\:clinacuity-entities\:jar\:sources\:1.12.0 from/to clinacuity (https\://dev.clinacuity.com/nexus/repository/clinacuity/)\: PKIX path building failed\: sun.security.provider.certpath.SunCertPathBuilderException\: unable to find valid certification path to requested target

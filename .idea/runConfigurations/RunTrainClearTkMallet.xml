@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RunTrainClearTkMallet" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="com.clinacuity.deid.training.RunTrainClearTkMallet" />
+    <module name="clinideid-legacy-app" />
+    <option name="PROGRAM_PARAMETERS" value="-c traincombinedxml -i $USER_HOME$/corpora/unifiedVersion3/split/trainXmlSmall -o $USER_HOME$/corpora/unifiedVersion3/split/crfOut -m $USER_HOME$/corpora/unifiedVersion3/split/crfModel" />
+    <option name="VM_PARAMETERS" value="-Xmx24g -Dclinacuity.deid.baseUrl=https://devtest1.clinacuity.com/clinacuity/v1/clinideid/" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.clinacuity.deid.training.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
