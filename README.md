@@ -33,7 +33,7 @@ CliniDeID includes different packages:
 
 ## Installation
 
-CliniDeID requires java 17 (openJdk). [Java etc.]) vX to run.
+CliniDeID requires java 17 (openJdk) to build or run and python 3.8.7 for running.
 
 Apache maven is required to build this project: https://maven.apache.org/download.cgi.
 
@@ -53,9 +53,9 @@ mvn clean package -DskipTests
 ./scripts/makePlatformZip.sh Windows|Mac|CentOs|Ubuntu|RedHat
   to make a zip file CliniDeID-`OS`.zip 
 
-The zip file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode.
+The zip file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode. 
 
-
+The project can be run from within intelliJ with an included run configuration. It needs 28GB heap space to run.
 
 ## Plugins
 
