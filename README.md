@@ -30,43 +30,32 @@ CliniDeID includes different packages:
 
 ## Getting Started
 
-Text...:
-
-- Type some Markdown on the left
-- See HTML in the right
-- ✨Magic ✨
-
-Markdown is a lightweight markup language based on the formatting conventions
-that people naturally use in email.
-As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
 
 ## Installation
 
-CliniDeID requires [Java etc.](https://nodejs.org/) vX to run.
+CliniDeID requires java 17 (openJdk). [Java etc.]) vX to run.
 
-Install ....
+Apache maven is required to build this project: https://maven.apache.org/download.cgi.
 
-```sh
-cd clinideid
-npm i
-node app
-```
+You will need models from Sync: URL ????
+- data/models/rnn/rnn-U3-FullSplit.h5
+- data/models/svm/svmMap-U3-FullSplit
+- data/models/svm/svmModel-U3-FullSplit
+- data/models/mira/mira-U3-FullSplit
 
-For production environments...
+JavaFX is used by this project.
 
-```sh
-npm install --production
-NODE_ENV=production node app
-```
+To build the package from the CliniDeID folder:
+mvn clean package -DskipTests
+(tests can be run but may fail due to missing data files)
+./scripts/makeDeployGenericZip.sh
+  makes a zip file CliniDeID.zip that does not have the needed platform specific scripts. After that script has run, then run
+./scripts/makePlatformZip.sh Windows|Mac|CentOs|Ubuntu|RedHat
+  to make a zip file CliniDeID-`OS`.zip 
+
+The zip file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode.
+
+
 
 ## Plugins
 
@@ -79,19 +68,7 @@ Instructions on how to use them in your own application are linked below.
 
 
 
-#### Building for source
 
-For production release:
-
-```sh
-gulp build --prod
-```
-
-Generating pre-built zip archives for distribution:
-
-```sh
-gulp build dist --prod
-```
 ## Publications
 1. Meystre S, Petkov V, Silverstein J, Savova G, Malin B. De-Identification of Clinical Text: Stakeholders’ Perspectives and Acceptance of Automatic De-Identification. AMIA Annu Symp Proc. 2020. p. 124–6. 
 2. Meystre S. CliniDeID for Clinical Text De-Identification. AMIA Annu Symp Proc. 2020. 
