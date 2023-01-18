@@ -47,9 +47,7 @@ You will need models from Sync: URL ????
 JavaFX is used in this project.
 
 To build the package from the CliniDeID folder:
-'''
-mvn clean package -DskipTests
-'''
+'mvn clean package -DskipTests'
 (tests can be run but may fail due to missing data files)
 '''
 ./scripts/makeDeployGenericZip.sh
