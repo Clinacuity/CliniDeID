@@ -33,9 +33,10 @@ CliniDeID includes different packages:
 
 ## Installation
 
-CliniDeID requires java 17 (openJdk) to build or run and python 3.8.7 for running.
+CliniDeID requires Java JDK 1.7 or more recent to build and run. If needed, download and install a JDK like OpenJDK 17 or more recent (https://www.oracle.com/in/java/technologies/downloads/ or https://jdk.java.net/19/_ and install including JAVA_HOME setup etc. 
+CliniDeID requires Python 3.8.7 or more recent to run.
 
-Apache maven is required to build this project: https://maven.apache.org/download.cgi.
+Apache Maven is required to build this project: https://maven.apache.org/download.cgi.
 
 You will need models from Sync: URL ????
 - data/models/rnn/rnn-U3-FullSplit.h5
@@ -43,19 +44,25 @@ You will need models from Sync: URL ????
 - data/models/svm/svmModel-U3-FullSplit
 - data/models/mira/mira-U3-FullSplit
 
-JavaFX is used by this project.
+JavaFX is used in this project.
 
 To build the package from the CliniDeID folder:
+'''
 mvn clean package -DskipTests
+'''
 (tests can be run but may fail due to missing data files)
+'''
 ./scripts/makeDeployGenericZip.sh
+'''
   makes a zip file CliniDeID.zip that does not have the needed platform specific scripts. After that script has run, then run
+  '''
 ./scripts/makePlatformZip.sh Windows|Mac|CentOs|Ubuntu|RedHat
+'''
   to make a zip file CliniDeID-`OS`.zip 
 
-The zip file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode. 
+The ZIP file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode. 
 
-The project can be run from within intelliJ with an included run configuration. It needs 28GB heap space to run.
+The project can be run from within IntelliJ with an included run configuration. It needs 28 GB heap space to run.
 
 ## Plugins
 
