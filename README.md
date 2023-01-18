@@ -47,16 +47,12 @@ You will need models from Sync: URL ????
 JavaFX is used in this project.
 
 To build the package from the CliniDeID folder:
-'mvn clean package -DskipTests'
+`mvn clean package -DskipTests`
 (tests can be run but may fail due to missing data files)
-'''
-./scripts/makeDeployGenericZip.sh
-'''
-  makes a zip file CliniDeID.zip that does not have the needed platform specific scripts. After that script has run, then run
-  '''
-./scripts/makePlatformZip.sh Windows|Mac|CentOs|Ubuntu|RedHat
-'''
-  to make a zip file CliniDeID-`OS`.zip 
+`./scripts/makeDeployGenericZip.sh`
+makes a zip file CliniDeID.zip that does not have the needed platform specific scripts. After that script has run, then run
+`./scripts/makePlatformZip.sh Windows|Mac|CentOs|Ubuntu|RedHat`
+to make a zip file CliniDeID-`OS`.zip 
 
 The ZIP file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode. 
 
