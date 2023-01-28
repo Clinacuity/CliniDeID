@@ -1,20 +1,21 @@
+scipy==1.8		#results in numpy1.24.1 by default
+tensorflow==2.8.0   #brought in absl-py-1.4.0  h5py 3.8.0 keras 2.8.0, keras-preproc 1.1.2 mrkdown 3.4.1 protobuf 4.21.12 six 1.16.0 tensorboard 2.8.0 termcolor 2.2.0, 
+nltk==3.4  #brought in singledispatch 4.0.0
+
+tensorboard==2.8.0
+h5py==3.0.0    
 absl-py==0.10
 astor==0.7.1
 gast==0.3.3
 grpcio==1.32.0
-h5py==2.10.0
-Keras==2.4.3
+Keras==2.8.0rc0
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.2
 Markdown==3.0.1
-nltk==3.4
-numpy==1.19.2
+#numpy==1.23.2
 protobuf==3.14.0
 PyYAML==3.13
-scipy==1.4.1
 singledispatch==3.4.0.3
 six==1.15.0
-tensorboard==2.4.0
-tensorflow==2.4.0
 termcolor==1.1.0
 Werkzeug==0.14.1

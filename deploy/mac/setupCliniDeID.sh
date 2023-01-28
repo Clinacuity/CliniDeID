@@ -15,15 +15,15 @@ echo "Installing certificate for Open JDK"
 . ./findJava.sh
 sudo $JH/bin/keytool -import -trustcacerts -keystore $JH/lib/security/cacerts -storepass changeit -noprompt -alias clinacuity -file data/clinacuitycom.crt
 
-echo "Downloading Python 3.8"
-curl -s https://www.python.org/ftp/python/3.8.7/python-3.8.7-macosx10.9.pkg -o python-3.8.7-macosx10.9.pkg
-echo "Installing Python 3.8"
-sudo installer -pkg python-3.8.7-macosx10.9.pkg -target /
-rm python-3.8.7-macosx10.9.pkg
+echo "Downloading Python 3.10"
+curl -s https://www.python.org/ftp/python/3.10.9/python-3.10.9-macos11.pkg  -o python-3.10.9-macos11.pkg
+echo "Installing Python 3.10"
+sudo installer -pkg python-3.10.9-macos11.pkg -target /
+rm python-3.10.9-macos11.pkg
 
 echo "Preparing Python environment"
-/usr/local/bin/python3.8 -m venv deid-rnn-env
+/usr/local/bin/python3.10 -m venv deid-rnn-env
 source deid-rnn-env/bin/activate
-deid-rnn-env/bin/python3.8 -m pip install -q --upgrade pip
-deid-rnn-env/bin/pip3.8 install -qr data/rnn/requirements.txt
+deid-rnn-env/bin/python3.10 -m pip install -q --upgrade pip
+deid-rnn-env/bin/pip3.10 install -qr data/rnn/requirements.txt
 deactivate
