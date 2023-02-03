@@ -1,6 +1,14 @@
-Goal is to have documentation for each model that includes 
-	branch/commit tag from git for code
-	description of what corpus was used
-	date it was done (in case corpus changes)
-	parameters used for training (both feature generatin and model training), depending on what options the model could have
-	recall, precision and f1 scores on test set for unified I2B2 2014, 2016, and resynth MUSC
+The models provided for CRF )Mallet), MIRA, SVM and RNN were trained on the training subsets of the following clinical text notes corpora with PII annotations:
+- 2006 i2b2
+- 2014 i2b2
+- 2016 n2c2
+- 2021 MUSC (not publicly available)
+All corpora were de-identified (with manual verification) and all PII "re-synthesized" (i.e., replaced with realistic surrogates).
+
+Training parameters for these models:
+- CRF
+- MIRA
+- SVM
+- RNN
+
+To train new models, ...
