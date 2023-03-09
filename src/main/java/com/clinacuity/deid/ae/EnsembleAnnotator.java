@@ -81,7 +81,7 @@ public class EnsembleAnnotator extends JCasAnnotator_ImplBase {
     public static final String SVM_FEATURE_INDEX_FILE_NAME = "svmFeatureIndexFileName";
     public static final String SVM_TEMPLATE_FILE_NAME = "svmTemplateFileName";
     public static final String REGEX_CONCEPTS_FILE = "conceptFile";
-    protected static final int NUMBER_OF_THREADS = 5;
+    protected static final int NUMBER_OF_THREADS = 4;
     private static final Logger LOGGER = LogManager.getLogger();
     public static ExecutorService pool = Executors.newFixedThreadPool(NUMBER_OF_THREADS);//NOT THREAD SAFE, static to allow App to shut them down in instance of crash/interruption
     //it is possible that it could be avoided if EnsembleAnnotator caught any issues and shut it down itself, but I'm not sure that is possible
@@ -196,8 +196,8 @@ public class EnsembleAnnotator extends JCasAnnotator_ImplBase {
         InitializeEnsembleThread regex = new InitializeEnsembleThread(doneSignal, flags, index++, "Regex", this::initializeRegex);
         pool.execute(regex);
         // putting the RNN thread later so that the python service has more time to start in case the Thread.sleep() call finishes too fast
-        InitializeEnsembleThread rnn = new InitializeEnsembleThread(doneSignal, flags, index++, "Rnn", EnsembleAnnotator::initializeRnn);
-        pool.execute(rnn);
+//        InitializeEnsembleThread rnn = new InitializeEnsembleThread(doneSignal, flags, index++, "Rnn", EnsembleAnnotator::initializeRnn);
+//        pool.execute(rnn);
 
         waitAndFinishInitialize("", doneSignal, flags);
     }
@@ -239,8 +239,8 @@ public class EnsembleAnnotator extends JCasAnnotator_ImplBase {
         int piiIndex = 0;
         SvmAnnotatorThread svm = new SvmAnnotatorThread(linearModel, svmLbl, svmLblR, fIdx, svmTmplItem, jCas, doneSignal, newPii[piiIndex++], fileName);
         pool.execute(svm);
-        RnnAnnotatorThread rnn = new RnnAnnotatorThread(hostName, rnnPortNumber, 600, jCas, doneSignal, newPii[piiIndex++], fileName);
-        pool.execute(rnn);
+//        RnnAnnotatorThread rnn = new RnnAnnotatorThread(hostName, rnnPortNumber, 600, jCas, doneSignal, newPii[piiIndex++], fileName);
+//        pool.execute(rnn);
         MiraAnnotatorThread miraThread = new MiraAnnotatorThread(mira, jCas, doneSignal, newPii[piiIndex++], fileName);
         pool.execute(miraThread);
         CrfAnnotatorThread crf = new CrfAnnotatorThread(brownClusters, brownCutoff, extractor, contextExtractor, classifier, jCas, doneSignal, newPii[piiIndex++], fileName);

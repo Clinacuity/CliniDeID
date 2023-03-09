@@ -487,19 +487,19 @@ public class DeidRunnerController implements Initializable {
                 resynthesisMapCheckBox.setSelected(false);
             }
         });
-
-        if (!DeidPipeline.getExcludes().contains("rnn")) {
-            if (!DeidPipeline.setRnnPermsissions()) {
-                WarningModal.createAndShowModal(ERROR_TITLE, "Failed to set permissions for RNN service, it will not be used.");
-            } else {
-                portRnn = DeidPipeline.startRnnService();
-                if (portRnn == -1) {
-                    DeidPipeline.setExcludes("RNN");//allows system to carry on
-                    LOGGER.debug("failure to stat RNN, setting RNN to be excluded");
-                    WarningModal.createAndShowModal(ERROR_TITLE, "Python RNN service failed to start.");
-                }
-            }
-        }
+//
+//        if (!DeidPipeline.getExcludes().contains("rnn")) {
+//            if (!DeidPipeline.setRnnPermsissions()) {
+//                WarningModal.createAndShowModal(ERROR_TITLE, "Failed to set permissions for RNN service, it will not be used.");
+//            } else {
+//                portRnn = DeidPipeline.startRnnService();
+//                if (portRnn == -1) {
+//                    DeidPipeline.setExcludes("RNN");//allows system to carry on
+//                    LOGGER.debug("failure to stat RNN, setting RNN to be excluded");
+//                    WarningModal.createAndShowModal(ERROR_TITLE, "Python RNN service failed to start.");
+//                }
+//            }
+//        }
         createAnalysisEngines();
 //        license = DeidPipeline.readLicenseFile(false);
     }
@@ -561,15 +561,15 @@ public class DeidRunnerController implements Initializable {
         String timeStart = now.format(DeidPipelineTask.FORMATTER);
 
         pipelineTask = new DeidPipelineTask(inputDirText.getText(), outputDirText.getText(), pipe, pipelineCreationResult, this, progressLabel);
-        if (!DeidPipeline.getExcludes().contains("rnn") && !EnsembleAnnotator.tryConnectRnn()) {
-            boolean excludeRnn = YesOrNoModal.createAndShowModal("RNN Service Error", "The RNN failed to start. Would you like to continue without it or stop?", "continue", "stop");
-            if (excludeRnn) {
-                DeidPipeline.setExcludes("rnn");
-            } else {
-                pipelineTask = null;
-                return;
-            }
-        }
+//        if (!DeidPipeline.getExcludes().contains("rnn") && !EnsembleAnnotator.tryConnectRnn()) {
+//            boolean excludeRnn = YesOrNoModal.createAndShowModal("RNN Service Error", "The RNN failed to start. Would you like to continue without it or stop?", "continue", "stop");
+//            if (excludeRnn) {
+//                DeidPipeline.setExcludes("rnn");
+//            } else {
+//                pipelineTask = null;
+//                return;
+//            }
+//        }
 
         successCheck.setVisible(false);
 //        pipe.setLicense(license);

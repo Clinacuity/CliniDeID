@@ -71,31 +71,32 @@ public class App extends Application {
     }
 
     private static void stopRnn() {
-        if (DeidPipeline.getExcludes().contains("rnn")) {
-            return;
-        }
-        if (DeidPipeline.rnn != null) {// && DeidPipeline.rnn.isAlive()) {//isAlive is false always and hasExited is always true, not sure what to test
-            try {
-                EnsembleAnnotator.stopRnn();//this takes a little time
-                Thread.sleep(500);
-            } catch (AnalysisEngineProcessException | InterruptedException e) {
-                LOGGER.throwing(e);
-                if (DeidPipeline.rnn != null) {
-                    DeidPipeline.rnn.destroyForcibly();
-                }
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        ProcessBuilder rnnKiller = new ProcessBuilder("data" + File.separator + "rnn" + File.separator + "stopKillRnn." + DeidPipeline.getScriptExtension());//WINDOWS??? TODO
-        try {
-            rnnKiller.start();
-            Thread.sleep(300);
-        } catch (IOException | InterruptedException e) {
-            LOGGER.error("Issue stopping RNN");
-            LOGGER.throwing(e);
-            Thread.currentThread().interrupt();
-        }
+        return;
+//        if (DeidPipeline.getExcludes().contains("rnn")) {
+//            return;
+//        }
+//        if (DeidPipeline.rnn != null) {// && DeidPipeline.rnn.isAlive()) {//isAlive is false always and hasExited is always true, not sure what to test
+//            try {
+//                EnsembleAnnotator.stopRnn();//this takes a little time
+//                Thread.sleep(500);
+//            } catch (AnalysisEngineProcessException | InterruptedException e) {
+//                LOGGER.throwing(e);
+//                if (DeidPipeline.rnn != null) {
+//                    DeidPipeline.rnn.destroyForcibly();
+//                }
+//                Thread.currentThread().interrupt();
+//            }
+//        }
+//
+//        ProcessBuilder rnnKiller = new ProcessBuilder("data" + File.separator + "rnn" + File.separator + "stopKillRnn." + DeidPipeline.getScriptExtension());//WINDOWS??? TODO
+//        try {
+//            rnnKiller.start();
+//            Thread.sleep(300);
+//        } catch (IOException | InterruptedException e) {
+//            LOGGER.error("Issue stopping RNN");
+//            LOGGER.throwing(e);
+//            Thread.currentThread().interrupt();
+//        }
     }
 
     @Override

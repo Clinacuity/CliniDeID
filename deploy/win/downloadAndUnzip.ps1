@@ -14,13 +14,13 @@ $sourceFolder = $shell.NameSpace($Source)
 $destinationFolder=$shell.NameSpace($Destination)
 $destinationFolder.CopyHere($sourceFolder.Items())
 
-Write-Host "Unzipping Python 3.8"
+#Write-Host "Unzipping Python 3.8"
 #Expand-Archive -Force .\python-3.8.7-embed-amd64.zip
-$Source="$pwd\python3WithRnn.zip"
-$Destination="$pwd\python3"
-$sourceFolder = $shell.NameSpace($Source)
-$destinationFolder=$shell.NameSpace($Destination)
-$destinationFolder.CopyHere($sourceFolder.Items())
+#$Source="$pwd\python3WithRnn.zip"
+#$Destination="$pwd\python3"
+#$sourceFolder = $shell.NameSpace($Source)
+#$destinationFolder=$shell.NameSpace($Destination)
+#$destinationFolder.CopyHere($sourceFolder.Items())
 
 $WshShell = New-Object -comObject WScript.Shell
 $currentDir = $WshShell.CurrentDirectory()

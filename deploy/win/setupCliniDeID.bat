@@ -2,9 +2,9 @@
 mkdir openJdk17 2>nul
 mkdir python3 2>nul
 mkdir log 2>nul
-powershell -NoLogo -ExecutionPolicy RemoteSigned -file downloadAndUnzip.ps1
-del openjdk-17.0.1_windows-x64_bin.zip
-del python3WithRnn.zip
+::powershell -NoLogo -ExecutionPolicy RemoteSigned -file downloadAndUnzip.ps1
+::del openjdk-17.0.1_windows-x64_bin.zip
+::del python3WithRnn.zip
 move openJdk17\jdk-17.0.1 .
 
 rmdir .\openJdk17 > nul
