@@ -67,8 +67,13 @@ Instructions on how to use them in your own application are linked below.
 | ------ | ------ |
 | Dropbox | [plugins/dropbox/README.md](https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md) |
 
+## Running CliniDeID
 
+To start the GUI version of CliniDeID, run the runCliniDeID script
+`./runCliniDeID.sh`
 
+To start the command line version of CliniDeID, run the runCliniDeIDcommandLine script
+`./runCliniDeIDcommandLine.sh`
 
 ## Publications
 1. Meystre S, Petkov V, Silverstein J, Savova G, Malin B. De-Identification of Clinical Text: Stakeholders’ Perspectives and Acceptance of Automatic De-Identification. AMIA Annu Symp Proc. 2020. p. 124–6. 
