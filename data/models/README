@@ -1,8 +1,7 @@
-The models provided for CRF (Mallet), MIRA, SVM and RNN were trained on the combined training subsets of the following clinical text notes corpora with PII annotations:
-- 2006 i2b2 (https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/)
+The models provided for CRF (Mallet), MIRA, SVM and RNN were trained on the combined training subsets of the following clinical text notes corpora with annotated PII annotations:
+- 2006 i2b2 de-identification challenge (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2006/)
 - 2014 i2b2 (https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/)
 - 2016 n2c2 (not available outside the original challenge anymore)
-- MUSC (not publicly available; trained in 2021)
 All corpora were de-identified (with manual verification) and all PII "re-synthesized" (i.e., replaced with realistic surrogates) before training.
 
 Training parameters for these models:
