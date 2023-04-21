@@ -27,6 +27,10 @@ CliniDeID includes different packages:
 
 * `pachage1` : The first package.
 * `package2` : A set of [link](https://uima.apache.org) annotators.
+| Plugin | README |
+| ------ | ------ |
+| Dropbox | [plugins/dropbox/README.md](https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md) |
+
 
 ## Getting Started
 
@@ -57,15 +61,6 @@ to make a zip file CliniDeID-`OS`.zip
 The ZIP file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode. 
 
 The project can be run from within IntelliJ with an included run configuration. It needs 28 GB heap space to run.
-
-## Plugins
-
-CliniDeID is currently extended with the following plugins.
-Instructions on how to use them in your own application are linked below.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md](https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md) |
 
 ## Running CliniDeID
 
