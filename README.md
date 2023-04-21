@@ -40,10 +40,6 @@ CliniDeID requires Python 3.8.7 or more recent to run.
 Apache Maven is required to build this project: https://maven.apache.org/download.cgi.
 
 You will need trained models for the machine learning modules in CliniDeID. Instructions on how to train your own can be found in the data/models folder. Models we pre-trained with the 2014 i2b2/UTHealth de-identification challenge annotated corpus (training set; https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (training set; https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/) can be used **only for non-commercial applications** and downloaded from:
-- RNN model (rnn-U3-FullSplit.h5) https://e.pcloud.link/publink/show?code=XZWr7jZ7a6Kn8TVRnRLeE1HQ5mjtS6uuW8y
-- SVM map (svmMap-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZlr7jZhAtGksespVS7FP6mY9niAFbopAUV
-- SVM model (svmModel-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZtr7jZs3pm2OR7PgmqCd4A8w2mLm2RlQM7
-- MIRA model (mira-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZar7jZjNXjjyH1rBkr6nQ3kdE5iRNquOLV
 
 | Model | File name | Download link |
 | ------ | ------ | ------ |
