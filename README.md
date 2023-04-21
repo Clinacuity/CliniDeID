@@ -27,6 +27,7 @@ CliniDeID includes different packages:
 
 * `pachage1` : The first package.
 * `package2` : A set of [link](https://uima.apache.org) annotators.
+
 | Plugin | README |
 | ------ | ------ |
 | Dropbox | [plugins/dropbox/README.md](https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md) |
