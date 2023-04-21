@@ -9,7 +9,7 @@ You should have received a copy of the GNU General Public License along with Cli
 ## _Automatic clinical data de-identification_
 
 
-[![GitHub license](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](https://www.gnu.org/licenses/gpl-3.0.txt)
+[![GitHub license](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](https://www.gnu.org/licenses/gpl-3.0.txt) 
 
 CliniDeID automatically de-identifies clinical text notes according to the [HIPAA Safe Harbor method](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#standard). It accurately finds identifiers and tags or replaces them with realistic surrogates for better anonymity. It improves access to richer, more detailed, and more accurate clinical data for clinical researchers. It eases research data sharing, and helps healthcare organizations protect patient data confidentiality.
 ### Features
@@ -43,7 +43,7 @@ CliniDeID requires Python 3.8.7 or more recent to run.
 
 Apache Maven is required to build this project: https://maven.apache.org/download.cgi.
 
-You will need trained models for the machine learning modules in CliniDeID. Instructions on how to train your own can be found in the data/models folder. Models we pre-trained with the 2014 i2b2/UTHealth de-identification challenge annotated corpus (training set; https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (training set; https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/) can be used for non-commercial applications (see license) and downloaded from:
+You will need trained models for the machine learning modules in CliniDeID. Instructions on how to train your own can be found in the data/models folder. Models we pre-trained with the 2014 i2b2/UTHealth de-identification challenge annotated corpus (training set; https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (training set; https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/) can be used **only for non-commercial applications** and downloaded from:
 - RNN model (rnn-U3-FullSplit.h5) https://e.pcloud.link/publink/show?code=XZWr7jZ7a6Kn8TVRnRLeE1HQ5mjtS6uuW8y
 - SVM map (svmMap-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZlr7jZhAtGksespVS7FP6mY9niAFbopAUV
 - SVM model (svmModel-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZtr7jZs3pm2OR7PgmqCd4A8w2mLm2RlQM7
