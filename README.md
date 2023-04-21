@@ -21,13 +21,6 @@ CliniDeID automatically de-identifies clinical text notes according to the [HIPA
 This version of CliniDeID was built to be used on-premises and includes a user-friendly graphical user interface and can also be run from the command line (details below).
 
 
-## Overview
-
-CliniDeID includes different packages:
-
-* `pachage1` : The first package.
-* `package2` : A set of [link](https://uima.apache.org) annotators.
-
 
 ## Getting Started
 
