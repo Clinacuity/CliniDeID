@@ -28,10 +28,6 @@ CliniDeID includes different packages:
 * `pachage1` : The first package.
 * `package2` : A set of [link](https://uima.apache.org) annotators.
 
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md](https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md) |
-
 
 ## Getting Started
 
@@ -48,6 +44,13 @@ You will need trained models for the machine learning modules in CliniDeID. Inst
 - SVM map (svmMap-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZlr7jZhAtGksespVS7FP6mY9niAFbopAUV
 - SVM model (svmModel-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZtr7jZs3pm2OR7PgmqCd4A8w2mLm2RlQM7
 - MIRA model (mira-U3-FullSplit) https://e.pcloud.link/publink/show?code=XZar7jZjNXjjyH1rBkr6nQ3kdE5iRNquOLV
+
+| Model | File name | Download link |
+| ------ | ------ | ------ |
+| RNN | rnn-U3-FullSplit.h5 | https://e.pcloud.link/publink/show?code=XZWr7jZ7a6Kn8TVRnRLeE1HQ5mjtS6uuW8y |
+| SVM map | svmMap-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZlr7jZhAtGksespVS7FP6mY9niAFbopAUV |
+| SVM model | svmModel-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZtr7jZs3pm2OR7PgmqCd4A8w2mLm2RlQM7 |
+| MIRA | mira-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZar7jZjNXjjyH1rBkr6nQ3kdE5iRNquOLV |
 
 JavaFX is used in this project.
 
