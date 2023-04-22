@@ -28,6 +28,7 @@ This version of CliniDeID was built to be used on-premises and includes a user-f
 ## Installation
 
 CliniDeID requires Java JDK 1.7 or more recent to build and run. If needed, download and install a JDK like OpenJDK 17 or more recent (https://www.oracle.com/in/java/technologies/downloads/ or https://jdk.java.net/19/_ and install including JAVA_HOME setup etc. For Apple computers with M1/M2 processors, some Java library needs are different and the Azul Zulu OpenJDK builds work well ([download link](https://www.azul.com/core-post-download/?java=17&arch=ARM+64-bit&type=macos-dmg&sha=bd9757c8b157c86a9735bae04c76e94d704fa7985f7088a9291e933cd10a27af&url=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fbin%2Fzulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg&endpoint=zulu&cert=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fpdf%2Fcert.zulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg.pdf).
+
 CliniDeID requires Python 3.8.7 or more recent to run.
 
 Apache Maven is required to build this project: https://maven.apache.org/download.cgi.
