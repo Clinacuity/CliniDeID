@@ -1,15 +1,14 @@
 On-premises CliniDeID installation instructions for Windows 8.1, 10, and Server 2012 R2.
-Version VERSION_NUMBER, October 21, 2021
+Version 1.9.0, April 29, 2023
 
-OpenJDK® 17 will be setup as part of this process.
+Java 17 (or greater) should be installed and javaw and java should be in the path
+
 See https://jdk.java.net/17 for more information on OpenJDK
-An embedded version of Python 3.8® is included 
 
 0) Expand (unzip) CliniDeID-Windows.zip by right clicking on it and choosing expand all. If you double clicked on the zip file and opened it, then you will need to close that window, right click on the zip file and choose expand.
 1) Start a command prompt. This can be done by clicking "Window" and typing "command", "Command Prompt" should be in the list. If you get an error that states a command must be run as an administrator, then repeat this but right click on "Command Prompt" and select Run as administrator.
 2) Navigate to where CliniDeID was expanded to, something like 'cd c:\users\yourUser\Desktop\CliniDeID-Windows'
-3) Type 'setupCliniDeID.bat' and hit enter. This will unzip Java, specifically OpenJDK 17 and an embedded python
-4) Check total memory in Windows. Physical RAM plus virtual memory must be at least 28GB. To check/change this:
+3) Check total memory in Windows. Physical RAM plus virtual memory must be at least 24GB. To check/change this:
 	a) Go to control panel and select system (you may need to change "View by" to "Small icons" to see it)
 	b) Click on Advanced system settings
 	c) In the new window, select Advanced tab
@@ -18,15 +17,13 @@ An embedded version of Python 3.8® is included
 	f) In the new window, 
 		uncheck "Automatically manage paging file size for all drives"
 		Select C: drive (main drive)
-		Select Custom size, 28000 (larger is OK) for both initial and maximum
+		Select Custom size, 24000 (larger is OK) for both initial and maximum
 		Click Set button
 		Clear the windows by clicking OK, OK, OK. The machine will need to restart.
 
-After installing, to run CliniDeID, simply double click on the runCliniDeID.vbs file.
-Documentation for using CliniDeID is available within the program or from data\Documentation.pdf
+To run CliniDeID, simply double click on the runCliniDeID.vbs file.
 
-Note that during execution CliniDeID connects to the license server through port 443 (standard for https).
-You must enter your license key the first time CliniDeID is run. It will be required stored in the file LICENSE.KEY. If that file is removed, then the key must be entered in the next time CliniDeID is run.
+Documentation for using CliniDeID is available within the program or from data\Documentation.pdf
 
 Command Line Interface
 
@@ -117,39 +114,8 @@ The command 'psql clinideid' will start an SQL prompt connected to the clinideid
 
 
 
-Network Usage Details
-
-The desktop application uses only a small number of HTTPS requests. No HTTPS traffic contains any PII.
-
-All HTTPS traffic is limited to licensing information to validate requests with our servers. Below is a description of what is transmitted at different points in the application's life cycle.
-
-When preparing to run a new batch of files, a request is sent out to our licensing server to validate the license key. This request only contains the license key, and returns a simple response with the following details:
-
-* the license key's validity
-* the number of "file-equivalents" (i.e., batches of 5 thousand characters) which have been processed with this license key 
-* any limitations associated with the license, such as how many file-equivalents can be processed per batch, and the maximum allowed size of each file.
-
-Immediately before starting the batch
-Prior to starting the batch and after having validated the license key, a new request is sent out to the licensing server containing basic information about the current batch. The application receives the same object sent but with an ID assigned to it by the server.
-* the license key again
-* the number of files to process
-* (received) an ID assigned to this request
-
-During the running of the batch
-License is updated every 10 files. Information is sent is the number of files and the their total size.
-
-Immediately after finishing the batch
-After finishing the batch, a final request is sent out to the server confirming the actual number of files processed. The information transmitted in this request is below:
-
-* the license key again
-* the number of "file-equivalents" processed
-* the ID of the request (received earlier from the server)
-
-
-
 Licensing
 CliniDeID uses the Microsoft Visual Studio C++ Redistributable runtime.
 Licenses can be found in data\licenses folder
 
-"Python" is a registered trademark of the Python Software Foundation”
 OpenJDK (the "Name")  Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates.

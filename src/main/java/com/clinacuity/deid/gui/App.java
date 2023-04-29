@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -28,10 +28,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class App extends Application {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -48,6 +49,14 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        Path path = Paths.get("log");
+        try {
+            Files.createDirectories(path);
+        } catch (IOException e) {
+            System.err.println("Could not create log directory: " + e.toString());
+            return;
+        }
+
         if (args.length >= 2 && (args[0].startsWith("-exclude") || "-x".equals(args[0]))) {
             if (!DeidPipeline.setExcludes(args[1])) {
                 System.out.println("Error in excludes parameter");

@@ -1,6 +1,5 @@
-Version 1.8.3
+Version 1.9.0
 
 Release Notes
 
-This version of CliniDeID includes support for HL7 CDA XML input and output, significant speed improvements and bug fixes.
-Windows 10 Support. Updated for Java 17
+This version of CliniDeID is now open source and has no internet usage and the RNN is disabled.

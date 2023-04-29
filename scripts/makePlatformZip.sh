@@ -2,11 +2,10 @@
 #this uses the zip made by makeDeployGenericZip.sh
 #zip will contain:
 #CliniDeIDComplete.jar
-#runCliniDeID.bat/.sh, makeEnvironment, etc.
+#runCliniDeID.bat/.sh, Readme, etc.
 #COPYRIGHT notice
 #classes/app*
 #copy of data folder
-#crt is in data, requirements.txt for python is in data/rnn
 
 platform=$1
 
@@ -41,11 +40,6 @@ if [[ ! -f CliniDeID.zip ]]; then
 	exit 1
 fi
 
-#if [[ ! -d "$DEID_DIR" ]]; then
-#	echo "DEID_DIR must be set first"
-#	exit 1
-#fi
-
 #create temp directory to make it easier to keep the zip file's directory structure simple
 rm -r tempPlatform > /dev/null 2>&1
 mkdir tempPlatform
@@ -60,7 +54,3 @@ zip -murq -X CliniDeID-$platform.zip *
 mv CliniDeID-$platform.zip ..
 cd ..
 rmdir tempPlatform
-
-#tar with the --preserve-permissions for unix
-#echo | sudo chmod -E CliniDeID.zip 
-#sudo xattr -rc CliniDeID.zip 

@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -614,7 +614,7 @@ public class DeidRunnerController implements Initializable {
             LOGGER.throwing(e);
         }
         if (!message.contains("User") && !message.contains("user")) {
-            message += " Please upload the log file https://deid.clinacuity.com";
+            message += " Please consult the log";
         }
         String messageFinalish = message;
         Platform.runLater(() -> WarningModal.createAndShowModal(ERROR_TITLE, messageFinalish));
@@ -638,9 +638,10 @@ public class DeidRunnerController implements Initializable {
 
     @FXML
     private void clickedDeidLogo() {
-        App.getWebPage("https://www.clinacuity.com/clinideid/");
+        App.getWebPage("https://www.clinacuity.com/");
     }
 
+    /*
     @FXML
     private void openEmail() {
         Desktop desktop;
@@ -656,7 +657,7 @@ public class DeidRunnerController implements Initializable {
                 }
             }
         }
-    }
+    }*/
 
     @FXML
     private void openDocumentationFile() {
@@ -1037,7 +1038,7 @@ public class DeidRunnerController implements Initializable {
 //            message = "License expired or usage limits reached. Contact us at support@clinacuity.com";
         } else {
             title = ERROR_TITLE;
-            message = "An unexpected error occurred! Please upload the log file at https://deid.clinacuity.com";
+            message = "An unexpected error occurred! Please consult the log";
         }
         WarningModal.createAndShowModal(title, message);
         progressBox.appendText("Total note equivalents processed: " + DocumentListAnnotator.getTotalCharactersProcessed() / 5000);

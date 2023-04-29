@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -106,7 +106,7 @@ import static org.apache.uima.fit.factory.JCasFactory.createJCas;
 public class DeidPipeline {
     public static final Pattern PUNCTUATION_MATCH = Pattern.compile("[^a-zA-Z0-9]+");
 //    public static final String LICENSE_FILE = "LICENSE.KEY";
-    public static final String VERSION = "VERSION_NUMBER";
+    public static final String VERSION = "1.9.0";
     public static final String DATA_PATH = "data";
     public static final Level PII_LOG = Level.forName("PII", 350);
     //public paths for use in tests
@@ -373,6 +373,13 @@ public class DeidPipeline {
     }
 
     public static void main(String[] args) throws Exception {
+        Path path = Paths.get("log");
+        try {
+            Files.createDirectories(path);
+        } catch (IOException e) {
+            System.err.println("Could not create log directory: " + e.toString());
+            return;
+        }
         CommandLineParser parser = new DefaultParser();
         Options options = makeCliOptions();
         CommandLine commandLine = null;
