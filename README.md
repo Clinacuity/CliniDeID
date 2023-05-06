@@ -51,7 +51,7 @@ As [John Gruber] writes on the [Markdown site][df1]
 
 ## Installation
 
-CliniDeID requires [Java etc.](https://nodejs.org/) vX to run.
+CliniDeID requires Java 17 to run and Maven 3 and Java 17 JDK and Java FX Sdk to build
 
 Install ....
 
@@ -88,6 +88,18 @@ gulp build --prod
 ```
 
 Generating pre-built zip archives for distribution:
+
+Java 17 and maven 3 are required. 
+Models are separate from the repository due to size. They must be download and placed into the data/models directory. There should be a mira and svm subdirectory within data/models. The models can be download from ????
+
+
+mvn clean package -DskipTests will build the jar
+./scripts/makeDeployGenericZip.sh    will create a generic zip file designed to be used by the next script
+./scripts/makePlatformZip.sh  _OS_ will create a zip for Windows, Mac, Ubuntu, Redhat, or CentOs with _OS_ parameter determining which is made.
+
+To run from within intelliJ javaFx will need to be installed and its library added as well as adding this to the command line in the run configuration:
+--module-path pathToJavaFxSDK/javafx-sdk-17.0.7/lib --add-modules=javafx.controls
+and setting the VM to use 28GB heap memory (-Xmx28g)
 
 ```sh
 gulp build dist --prod
