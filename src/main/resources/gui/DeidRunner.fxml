@@ -713,7 +713,7 @@
             <Label text="Clinacuity, Inc." onMouseClicked="#clickedLogo" styleClass="text-blue, hand-cursor"/>
             <Label text=" All rights reserved" styleClass="text-blue"/>
             <Region prefWidth="750" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-            <Label text="Version: 1.6.1" styleClass="text-blue" fx:id="VersionLabel" alignment="CENTER_RIGHT"/>
+            <Label text="Version: 1.9.0" styleClass="text-blue" fx:id="VersionLabel" alignment="CENTER_RIGHT"/>
         </HBox>
     </VBox>
 </HBox>
