@@ -49,7 +49,7 @@
         <String fx:id="TOOLTIP_OUT_RAW" fx:value="XML output in UIMA format with all system annotations, output file extension .raw-system-output.xml"/>
         <String fx:id="TOOLTIP_OUT_CLEAN" fx:value="XML output in UIMA format with just PII annotations, output file extension .clean-system-output.xml"/>
         <String fx:id="TOOLTIP_TOTAL_PROCESSED"
-                fx:value="Total amount of 5000 character note equivalents for this history (may not reflect total processed by customer, see https://deid.clinacuity.com)"/>
+                fx:value="Total amount of 5000 character note equivalents for this history (may not reflect total processed by customer, see https://www.clinacuity.com)"/>
         <String fx:id="TOOLTIP_OUT_MAP"
                 fx:value="Text output showing original PII values and what they were resynthesized to requires resynthesis to be selected, output file extension .map.txt"/>
         <String fx:id="TOOLTIP_CUSTOM_ZIP" fx:value="HIPAA Safe Harbor allows the first 3 digits to remain if the region's population exceeds 20,000"/>

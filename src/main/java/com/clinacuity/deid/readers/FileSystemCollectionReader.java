@@ -107,7 +107,7 @@ public class FileSystemCollectionReader extends GeneralCollectionReader {
         try {
             File inputDirectory = new File(inputDirString);
             if (fileLimit <= 0) {
-                throw new ResourceInitializationException(" fileLimit is < = 0, please contact support@clinacuity.com", null);
+                throw new ResourceInitializationException(" fileLimit is < = 0, please contact clinacuity.com", null);
             } else if (inputDirectory.isDirectory()) {
                 getAllFilesFromDirectory(inputDirectory);
                 if (getFileCount() == 0) {
