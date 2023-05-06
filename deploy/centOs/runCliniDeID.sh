@@ -1,2 +1,2 @@
 arguments="$*"
-$JH/bin/java -Xmx28g -jar CliniDeIDComplete.jar $arguments
+java -Xmx28g -jar CliniDeIDComplete.jar $arguments

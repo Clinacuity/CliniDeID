@@ -68,6 +68,7 @@ public class DocumentListAnnotator extends JCasAnnotator_ImplBase {
 
     public static void clearTotalCharactersProcessed() {
         totalCharactersProcessed = 0;
+        fileList.clear();
     }
 
     @Override
