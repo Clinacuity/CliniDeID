@@ -1,0 +1,31 @@
+
+?
+java:S1604¦"(Make this anonymous inner class a lambda(ÕÀ‚¤
+Q	java:S110©"<This class has 9 parents which is greater than 5 authorized.(‰n
+Q	java:S125	"<This block of commented-out lines of code should be removed.(¢É¿›
+W	java:S125Ç"<This block of commented-out lines of code should be removed.(Îö¥¯şÿÿÿÿ
+n
+java:S3776œ"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ÛŒ¦…ıÿÿÿÿ
+R	java:S125ø"<This block of commented-out lines of code should be removed.(Ø£›Å
+M
+java:S2696”"6Make the enclosing method "static" or remove this set.(ü’‰
+W	java:S125˜"<This block of commented-out lines of code should be removed.(»©Ñ•şÿÿÿÿ
+R	java:S125®"<This block of commented-out lines of code should be removed.(ºèØ¡
+R	java:S125¿"<This block of commented-out lines of code should be removed.( ¬ğØ
+W	java:S125È"<This block of commented-out lines of code should be removed.(Éƒ×üÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(íâ‡’ıÿÿÿÿ
+N
+java:S1135İ"2Complete the task associated to this TODO comment.(½ñÒúÿÿÿÿ
+R	java:S125‹"<This block of commented-out lines of code should be removed.(ìÙ®ı
+I
+java:S1135¿"2Complete the task associated to this TODO comment.(‰×ïú
+=
+java:S1168é"&Return an empty array instead of null.(¥¹ï
+I
+java:S1135³	"2Complete the task associated to this TODO comment.(Å›‘ü
+H
+java:S1135Ô	"2Complete the task associated to this TODO comment.(—®ùk
+c
+java:S1128"HRemove this unused import 'com.clinacuity.deid.gui.modals.TextBoxModal'.(İÙÛ¼ıÿÿÿÿ
+J
+java:S1128G"/Remove this unused import 'java.io.FileWriter'.(Ã‘ÅÃıÿÿÿÿ

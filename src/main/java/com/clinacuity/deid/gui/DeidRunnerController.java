@@ -65,11 +65,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -466,7 +462,7 @@ public class DeidRunnerController implements Initializable {
             int index = newValue.lastIndexOf(" (");  //- before file size
 
             String fileName = DeidPipeline.PUNCTUATION_MATCH.matcher(newValue.substring(0, index)).replaceAll("-");
-            String filePath = LOG_PATH + File.pathSeparator + fileName + ".log";
+            String filePath = LOG_PATH + File.separatorChar + fileName + ".log";
             try {
                 String data = new String(Files.readAllBytes(Paths.get(filePath)));
                 historyData.setText(data);
@@ -719,7 +715,7 @@ public class DeidRunnerController implements Initializable {
                 total += Long.parseLong(line.substring(index + 2, line.indexOf(' ', index + 1)));
                 historyBox.getItems().add(0, line);//reverse order, to put newest at top
             }
-        } catch (NoSuchFileException e1) {
+        } catch (NoSuchFileException | FileNotFoundException e1) {
             //this is fine, just nothing to load
         } catch (IOException e) {//existed, but couldn't load it, should we tell the user?
             LOGGER.throwing(e);
