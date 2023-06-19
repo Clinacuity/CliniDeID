@@ -49,7 +49,7 @@
         <String fx:id="TOOLTIP_OUT_RAW" fx:value="XML output in UIMA format with all system annotations, output file extension .raw-system-output.xml"/>
         <String fx:id="TOOLTIP_OUT_CLEAN" fx:value="XML output in UIMA format with just PII annotations, output file extension .clean-system-output.xml"/>
         <String fx:id="TOOLTIP_TOTAL_PROCESSED"
-                fx:value="Total amount of 5000 character note equivalents for this history (may not reflect total processed by customer, see https://deid.clinacuity.com)"/>
+                fx:value="Total amount of 5000 character note equivalents for this history (may not reflect total processed by customer, see https://www.clinacuity.com)"/>
         <String fx:id="TOOLTIP_OUT_MAP"
                 fx:value="Text output showing original PII values and what they were resynthesized to requires resynthesis to be selected, output file extension .map.txt"/>
         <String fx:id="TOOLTIP_CUSTOM_ZIP" fx:value="HIPAA Safe Harbor allows the first 3 digits to remain if the region's population exceeds 20,000"/>
@@ -323,21 +323,6 @@
                     <ScrollPane styleClass="sidebar" prefHeight="540">
                         <VBox prefWidth="700">
                             <!--  text="${'Multi\nLine\tTab'}"  &#xD -->
-                            <TitledPane text="Why is Internet Connectivity Required?" animated="false" expanded="false"
-                                        styleClass="text-large-normal">
-                                <Label styleClass="text-large-normal" wrapText="true">
-                                    CliniDeID connects to verify the license usage. Only information regarding the
-                                    number and size of notes is transmitted.
-                                </Label>
-                            </TitledPane>
-                            <TitledPane text="Is CliniDeID secure?" animated="false" expanded="false"
-                                        styleClass="text-large-normal">
-                                <Label styleClass="text-large-normal" wrapText="true">
-                                    The on-premises version of CliniDeid only transmits license information to our
-                                    server and it is done using a secure, SSL connection. No PII or
-                                    PHI is ever transmitted.
-                                </Label>
-                            </TitledPane>
                             <TitledPane text="What does CliniDeID do with my database?" animated="false"
                                         expanded="false" styleClass="text-large-normal">
                                 <Label styleClass="text-large-normal" wrapText="true">
@@ -359,22 +344,13 @@
                                     make sure that the values in the fields are correct.
                                 </Label>
                             </TitledPane>
-                            <TitledPane text="Is CliniDeID available as a service?" animated="false" expanded="false"
-                                        styleClass="text-large-normal">
-                                <Label styleClass="text-large-normal, hand-cursor" wrapText="true"
-                                       onMouseClicked="#clickedDeidLogo">
-                                    Checkout our webpage at https://www.clinacuity.com/home2/clinideid/ for current
-                                    information.
-                                </Label>
-                            </TitledPane>
                             <TitledPane text="Is CliniDeID HIPAA compliant?" animated="false" expanded="false"
                                         styleClass="text-large-normal">
                                 <Label styleClass="text-large-normal" wrapText="true">
-                                    This desktop version has not been reviewed for HIPAA compliance. Note that the only
-                                    information sent to our servers is license information (number and size of files).
-                                    No PII is ever transmitted.
+                                    This desktop version has not been reviewed for HIPAA compliance. 
+                                    No data, PII or otherwise, is ever transmitted.
                                     PII is written to output files and/or to the Postgresql database depending on user
-                                    selections.
+                                    selections. The files are not encrypted when written
                                 </Label>
                             </TitledPane>
                             <TitledPane text="How accurate is CliniDeID?" animated="false" expanded="false"
@@ -407,8 +383,6 @@
                         <Label styleClass="text-large-bold" text="Contact"/>
                         <Label styleClass="text-large-normal" wrapText="true"
                                text="Need more help? Didn’t find the answer to your question or your problem?"/>
-                        <Label styleClass="text-large-normal, hand-cursor" wrapText="true" onMouseClicked="#openEmail"
-                               text="Email us at support@clinacuity.com"/>
                         <Label styleClass="text-large-normal, hand-cursor" wrapText="true" onMouseClicked="#clickedLogo"
                                text="Visit us at https://www.clinacuity.com/"/>
                     </VBox>
@@ -735,11 +709,11 @@
             <ImageView preserveRatio="true" pickOnBounds="true" onMouseClicked="#clickedLogo" styleClass="hand-cursor">
                 <Image url="/gui/ClinacuityLogoUltraSmall40HeightTransp.png" requestedHeight="20" preserveRatio="true" smooth="true"/>
             </ImageView>
-            <Label text=" © 2021, " onMouseClicked="#clickedLogo" styleClass="text-blue, hand-cursor"/>
+            <Label text=" © 2023, " onMouseClicked="#clickedLogo" styleClass="text-blue, hand-cursor"/>
             <Label text="Clinacuity, Inc." onMouseClicked="#clickedLogo" styleClass="text-blue, hand-cursor"/>
             <Label text=" All rights reserved" styleClass="text-blue"/>
             <Region prefWidth="750" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-            <Label text="Version: 1.6.1" styleClass="text-blue" fx:id="VersionLabel" alignment="CENTER_RIGHT"/>
+            <Label text="Version: 1.9.0" styleClass="text-blue" fx:id="VersionLabel" alignment="CENTER_RIGHT"/>
         </HBox>
     </VBox>
 </HBox>

@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -28,10 +28,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class App extends Application {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -48,6 +49,14 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        Path path = Paths.get("log");
+        try {
+            Files.createDirectories(path);
+        } catch (IOException e) {
+            System.err.println("Could not create log directory: " + e.toString());
+            return;
+        }
+
         if (args.length >= 2 && (args[0].startsWith("-exclude") || "-x".equals(args[0]))) {
             if (!DeidPipeline.setExcludes(args[1])) {
                 System.out.println("Error in excludes parameter");
@@ -71,31 +80,32 @@ public class App extends Application {
     }
 
     private static void stopRnn() {
-        if (DeidPipeline.getExcludes().contains("rnn")) {
-            return;
-        }
-        if (DeidPipeline.rnn != null) {// && DeidPipeline.rnn.isAlive()) {//isAlive is false always and hasExited is always true, not sure what to test
-            try {
-                EnsembleAnnotator.stopRnn();//this takes a little time
-                Thread.sleep(500);
-            } catch (AnalysisEngineProcessException | InterruptedException e) {
-                LOGGER.throwing(e);
-                if (DeidPipeline.rnn != null) {
-                    DeidPipeline.rnn.destroyForcibly();
-                }
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        ProcessBuilder rnnKiller = new ProcessBuilder("data" + File.separator + "rnn" + File.separator + "stopKillRnn." + DeidPipeline.getScriptExtension());//WINDOWS??? TODO
-        try {
-            rnnKiller.start();
-            Thread.sleep(300);
-        } catch (IOException | InterruptedException e) {
-            LOGGER.error("Issue stopping RNN");
-            LOGGER.throwing(e);
-            Thread.currentThread().interrupt();
-        }
+        return;
+//        if (DeidPipeline.getExcludes().contains("rnn")) {
+//            return;
+//        }
+//        if (DeidPipeline.rnn != null) {// && DeidPipeline.rnn.isAlive()) {//isAlive is false always and hasExited is always true, not sure what to test
+//            try {
+//                EnsembleAnnotator.stopRnn();//this takes a little time
+//                Thread.sleep(500);
+//            } catch (AnalysisEngineProcessException | InterruptedException e) {
+//                LOGGER.throwing(e);
+//                if (DeidPipeline.rnn != null) {
+//                    DeidPipeline.rnn.destroyForcibly();
+//                }
+//                Thread.currentThread().interrupt();
+//            }
+//        }
+//
+//        ProcessBuilder rnnKiller = new ProcessBuilder("data" + File.separator + "rnn" + File.separator + "stopKillRnn." + DeidPipeline.getScriptExtension());//WINDOWS??? TODO
+//        try {
+//            rnnKiller.start();
+//            Thread.sleep(300);
+//        } catch (IOException | InterruptedException e) {
+//            LOGGER.error("Issue stopping RNN");
+//            LOGGER.throwing(e);
+//            Thread.currentThread().interrupt();
+//        }
     }
 
     @Override

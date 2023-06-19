@@ -34,7 +34,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <javafx.version>17</javafx.version>
+        <javafx.version>17.0.2</javafx.version>
         <uima.version>3.3.1</uima.version>
         <uima.fit.version>3.2.0</uima.fit.version>
         <log4j2.version>2.19.0</log4j2.version>
@@ -134,7 +134,39 @@
             <classifier>mac</classifier>
         </dependency>
 
-        <!-- Database drivers -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>mac-aarch64</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>mac-aarch64</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+            <classifier>mac-aarch64</classifier>
+        </dependency>
+
+<!--         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>mac-aarch64</classifier>
+
+        </dependency>
+
+ -->        <!-- Database drivers -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

@@ -1,21 +1,18 @@
 On-premises CliniDeID installation instructions instructions for Cent OS 7.
-Version VERSION_NUMBER, October 21, 2021
+Version 1.9.0, April 29, 2023
 
-Python 3.8® and OpenJDK® 17 will be downloaded and setup as part of this process.
-See https://www.python.org/ for more info on Python
+Java 17 (or greater) should be installed and java should be in the path
+
 See https://jdk.java.net/17 for more information on OpenJDK
 
 0) Expand (unzip) CliniDeID.zip by double clicking it (which will create a CliniDeID folder) or the command 'unzip CliniDeID.zip -d CliniDeID'
 1) Start a Terminal (command prompt) from the Launchpad
 2) Navigate to where CliniDeID was expanded to, something like 'cd $HOME/Desktop/CliniDeID'
 3) Set permissions by typing 'chmod 700 *.sh'
-4) Type './setupCliniDeID.sh'
-	You may be asked for your password multiple times during this process depending on your system settings.
-	You may have to type y or yes to install packages
 
-CliniDeID requires approximate 28 GB memory (real plus swap space) to run. If this is not available, you will need to increase your swap space. You should consult your system administrator and OS documentation. Here is a possible solution:
+CliniDeID requires approximate 24 GB memory (real plus swap space) to run. If this is not available, you will need to increase your swap space. You should consult your system administrator and OS documentation. Here is a possible solution:
 1) Create a swap file with the command
-	sudo dd if=/dev/zero of=/swapfileNew count=28672 bs=1MiB
+	sudo dd if=/dev/zero of=/swapfileNew count=24672 bs=1MiB
 2) Set permissions on it:
 	sudo chmod 600 /swapfileNew
 3) Make it a swap file:
@@ -23,13 +20,8 @@ CliniDeID requires approximate 28 GB memory (real plus swap space) to run. If th
 4) Enable it
 	sudo swapon /swapfileNew
 
-After installing, to run CliniDeID in graphical mode, simply double click on the runCliniDeID.sh file or type ./runCliniDeID.sh from its folder.
+To run CliniDeID in graphical mode, simply double click on the runCliniDeID.sh file or type ./runCliniDeID.sh from its folder.
 Documentation for using CliniDeID is available within the program or from data/Documentation.pdf
-
-Note that during execution CliniDeID connects to the license server through port 443 (standard for https).
-
-You must enter your license key the first time CliniDeID is run. It will be stored in the file LICENSE.KEY. If that file is removed, then the key must be entered in the next time CliniDeID is run.
-
 
 Command Line Interface
 
@@ -118,35 +110,7 @@ CliniDeID will connect to the database named clinideid on the same machine and u
 The command 'psql clinideid' will start an SQL prompt connected to the clinideid database. 
 
 
-Network Usage Details
-
-The desktop application uses only a handful of HTTPS requests. No HTTPS traffic contains any PII.
-
-All HTTPS traffic is limited to licensing information to validate requests with our servers. Below is a description of what is transmitted at different points in the application's life cycle.
-
-Whenever the application starts processing a new batch of files, a request is sent out to our licensing server to validate the license key. This request only contains the license key, and returns a simple response with the following details:
-
-* the license key's validity
-* the number of "file-equivalents" (i.e., batches of 5 thousand characters) which have been processed with this license key 
-* any limitations associated with the license, such as how many file-equivalents can be processed per batch, and the maximum allowed size of each file.
-
-Immediately before starting the batch
-Prior to starting the batch and after having validated the license key, a new request is sent out to the licensing server containing basic information about the current batch. The application receives the same object sent but with an ID assigned to it by the server.
-* the license key again
-* the number of files to process
-* (received) an ID assigned to this request
-
-Immediately after finishing the batch
-After finishing the batch, a final request is sent out to the server confirming the actual number of files processed. The information transmitted in this request is below:
-
-* the license key again
-* the number of "file-equivalents" processed
-* the ID of the request (received earlier from the server)
-
-
-
 Licensing
 Licenses can be found in data\licenses folder
 
-"Python" is a registered trademark of the Python Software Foundation”
 OpenJDK (the "Name")  Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates.

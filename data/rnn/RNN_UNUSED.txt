@@ -1,0 +1,1 @@
+The RNN is currently disabled due to conflicts with newest MAC OS and various pyhthon modules

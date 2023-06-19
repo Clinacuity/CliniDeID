@@ -1,0 +1,134 @@
+
+a	java:S112¾"FDefine and throw a dedicated exception instead of using a generic one.(©É¦ßøÿÿÿÿ
+\	java:S112ø"FDefine and throw a dedicated exception instead of using a generic one.(ş®œ˜
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ş®œ˜
+\	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(ş®œ˜
+a	java:S112µ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a	java:S112 
+"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+\	java:S112´
+"FDefine and throw a dedicated exception instead of using a generic one.(äÛŞ­
+_
+java:S6208û"CMerge the previous cases into this one using comma-separated label.(ƒ­ïúÿÿÿÿ
+F
+java:S1066ğ"/Merge this if statement with the enclosing one.(éÏı
+Q
+java:S1141¤"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+Q
+java:S1141¦"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+l	java:S117®"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ğ‘Éÿÿÿÿÿ
+2
+java:S1643ß"Use a StringBuilder instead.(Œğê
+k
+java:S1104"OMake rnn a static final constant or non-public and provide accessors if needed.(æèŞúÿÿÿÿ
+E
+java:S1444")Make this "public static rnn" field final(æèŞúÿÿÿÿ
+O
+java:S2589¹"8Remove this expression which always evaluates to "false"(²ëı
+O
+java:S2589¹"8Remove this expression which always evaluates to "false"(²ëı
+O
+java:S2589°"8Remove this expression which always evaluates to "false"(²ëı
+O
+java:S2589°"8Remove this expression which always evaluates to "false"(²ëı
+Q	java:S125	"<This block of commented-out lines of code should be removed.(¢É¿›
+V	java:S125l"<This block of commented-out lines of code should be removed.(®ÜŞöşÿÿÿÿ
+R	java:S125€"<This block of commented-out lines of code should be removed.(êÕÊ
+W	java:S125ˆ"<This block of commented-out lines of code should be removed.(¦ƒÊåÿÿÿÿÿ
+H
+java:S1135‹"2Complete the task associated to this TODO comment.(Ä‡ã
+I
+java:S3010³"-Remove this assignment of "deidPipelineTask".(Ëò¬Úşÿÿÿÿ
+W	java:S125«"<This block of commented-out lines of code should be removed.(¥‘œşÿÿÿÿ
+n
+java:S3776œ"RRefactor this method to reduce its Cognitive Complexity from 43 to the 15 allowed.(Ú»¢÷ÿÿÿÿÿ
+i
+java:S3776¡"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(ÌÇ‚
+Y
+java:S1126¾"BReplace this if-then-else statement by a single method invocation.(èÁÆ˜
+m
+java:S3252’"VUse static access with "com.clinacuity.deid.ae.EnsembleAnnotator" for "EXCLUDES_LIST".(±ë‘
+W	java:S125­"<This block of commented-out lines of code should be removed.(‹ô™ºûÿÿÿÿ
+W	java:S125¹"<This block of commented-out lines of code should be removed.(õØ›˜ÿÿÿÿÿ
+N
+java:S1135û"2Complete the task associated to this TODO comment.(ƒ­ïúÿÿÿÿ
+R	java:S125´"<This block of commented-out lines of code should be removed.(Ş¥ï¾
+n
+java:S3776æ"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¿Ã’õúÿÿÿÿ
+R	java:S125Í"<This block of commented-out lines of code should be removed.(‰˜òø
+N
+java:S1135Ÿ"2Complete the task associated to this TODO comment.(î¯º¢ûÿÿÿÿ
+W	java:S125®"<This block of commented-out lines of code should be removed.(¸É¬üÿÿÿÿ
+R	java:S125¯"<This block of commented-out lines of code should be removed.(’
+W	java:S125·"<This block of commented-out lines of code should be removed.(¸É¬üÿÿÿÿ
+R	java:S125¸"<This block of commented-out lines of code should be removed.(’
+N
+java:S1135î"2Complete the task associated to this TODO comment.(Í«×±øÿÿÿÿ
+W	java:S125¿"<This block of commented-out lines of code should be removed.(Î”Êˆıÿÿÿÿ
+R	java:S125Í"<This block of commented-out lines of code should be removed.(§–š¬
+d
+java:S1871è"MThis branch's code block is the same as the block for the branch on line 994.(å¥‡
+`
+java:S1612¶"DReplace this lambda with method reference 'this::makeOptionsString'.(Â›ğüıÿÿÿÿ
+n
+java:S3776º"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Šö™âûÿÿÿÿ
+W	java:S125»"<This block of commented-out lines of code should be removed.(ı¯©»øÿÿÿÿ
+R	java:S125É"<This block of commented-out lines of code should be removed.(µ•ø˜
+M
+java:S2696Ö"6Make the enclosing method "static" or remove this set.(·¥¯
+W	java:S125å"<This block of commented-out lines of code should be removed.(ÃÈè½ıÿÿÿÿ
+t
+java:S3252 	"]Use static access with "com.clinacuity.deid.readers.GeneralCollectionReader" for "INPUT_CDA".(”Ïé«
+z
+java:S3252¡	"^Use static access with "com.clinacuity.deid.readers.GeneralCollectionReader" for "FILE_LIMIT".(ŸÍÂşÿÿÿÿ
+
+java:S3252¢	"cUse static access with "com.clinacuity.deid.readers.GeneralCollectionReader" for "FILE_SIZE_LIMIT".(Àñ’—ÿÿÿÿÿ
+z
+java:S3252½	"^Use static access with "com.clinacuity.deid.readers.GeneralCollectionReader" for "DEID_LEVEL".(‚ÖªÑûÿÿÿÿ
+y
+java:S3252Â	"]Use static access with "com.clinacuity.deid.readers.GeneralCollectionReader" for "INPUT_CDA".(•‰Ÿœùÿÿÿÿ
+z
+java:S3252Ã	"^Use static access with "com.clinacuity.deid.readers.GeneralCollectionReader" for "FILE_LIMIT".(ÕÊ§Øúÿÿÿÿ
+
+java:S3252Ã	"cUse static access with "com.clinacuity.deid.readers.GeneralCollectionReader" for "FILE_SIZE_LIMIT".(ÕÊ§Øúÿÿÿÿ
+W	java:S125¨
+"<This block of commented-out lines of code should be removed.(ø¢•üÿÿÿÿ
+R	java:S125¸
+"<This block of commented-out lines of code should be removed.(¹îÈú
+W	java:S125¼
+"<This block of commented-out lines of code should be removed.(¹Ù”ÿÿÿÿÿ
+P
+java:S3400Ë
+"9Remove this method and declare a constant for this value.(¡í«
+W	java:S125Ì
+"<This block of commented-out lines of code should be removed.(¦§¹àúÿÿÿÿ
+P
+java:S3400Ñ
+"9Remove this method and declare a constant for this value.(¡í«
+R	java:S125Ò
+"<This block of commented-out lines of code should be removed.(¶üôñ
+Q	java:S125¥"<This block of commented-out lines of code should be removed.(ö©é[
+U
+java:S1155«">Use isEmpty() to check whether the collection is empty or not.(ô»¥ã
+W	java:S125¯"<This block of commented-out lines of code should be removed.(úúÅáùÿÿÿÿ
+c
+java:S1128"HRemove this unused import 'com.clinacuity.deid.gui.modals.WarningModal'.(ØğÒˆıÿÿÿÿ
+S
+java:S1128."8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ
+I
+java:S1128O"3Remove this unused import 'java.io.BufferedReader'.(€é²Å
+J
+java:S1128S"/Remove this unused import 'java.io.FileReader'.(Â¡¢äşÿÿÿÿ
+F
+java:S1128W"0Remove this unused import 'java.nio.file.Files'.(‚ƒü
+E
+java:S1128X"/Remove this unused import 'java.nio.file.Path'.(×²êÂ
+F
+java:S1128Y"0Remove this unused import 'java.nio.file.Paths'.(áè°¯
+I
+java:S1128c".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ
+F
+java:S1128e"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ
+N
+java:S1144§
+"7Remove this unused private "generateProperties" method.(Ö¥äØ

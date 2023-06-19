@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -65,11 +65,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -466,7 +462,7 @@ public class DeidRunnerController implements Initializable {
             int index = newValue.lastIndexOf(" (");  //- before file size
 
             String fileName = DeidPipeline.PUNCTUATION_MATCH.matcher(newValue.substring(0, index)).replaceAll("-");
-            String filePath = LOG_PATH + File.pathSeparator + fileName + ".log";
+            String filePath = LOG_PATH + File.separatorChar + fileName + ".log";
             try {
                 String data = new String(Files.readAllBytes(Paths.get(filePath)));
                 historyData.setText(data);
@@ -487,19 +483,19 @@ public class DeidRunnerController implements Initializable {
                 resynthesisMapCheckBox.setSelected(false);
             }
         });
-
-        if (!DeidPipeline.getExcludes().contains("rnn")) {
-            if (!DeidPipeline.setRnnPermsissions()) {
-                WarningModal.createAndShowModal(ERROR_TITLE, "Failed to set permissions for RNN service, it will not be used.");
-            } else {
-                portRnn = DeidPipeline.startRnnService();
-                if (portRnn == -1) {
-                    DeidPipeline.setExcludes("RNN");//allows system to carry on
-                    LOGGER.debug("failure to stat RNN, setting RNN to be excluded");
-                    WarningModal.createAndShowModal(ERROR_TITLE, "Python RNN service failed to start.");
-                }
-            }
-        }
+//
+//        if (!DeidPipeline.getExcludes().contains("rnn")) {
+//            if (!DeidPipeline.setRnnPermsissions()) {
+//                WarningModal.createAndShowModal(ERROR_TITLE, "Failed to set permissions for RNN service, it will not be used.");
+//            } else {
+//                portRnn = DeidPipeline.startRnnService();
+//                if (portRnn == -1) {
+//                    DeidPipeline.setExcludes("RNN");//allows system to carry on
+//                    LOGGER.debug("failure to stat RNN, setting RNN to be excluded");
+//                    WarningModal.createAndShowModal(ERROR_TITLE, "Python RNN service failed to start.");
+//                }
+//            }
+//        }
         createAnalysisEngines();
 //        license = DeidPipeline.readLicenseFile(false);
     }
@@ -561,15 +557,15 @@ public class DeidRunnerController implements Initializable {
         String timeStart = now.format(DeidPipelineTask.FORMATTER);
 
         pipelineTask = new DeidPipelineTask(inputDirText.getText(), outputDirText.getText(), pipe, pipelineCreationResult, this, progressLabel);
-        if (!DeidPipeline.getExcludes().contains("rnn") && !EnsembleAnnotator.tryConnectRnn()) {
-            boolean excludeRnn = YesOrNoModal.createAndShowModal("RNN Service Error", "The RNN failed to start. Would you like to continue without it or stop?", "continue", "stop");
-            if (excludeRnn) {
-                DeidPipeline.setExcludes("rnn");
-            } else {
-                pipelineTask = null;
-                return;
-            }
-        }
+//        if (!DeidPipeline.getExcludes().contains("rnn") && !EnsembleAnnotator.tryConnectRnn()) {
+//            boolean excludeRnn = YesOrNoModal.createAndShowModal("RNN Service Error", "The RNN failed to start. Would you like to continue without it or stop?", "continue", "stop");
+//            if (excludeRnn) {
+//                DeidPipeline.setExcludes("rnn");
+//            } else {
+//                pipelineTask = null;
+//                return;
+//            }
+//        }
 
         successCheck.setVisible(false);
 //        pipe.setLicense(license);
@@ -614,7 +610,7 @@ public class DeidRunnerController implements Initializable {
             LOGGER.throwing(e);
         }
         if (!message.contains("User") && !message.contains("user")) {
-            message += " Please upload the log file https://deid.clinacuity.com";
+            message += " Please consult the log";
         }
         String messageFinalish = message;
         Platform.runLater(() -> WarningModal.createAndShowModal(ERROR_TITLE, messageFinalish));
@@ -638,9 +634,10 @@ public class DeidRunnerController implements Initializable {
 
     @FXML
     private void clickedDeidLogo() {
-        App.getWebPage("https://www.clinacuity.com/clinideid/");
+        App.getWebPage("https://www.clinacuity.com/");
     }
 
+    /*
     @FXML
     private void openEmail() {
         Desktop desktop;
@@ -656,7 +653,7 @@ public class DeidRunnerController implements Initializable {
                 }
             }
         }
-    }
+    }*/
 
     @FXML
     private void openDocumentationFile() {
@@ -718,7 +715,7 @@ public class DeidRunnerController implements Initializable {
                 total += Long.parseLong(line.substring(index + 2, line.indexOf(' ', index + 1)));
                 historyBox.getItems().add(0, line);//reverse order, to put newest at top
             }
-        } catch (NoSuchFileException e1) {
+        } catch (NoSuchFileException | FileNotFoundException e1) {
             //this is fine, just nothing to load
         } catch (IOException e) {//existed, but couldn't load it, should we tell the user?
             LOGGER.throwing(e);
@@ -1037,7 +1034,7 @@ public class DeidRunnerController implements Initializable {
 //            message = "License expired or usage limits reached. Contact us at support@clinacuity.com";
         } else {
             title = ERROR_TITLE;
-            message = "An unexpected error occurred! Please upload the log file at https://deid.clinacuity.com";
+            message = "An unexpected error occurred! Please consult the log";
         }
         WarningModal.createAndShowModal(title, message);
         progressBox.appendText("Total note equivalents processed: " + DocumentListAnnotator.getTotalCharactersProcessed() / 5000);

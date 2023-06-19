@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -106,7 +106,7 @@ import static org.apache.uima.fit.factory.JCasFactory.createJCas;
 public class DeidPipeline {
     public static final Pattern PUNCTUATION_MATCH = Pattern.compile("[^a-zA-Z0-9]+");
 //    public static final String LICENSE_FILE = "LICENSE.KEY";
-    public static final String VERSION = "VERSION_NUMBER";
+    public static final String VERSION = "1.9.0";
     public static final String DATA_PATH = "data";
     public static final Level PII_LOG = Level.forName("PII", 350);
     //public paths for use in tests
@@ -373,6 +373,13 @@ public class DeidPipeline {
     }
 
     public static void main(String[] args) throws Exception {
+        Path path = Paths.get("log");
+        try {
+            Files.createDirectories(path);
+        } catch (IOException e) {
+            System.err.println("Could not create log directory: " + e.toString());
+            return;
+        }
         CommandLineParser parser = new DefaultParser();
         Options options = makeCliOptions();
         CommandLine commandLine = null;
@@ -472,7 +479,7 @@ public class DeidPipeline {
     }
 
     protected static String checkModelPaths() {//make sure all model related files exist before beginning loading of any of them
-        String[] filesToCheck = {RNN_MODEL_FILE, SVM_MODEL_FILE, SVM_FEATURE_INDEX_FILE, SVM_LABEL_FILE, SVM_TEMPLATE_FILE,
+        String[] filesToCheck = { /*RNN_MODEL_FILE,*/ SVM_MODEL_FILE, SVM_FEATURE_INDEX_FILE, SVM_LABEL_FILE, SVM_TEMPLATE_FILE,
                 WORD_VECTOR_CL_FILE, REGEX_CONCEPTS_FILE, CRF_MODEL_FILE, BROWN_FILE, MIRA_MODEL_FILE};
         StringBuilder errorMessage = new StringBuilder();
         for (String file : filesToCheck) {
@@ -640,22 +647,22 @@ public class DeidPipeline {
     }
 
     public static boolean setRnnPermsissions() {
-        final String[] executables = {"rnn" + File.separator + "startRnn." + SCRIPT_EXTENSION, "rnn" + File.separator + "stopKillRnn." + SCRIPT_EXTENSION};
-        try {
-            for (String execFile : executables) {
-                File file = new File(DeidPipeline.DATA_PATH + File.separator + execFile);
-                boolean success;
-                success = file.setExecutable(true) && file.setReadable(true) && file.setWritable(true);//is writable always needed?
-                if (!success) {
-                    throw new SecurityException("failed to set permissions for " + execFile);
-                }
-            }
-        } catch (SecurityException e) {//the permissions sets could throw a SecurityException as well
-            LOGGER.throwing(e);
-            LOGGER.debug("failure to set permissions for RNN, setting RNN to be excluded");
-            DeidPipeline.setExcludes("RNN");//allows system to carry on
-            return false;
-        }
+//        final String[] executables = {"rnn" + File.separator + "startRnn." + SCRIPT_EXTENSION, "rnn" + File.separator + "stopKillRnn." + SCRIPT_EXTENSION};
+//        try {
+//            for (String execFile : executables) {
+//                File file = new File(DeidPipeline.DATA_PATH + File.separator + execFile);
+//                boolean success;
+//                success = file.setExecutable(true) && file.setReadable(true) && file.setWritable(true);//is writable always needed?
+//                if (!success) {
+//                    throw new SecurityException("failed to set permissions for " + execFile);
+//                }
+//            }
+//        } catch (SecurityException e) {//the permissions sets could throw a SecurityException as well
+//            LOGGER.throwing(e);
+//            LOGGER.debug("failure to set permissions for RNN, setting RNN to be excluded");
+//            DeidPipeline.setExcludes("RNN");//allows system to carry on
+//            return false;
+//        }
         return true;
     }
 
@@ -668,33 +675,33 @@ public class DeidPipeline {
     }
 
     public static int startRnnService() {
-        int portRnn;
-        try {
-            ServerSocket rnnTempSocket = new ServerSocket(0);
-            portRnn = rnnTempSocket.getLocalPort();
-            rnnTempSocket.close();
-            try {
-                ServerSocket rnnTempSocket2 = new ServerSocket(portRnn);
-                rnnTempSocket2.close();
-            } catch (IOException e) {
-                LOGGER.error("Failure to start RNN");
-            }
-            LOGGER.debug("Starting python RNN service command: {} {} {}", DeidPipeline.DATA_PATH + File.separator + "rnn" + File.separator + "startRnn." + DeidPipeline.SCRIPT_EXTENSION, DeidPipeline.RNN_MODEL_FILE, portRnn);
-            ProcessBuilder rnn = new ProcessBuilder(DeidPipeline.DATA_PATH + File.separator + "rnn" + File.separator + "startRnn." + DeidPipeline.SCRIPT_EXTENSION, DeidPipeline.DATA_PATH, DeidPipeline.RNN_MODEL_FILE, Integer.toString(portRnn));
-            DeidPipeline.rnn = rnn.start();
-        } catch (IOException e) {
-            LOGGER.error("Failure to start RNN");
-            LOGGER.throwing(e);
-            return -1;
-        }
-        EnsembleAnnotator.setRnnPortNumber(portRnn);
-        //This is for debugging service I/O
-//        InputStream is = DeidPipeline.rnn.getInputStream();
-//        BufferedReader er2 = new BufferedReader(new InputStreamReader(DeidPipeline.rnn.getErrorStream()));
-//        InputStream er = (DeidPipeline.rnn.getErrorStream());
-        //    logger.debug("start RNN's pwd: {}", new String (((ByteArrayInputStream)((ProcessPipeInputStream)is).in).buf));
-
-        LOGGER.debug("Python RNN service started");
+//        int portRnn;
+//        try {
+//            ServerSocket rnnTempSocket = new ServerSocket(0);
+//            portRnn = rnnTempSocket.getLocalPort();
+//            rnnTempSocket.close();
+//            try {
+//                ServerSocket rnnTempSocket2 = new ServerSocket(portRnn);
+//                rnnTempSocket2.close();
+//            } catch (IOException e) {
+//                LOGGER.error("Failure to start RNN");
+//            }
+//            LOGGER.debug("Starting python RNN service command: {} {} {}", DeidPipeline.DATA_PATH + File.separator + "rnn" + File.separator + "startRnn." + DeidPipeline.SCRIPT_EXTENSION, DeidPipeline.RNN_MODEL_FILE, portRnn);
+//            ProcessBuilder rnn = new ProcessBuilder(DeidPipeline.DATA_PATH + File.separator + "rnn" + File.separator + "startRnn." + DeidPipeline.SCRIPT_EXTENSION, DeidPipeline.DATA_PATH, DeidPipeline.RNN_MODEL_FILE, Integer.toString(portRnn));
+//            DeidPipeline.rnn = rnn.start();
+//        } catch (IOException e) {
+//            LOGGER.error("Failure to start RNN");
+//            LOGGER.throwing(e);
+//            return -1;
+//        }
+//        EnsembleAnnotator.setRnnPortNumber(portRnn);
+//        //This is for debugging service I/O
+////        InputStream is = DeidPipeline.rnn.getInputStream();
+////        BufferedReader er2 = new BufferedReader(new InputStreamReader(DeidPipeline.rnn.getErrorStream()));
+////        InputStream er = (DeidPipeline.rnn.getErrorStream());
+//        //    logger.debug("start RNN's pwd: {}", new String (((ByteArrayInputStream)((ProcessPipeInputStream)is).in).buf));
+//
+//        LOGGER.debug("Python RNN service started");
         return portRnn;
     }
 
@@ -1105,18 +1112,18 @@ public class DeidPipeline {
         if (usePreCreatedEngines) {
             analysisEngines = preCreatedEngines.toArray(new AnalysisEngine[0]);
         } else {
-            if (!DeidPipeline.getExcludes().contains("rnn")) {
-                if (setRnnPermsissions()) {
-                    portRnn = startRnnService();
-                    if (portRnn == -1) {
-                        LOGGER.error("Couldn't start RNN service");
-                        return "Couldn't start RNN service";
-                    }
-                } else {
-                    LOGGER.error("Couldn't start RNN service");
-                    return "Couldn't start RNN service";
-                }
-            }
+//            if (!DeidPipeline.getExcludes().contains("rnn")) {
+//                if (setRnnPermsissions()) {
+//                    portRnn = startRnnService();
+//                    if (portRnn == -1) {
+//                        LOGGER.error("Couldn't start RNN service");
+//                        return "Couldn't start RNN service";
+//                    }
+//                } else {
+//                    LOGGER.error("Couldn't start RNN service");
+//                    return "Couldn't start RNN service";
+//                }
+//            }
             analysisEngines = getAnalysisEngines();
         }
         tryCreateJCas();

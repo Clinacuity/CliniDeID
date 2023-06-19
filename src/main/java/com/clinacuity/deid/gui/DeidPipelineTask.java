@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -214,6 +214,7 @@ public class DeidPipelineTask extends Task<String> {
     @Override
     protected String call() {
         //check if pipeline is finished and if RNN is ready,
+        /*
         if (!DeidPipeline.getExcludes().contains("rnn")) {
             int tries = 10;
             while (tries > 0 && !EnsembleAnnotator.tryConnectRnn()) {
@@ -237,7 +238,7 @@ public class DeidPipelineTask extends Task<String> {
                     LOGGER.debug("RNN service ready final");
                 }
             }
-        }
+        }*/
 
         if (pipelineCreationResult.isDone()) {//check if pipeline done creating processing engines
             LOGGER.debug("Already done creating pipeline");

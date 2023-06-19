@@ -1,6 +1,6 @@
 
 /*
-# © Copyright 2019-2022, Clinacuity Inc. All Rights Reserved.
+# © Copyright 2019-2023, Clinacuity Inc. All Rights Reserved.
 #
 # This file is part of CliniDeID.
 # CliniDeID is free software: you can redistribute it and/or modify it under the terms of the
@@ -68,6 +68,7 @@ public class DocumentListAnnotator extends JCasAnnotator_ImplBase {
 
     public static void clearTotalCharactersProcessed() {
         totalCharactersProcessed = 0;
+        fileList.clear();
     }
 
     @Override
