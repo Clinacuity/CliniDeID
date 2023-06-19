@@ -1,3 +1,4 @@
+
 The large model files need to be in subfolders here as following:
 
 folder mira
@@ -10,3 +11,9 @@ svm/svmMap-U3-FullSplit
 folder malletCrf
 malletCrf/brown-AllI2B2-4-1000.ser
 malletCrf/crf-U3-FullSplit.jar
+
+The models provided for CRF (Mallet), MIRA, SVM and RNN were trained on the combined training subsets of the following clinical text notes corpora with annotated PII annotations:
+- 2006 i2b2 de-identification challenge (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2006/)
+- 2014 i2b2/UTHealth de-identification challenge (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/)
+- 2016 CEGS N-GRID n2c2 de-identification challenge (not available outside the original challenge anymore; https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/)
+All corpora were de-identified (with manual verification) and all PII "re-synthesized" (i.e., replaced with realistic surrogates) before training.
