@@ -1,6 +1,12 @@
-Goal is to have documentation for each model that includes 
-	branch/commit tag from git for code
-	description of what corpus was used
-	date it was done (in case corpus changes)
-	parameters used for training (both feature generatin and model training), depending on what options the model could have
-	recall, precision and f1 scores on test set for unified I2B2 2014, 2016, and resynth MUSC
+The large model files need to be in subfolders here as following:
+
+folder mira
+mira/mira-U3-FullSplit
+
+folder  svm
+svm/svmModel-U3-FullSplit
+svm/svmMap-U3-FullSplit
+
+folder malletCrf
+malletCrf/brown-AllI2B2-4-1000.ser
+malletCrf/crf-U3-FullSplit.jar

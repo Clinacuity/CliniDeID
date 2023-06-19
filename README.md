@@ -20,53 +20,15 @@ CliniDeID automatically de-identifies clinical text notes according to the [HIPA
 
 This version of CliniDeID was built to be used on-premises and includes a user-friendly graphical user interface and can also be run from the command line (details below).
 
-
-## Overview
-
-CliniDeID includes different packages:
-
-* `pachage1` : The first package.
-* `package2` : A set of [link](https://uima.apache.org) annotators.
+:warning: **This version of CliniDeID is a beta release with a few minor issues to be corrected and resulting from the conversion from commercial software with usage-based licensing fee to free and open source software.**
 
 ## Getting Started
-
-Text...:
-
-- Type some Markdown on the left
-- See HTML in the right
-- ✨Magic ✨
-
-Markdown is a lightweight markup language based on the formatting conventions
-that people naturally use in email.
-As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
 
 
 ## Installation
 
-CliniDeID requires Java 17 to run and Maven 3 and Java 17 JDK and Java FX Sdk to build
-
-Install ....
-
-```sh
-cd clinideid
-npm i
-node app
-```
-
-For production environments...
-
-```sh
-npm install --production
-NODE_ENV=production node app
-```
+CliniDeID requires Java JDK 17 or more recent to build and run. If needed, download and install a JDK like OpenJDK 17 or more recent (https://www.oracle.com/in/java/technologies/downloads/ or https://jdk.java.net/19/_ and install including JAVA_HOME setup etc. For Apple computers with M1/M2 processors, some Java library needs are different and the Azul Zulu OpenJDK builds work well ([download link](https://www.azul.com/core-post-download/?java=17&arch=ARM+64-bit&type=macos-dmg&sha=bd9757c8b157c86a9735bae04c76e94d704fa7985f7088a9291e933cd10a27af&url=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fbin%2Fzulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg&endpoint=zulu&cert=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fpdf%2Fcert.zulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg.pdf).
+Apache Maven 3 ( https://maven.apache.org/download.cgi) and Java 17 (or compatible newer version) FX SDK are needed to build to build
 
 ## Plugins
 
@@ -81,29 +43,49 @@ Instructions on how to use them in your own application are linked below.
 
 #### Building for source
 
-For production release:
-
-```sh
-gulp build --prod
-```
-
 Generating pre-built zip archives for distribution:
 
-Java 17 and maven 3 are required. 
-Models are separate from the repository due to size. They must be download and placed into the data/models directory. There should be a mira and svm subdirectory within data/models. The models can be download from ????
+Models are separate from the repository due to size. They must be downloaded and placed into the data/models directory. There should be mira and svm folders within data/models.
+folder mira
+mira/mira-U3-FullSplit
+
+folder  svm
+svm/svmModel-U3-FullSplit
+svm/svmMap-U3-FullSplit
+
+You will need trained models for the machine learning modules in CliniDeID. Instructions and scripts on how to train your own models can be found in the ensembleTraining folder. Models were pre-trained with training subsets of the 2006 i2b2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2006/), the 2014 i2b2/UTHealth de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/). They can be used **only for non-commercial applications** and downloaded from:
+(Note that currently the RNN module is disabled)
+| Model | File name | Download link |
+| ------ | ------ | ------ |
+| RNN | rnn-U3-FullSplit.h5 | https://e.pcloud.link/publink/show?code=XZWr7jZ7a6Kn8TVRnRLeE1HQ5mjtS6uuW8y |
+| SVM map | svmMap-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZlr7jZhAtGksespVS7FP6mY9niAFbopAUV |
+| SVM model | svmModel-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZtr7jZs3pm2OR7PgmqCd4A8w2mLm2RlQM7 |
+| MIRA | mira-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZar7jZjNXjjyH1rBkr6nQ3kdE5iRNquOLV |
 
 
-mvn clean package -DskipTests will build the jar
-./scripts/makeDeployGenericZip.sh    will create a generic zip file designed to be used by the next script
-./scripts/makePlatformZip.sh  _OS_ will create a zip for Windows, Mac, Ubuntu, Redhat, or CentOs with _OS_ parameter determining which is made.
+To build the package from the CliniDeID folder:
+`mvn clean package -DskipTests`
+(tests can be run but may fail due to missing data files)
+`./scripts/makeDeployGenericZip.sh`
+makes a zip file CliniDeID.zip that does not have the needed platform specific scripts. After that script has run, then run
+`./scripts/makePlatformZip.sh Windows|Mac|CentOs|Ubuntu|RedHat`
+to make a zip file CliniDeID-`OS`.zip
 
-To run from within intelliJ javaFx will need to be installed and its library added as well as adding this to the command line in the run configuration:
+The ZIP file contains a setupCliniDeID script to setup the installation and runCliniDeID and runCliniDeIDcommandLine to run the program in GUI or commandline mode.
+
+To run from within IntelliJ JavaFx will need to be installed and its library added as well as adding this to the command line in the run configuration:
 --module-path pathToJavaFxSDK/javafx-sdk-17.0.7/lib --add-modules=javafx.controls
 and setting the VM to use 28GB heap memory (-Xmx28g)
 
-```sh
-gulp build dist --prod
-```
+## Running CliniDeID
+
+To start the GUI version of CliniDeID, run the runCliniDeID script
+`./runCliniDeID.sh`
+
+To start the command line version of CliniDeID, run the runCliniDeIDcommandLine script
+`./runCliniDeIDcommandLine.sh`
+
+
 ## Publications
 1. Meystre S, Petkov V, Silverstein J, Savova G, Malin B. De-Identification of Clinical Text: Stakeholders’ Perspectives and Acceptance of Automatic De-Identification. AMIA Annu Symp Proc. 2020. p. 124–6. 
 2. Meystre S. CliniDeID for Clinical Text De-Identification. AMIA Annu Symp Proc. 2020. 
@@ -138,4 +120,6 @@ CliniDeID's development was funded in part by the U.S. NIGMS (R41GM116479 and R4
 
 GPL version 3.0 or later
 ![GPL](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)
+
+Pretrained machine learning models can be used only for non-commercial applications.
 
