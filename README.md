@@ -30,13 +30,6 @@ This version of CliniDeID was built to be used on-premises and includes a user-f
 CliniDeID requires Java JDK 17 or more recent to build and run. If needed, download and install a JDK like OpenJDK 17 or more recent (https://www.oracle.com/in/java/technologies/downloads/ or https://jdk.java.net/19/_ and install including JAVA_HOME setup etc. For Apple computers with M1/M2 processors, some Java library needs are different and the Azul Zulu OpenJDK builds work well ([download link](https://www.azul.com/core-post-download/?java=17&arch=ARM+64-bit&type=macos-dmg&sha=bd9757c8b157c86a9735bae04c76e94d704fa7985f7088a9291e933cd10a27af&url=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fbin%2Fzulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg&endpoint=zulu&cert=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fpdf%2Fcert.zulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg.pdf).
 Apache Maven 3 ( https://maven.apache.org/download.cgi) and Java 17 (or compatible newer version) FX SDK are needed to build to build
 
-| Model | File name | Download link |
-| ------ | ------ | ------ |
-| RNN | rnn-U3-FullSplit.h5 | https://e.pcloud.link/publink/show?code=XZWr7jZ7a6Kn8TVRnRLeE1HQ5mjtS6uuW8y |
-| SVM map | svmMap-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZlr7jZhAtGksespVS7FP6mY9niAFbopAUV |
-| SVM model | svmModel-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZtr7jZs3pm2OR7PgmqCd4A8w2mLm2RlQM7 |
-| MIRA | mira-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZar7jZjNXjjyH1rBkr6nQ3kdE5iRNquOLV |
-
 JavaFX is used in this project.
 
 To build the package from the CliniDeID folder:
