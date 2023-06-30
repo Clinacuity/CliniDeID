@@ -42,19 +42,7 @@ The ZIP file contains a setupCliniDeID script to setup the installation and runC
 
 The project can be run from within IntelliJ with an included run configuration. It needs 28 GB heap space to run.
 
-## Running CliniDeID
-
-Generating pre-built zip archives for distribution:
-
-Models are separate from the repository due to size. They must be downloaded and placed into the data/models directory. There should be mira and svm folders within data/models.
-folder mira
-mira/mira-U3-FullSplit
-
-folder  svm
-svm/svmModel-U3-FullSplit
-svm/svmMap-U3-FullSplit
-
-You will need trained models for the machine learning modules in CliniDeID. Instructions and scripts on how to train your own models can be found in the ensembleTraining folder. Models were pre-trained with training subsets of the 2006 i2b2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2006/), the 2014 i2b2/UTHealth de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/). They can be used **only for non-commercial applications** and downloaded from:
+You will need trained models for the machine learning modules in CliniDeID. They must be downloaded and placed into the data/models directory, in mira (for mira-U3-FullSplit) and svm (for svm/svmModel-U3-FullSplit and svm/svmMap-U3-FullSplit) folders. Instructions and scripts on how to train your own models can be found in the ensembleTraining folder. Models were pre-trained with training subsets of the 2006 i2b2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2006/), the 2014 i2b2/UTHealth de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/). They can be used **only for non-commercial applications** and downloaded from:
 (Note that currently the RNN module is disabled)
 | Model | File name | Download link |
 | ------ | ------ | ------ |
