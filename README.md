@@ -20,7 +20,7 @@ CliniDeID automatically de-identifies clinical text notes according to the [HIPA
 
 This version of CliniDeID was built to be used on-premises and includes a user-friendly graphical user interface and can also be run from the command line (details below).
 
-:warning: **This version of CliniDeID is a beta release with a few minor issues to be corrected and resulting from the conversion from commercial software with usage-based licensing fee to free and open source software.**
+:warning: **This version of CliniDeID is a beta release with a few minor issues to be corrected and resulting from the conversion from commercial software with usage-based licensing fee to free and open source software. The RNN component is disabled in this beta release (issues with the Python environment).**
 
 ## Getting Started
 
