@@ -20,7 +20,7 @@ CliniDeID automatically de-identifies clinical text notes according to the [HIPA
 
 This version of CliniDeID was built to be used on-premises and includes a user-friendly graphical user interface and can also be run from the command line (details below).
 
-:warning: **This version of CliniDeID is a beta release with a few minor issues to be corrected and resulting from the conversion from commercial software with usage-based licensing fee to free and open source software.**
+:warning: **This version of CliniDeID is a beta release with a few minor issues to be corrected and resulting from the conversion from commercial software with usage-based licensing fee to free and open source software. The RNN component is disabled in this beta release (issues with the Python environment).**
 
 ## Getting Started
 
@@ -28,16 +28,7 @@ This version of CliniDeID was built to be used on-premises and includes a user-f
 ## Installation
 
 CliniDeID requires Java JDK 17 or more recent to build and run. If needed, download and install a JDK like OpenJDK 17 or more recent (https://www.oracle.com/in/java/technologies/downloads/ or https://jdk.java.net/19/_ and install including JAVA_HOME setup etc. For Apple computers with M1/M2 processors, some Java library needs are different and the Azul Zulu OpenJDK builds work well ([download link](https://www.azul.com/core-post-download/?java=17&arch=ARM+64-bit&type=macos-dmg&sha=bd9757c8b157c86a9735bae04c76e94d704fa7985f7088a9291e933cd10a27af&url=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fbin%2Fzulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg&endpoint=zulu&cert=https%3A%2F%2Fcdn.azul.com%2Fzulu%2Fpdf%2Fcert.zulu17.32.13-ca-fx-jdk17.0.2-macosx_aarch64.dmg.pdf).
-Apache Maven 3 ( https://maven.apache.org/download.cgi) and Java 17 (or compatible newer version) FX SDK are needed to build to build
-
-| Model | File name | Download link |
-| ------ | ------ | ------ |
-| RNN | rnn-U3-FullSplit.h5 | https://e.pcloud.link/publink/show?code=XZWr7jZ7a6Kn8TVRnRLeE1HQ5mjtS6uuW8y |
-| SVM map | svmMap-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZlr7jZhAtGksespVS7FP6mY9niAFbopAUV |
-| SVM model | svmModel-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZtr7jZs3pm2OR7PgmqCd4A8w2mLm2RlQM7 |
-| MIRA | mira-U3-FullSplit | https://e.pcloud.link/publink/show?code=XZar7jZjNXjjyH1rBkr6nQ3kdE5iRNquOLV |
-
-JavaFX is used in this project.
+Apache Maven 3 ( https://maven.apache.org/download.cgi) and Java 17 (or compatible newer version) FX SDK are needed to build. JavaFX is used in this project.
 
 To build the package from the CliniDeID folder:
 `mvn clean package -DskipTests`
@@ -51,19 +42,7 @@ The ZIP file contains a setupCliniDeID script to setup the installation and runC
 
 The project can be run from within IntelliJ with an included run configuration. It needs 28 GB heap space to run.
 
-## Running CliniDeID
-
-Generating pre-built zip archives for distribution:
-
-Models are separate from the repository due to size. They must be downloaded and placed into the data/models directory. There should be mira and svm folders within data/models.
-folder mira
-mira/mira-U3-FullSplit
-
-folder  svm
-svm/svmModel-U3-FullSplit
-svm/svmMap-U3-FullSplit
-
-You will need trained models for the machine learning modules in CliniDeID. Instructions and scripts on how to train your own models can be found in the ensembleTraining folder. Models were pre-trained with training subsets of the 2006 i2b2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2006/), the 2014 i2b2/UTHealth de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/). They can be used **only for non-commercial applications** and downloaded from:
+You will need trained models for the machine learning modules in CliniDeID. They must be downloaded and placed into the data/models directory, in mira (for mira-U3-FullSplit) and svm (for svm/svmModel-U3-FullSplit and svm/svmMap-U3-FullSplit) folders. Instructions and scripts on how to train your own models can be found in the ensembleTraining folder. Models were pre-trained with training subsets of the 2006 i2b2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2006/), the 2014 i2b2/UTHealth de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2014/) and 2016 CEGS N-GRID n2c2 de-identification challenge annotated corpus (https://portal.dbmi.hms.harvard.edu/projects/n2c2-2016/). They can be used **only for non-commercial applications** and downloaded from:
 (Note that currently the RNN module is disabled)
 | Model | File name | Download link |
 | ------ | ------ | ------ |
