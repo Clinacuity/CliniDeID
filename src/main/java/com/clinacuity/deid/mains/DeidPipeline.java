@@ -28,7 +28,6 @@ import com.clinacuity.deid.ae.VoteAnnotator;
 import com.clinacuity.deid.gui.App;
 import com.clinacuity.deid.gui.DeidPipelineTask;
 import com.clinacuity.deid.gui.DeidRunnerController;
-import com.clinacuity.deid.gui.modals.WarningModal;
 import com.clinacuity.deid.outputAnnotators.DocumentListAnnotator;
 import com.clinacuity.deid.outputAnnotators.PiiTagging;
 import com.clinacuity.deid.outputAnnotators.PiiWriterAnnotator;
@@ -37,13 +36,11 @@ import com.clinacuity.deid.outputAnnotators.resynthesis.ResynthesisAnnotator;
 import com.clinacuity.deid.readers.DbCollectionReader;
 import com.clinacuity.deid.readers.FileSystemCollectionReader;
 import com.clinacuity.deid.readers.GeneralCollectionReader;
-import com.clinacuity.deid.service.DeidProperties;
 import com.clinacuity.deid.util.ConnectionProperties;
 import com.clinacuity.deid.util.PiiOptions;
 import com.clinacuity.deid.util.SimpleTimer;
 import com.clinacuity.deid.util.Util;
 import com.clinacuity.deid.util.Utilities;
-import javafx.application.Platform;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -76,14 +73,11 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
-import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -95,17 +89,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Properties;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 import static org.apache.uima.fit.factory.JCasFactory.createJCas;
 
 public class DeidPipeline {
     public static final Pattern PUNCTUATION_MATCH = Pattern.compile("[^a-zA-Z0-9]+");
-//    public static final String LICENSE_FILE = "LICENSE.KEY";
     public static final String VERSION = "1.9.0";
     public static final String DATA_PATH = "data";
     public static final Level PII_LOG = Level.forName("PII", 350);
@@ -125,7 +115,6 @@ public class DeidPipeline {
     private static final String OS_NAME = getOsName();
     public static final String SCRIPT_EXTENSION = DeidPipeline.getScriptExtension();
     private static final JAXBContext JAXB_CONTEXT = makeJaxbContext();//thread safe
-//    private static final int UPDATE_LICENSE_FREQUENCY = 10;  //must be non-zero, update license every time fileCounter is multiple of this
     public static Process rnn = null;
     protected static Set<String> excludes = new HashSet<>();
     protected static DeidPipelineTask deidPipelineTask;//would be good to be non-static, would require further separation from GUI
@@ -133,7 +122,6 @@ public class DeidPipeline {
     protected PiiOptions piiOptions;
     protected GeneralCollectionReader reader;
     protected JCas jCas;
-//    protected DeidProperties properties = null;
     protected String outputDir;
     protected String inputDir;
     //TODO: consider Map of arg to value for output options and for DB input values, Properties like class?
@@ -168,8 +156,6 @@ public class DeidPipeline {
     private String dbPassword;
     private String dbQuery;
     private int preCreatedEnginesSize; //size of list w/o output annotators added
-//    private boolean licenseProcessed = false;
-//    private String license = null;
 
     public DeidPipeline(DeidPipelineTask _deidPipelineTask, String inputDirP, String outputDirP) {
         if (inputDirP != null) {
@@ -358,13 +344,12 @@ public class DeidPipeline {
         }
         if (commandLine.hasOption("exclude") && !setExcludes(commandLine.getOptionValue("exclude"))) {
             System.exit(2);
-        }
-        else if (commandLine.hasOption("x")) {
+        } else if (commandLine.hasOption("x")) {
             if (commandLine.getOptionValue("x") != null) {
                 if (!setExcludes(commandLine.getOptionValue("x"))) {
                     System.exit(2);
                 }
-            }else if (commandLine.getArgList()!=null) {
+            } else if (commandLine.getArgList() != null) {
                 if (!setExcludes(commandLine.getArgList().get(0))) {
                     System.exit(2);
                 }
@@ -818,7 +803,7 @@ public class DeidPipeline {
                 }
             }
         }
-        int fileLimit =999999999;// properties.getLicense().getValue().getFileLimit();
+        int fileLimit = 999999999;// properties.getLicense().getValue().getFileLimit();
         int fileSizeLimit = 999999999;// properties.getLicense().getValue().getMaxFileSize();
         if (fileLimit == 0 || fileSizeLimit == 0) {
             return "License issue, no remaining files allowed to be processed. ";
@@ -980,7 +965,7 @@ public class DeidPipeline {
 //            if (filesProcessed % UPDATE_LICENSE_FREQUENCY == 0) {//try 3 times in case of server issues
 //                try {
 //                    properties.updateLicense();
-                    //for some reason ResourceAccessException is stated as not to be thrown
+            //for some reason ResourceAccessException is stated as not to be thrown
 //                } catch (ResourceAccessException e) {//couldn't connect with server
 //                    try {
 //                        properties.updateLicense();
@@ -1323,41 +1308,41 @@ public class DeidPipeline {
         failingFileNames.add(Utilities.getFileName(jCas));
     }
 
-    private DeidProperties generateProperties() {
-//        if (license == null) {
-//            license = readLicenseFile(true);
-//        }
-        DeidProperties deidProperties = new DeidProperties();
+    /*    private DeidProperties generateProperties() {
+    //        if (license == null) {
+    //            license = readLicenseFile(true);
+    //        }
+            DeidProperties deidProperties = new DeidProperties();
 
-        Properties newProperties = new Properties();
-        try (FileInputStream input = new FileInputStream(new File("classes/application.yml"))) {
-            newProperties.load(input);
-        } catch (IOException e) {
-            try (FileInputStream input2 = new FileInputStream(new File("src/main/resources/application.yml"))) {
-                newProperties.load(input2);
-            } catch (IOException ex) {
-                throw new RuntimeException("Did not find application properties file; cannot initialize critical properties.");
+            Properties newProperties = new Properties();
+            try (FileInputStream input = new FileInputStream(new File("classes/application.yml"))) {
+                newProperties.load(input);
+            } catch (IOException e) {
+                try (FileInputStream input2 = new FileInputStream(new File("src/main/resources/application.yml"))) {
+                    newProperties.load(input2);
+                } catch (IOException ex) {
+                    throw new RuntimeException("Did not find application properties file; cannot initialize critical properties.");
+                }
             }
+
+    //        if (license != null && license.length() > 0) {
+    //            deidProperties.getLicense().getValue().setKey(UUID.fromString(license));
+    //        }
+
+    //        if (System.getProperty("clinacuity.deid.baseUrl") != null) {
+    //            deidProperties.getApi().setBaseUrl(System.getProperty("clinacuity.deid.baseUrl"));
+    //        } else {
+    //            deidProperties.getApi().setBaseUrl(newProperties.getProperty("base-url").replaceAll("\"", ""));
+    //        }
+    //
+    //        deidProperties.getApi().setUpdateLicense(newProperties.getProperty("update-license").replaceAll("\"", ""));
+    //        deidProperties.getApi().setValidateLicense(newProperties.getProperty("validate-license").replaceAll("\"", ""));
+    //        deidProperties.getApi().setRequestLicense(newProperties.getProperty("request-license").replaceAll("\"", ""));
+    //        deidProperties.getApi().setCompleteRequest(newProperties.getProperty("complete-request").replaceAll("\"", ""));
+
+            return deidProperties;
         }
-
-//        if (license != null && license.length() > 0) {
-//            deidProperties.getLicense().getValue().setKey(UUID.fromString(license));
-//        }
-
-//        if (System.getProperty("clinacuity.deid.baseUrl") != null) {
-//            deidProperties.getApi().setBaseUrl(System.getProperty("clinacuity.deid.baseUrl"));
-//        } else {
-//            deidProperties.getApi().setBaseUrl(newProperties.getProperty("base-url").replaceAll("\"", ""));
-//        }
-//
-//        deidProperties.getApi().setUpdateLicense(newProperties.getProperty("update-license").replaceAll("\"", ""));
-//        deidProperties.getApi().setValidateLicense(newProperties.getProperty("validate-license").replaceAll("\"", ""));
-//        deidProperties.getApi().setRequestLicense(newProperties.getProperty("request-license").replaceAll("\"", ""));
-//        deidProperties.getApi().setCompleteRequest(newProperties.getProperty("complete-request").replaceAll("\"", ""));
-
-        return deidProperties;
-    }
-
+    */
     private int getFileLimit() {
         return 999999999;
 //        return properties.getLicense().getValue().getFileLimit();
