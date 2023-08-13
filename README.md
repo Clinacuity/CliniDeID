@@ -25,7 +25,7 @@ This version of CliniDeID was built to be used on-premises and includes a user-f
 
 CliniDeID version with all machine learning models, RNN included. 
 
-For additional information, see the main branch.
+:warning: **For additional information, see the main branch.**.
 
 
 ## License
